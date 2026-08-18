@@ -597,73 +597,31 @@ Hide # 通货 - 赛季通货* - 裂隙 - 裂隙碎片 - 不足20E
 #      CustomAlertSound "音效\裂隙碎片.mp3" 300
     DisableDropSound 
 
-Show # 通货 - 赛季通货* - 催化剂 - 国际服赛季末市场 1D以上★
-    Class "Stackable Currency"
-    BaseType == "Refined Reaver Catalyst" "Refined Sibilant Catalyst"
-    SetTextColor 245 245 245
-    SetBackgroundColor 255 0 58
-    SetBorderColor 156 2 2
-    SetFontSize 45
-    MinimapIcon 0 Red Triangle
-    PlayEffect Red
-    CustomAlertSound "音效\CYGG.mp3" 300
-    DisableDropSound
-
-Show # 通货 - 赛季通货* - 催化剂 - 国际服赛季末市场 50E-99E★
-    Class "Stackable Currency"
-    BaseType == "Reaver Catalyst" "Refined Necrotic Catalyst" "Sibilant Catalyst"
-    SetTextColor 138 43 226
-    SetBackgroundColor 255 255 255
-    SetBorderColor 138 43 226
-    SetFontSize 45
-    MinimapIcon 1 Purple Triangle
-    PlayEffect Purple
-    CustomAlertSound "音效\GXFC.mp3" 300
-    DisableDropSound
-
-Show # 通货 - 赛季通货* - 催化剂 - 国际服赛季末市场 20E-49E★
-    Class "Stackable Currency"
-    BaseType == "Refined Adaptive Catalyst" "Refined Carapace Catalyst" "Refined Chayula's Catalyst" "Refined Esh's Catalyst" "Refined Flesh Catalyst" "Refined Neural Catalyst" "Refined Skittering Catalyst" "Refined Tul's Catalyst" "Refined Uul-Netol's Catalyst" "Refined Xoph's Catalyst"
-    SetTextColor 0 0 0
-    SetBackgroundColor 245 139 87 255
-    SetBorderColor 0 0 0
-    SetFontSize 40
-    MinimapIcon 2 Orange Triangle
-    PlayEffect Orange
-    CustomAlertSound "音效\MBWDD.mp3" 300
-    DisableDropSound
-
-Hide # 通货 - 赛季通货* - 催化剂 - 国际服赛季末市场 20E以下或低置信度
-    Class "Stackable Currency"
-    BaseType == "Adaptive Catalyst" "Carapace Catalyst" "Chayula's Catalyst" "Esh's Catalyst" "Flesh Catalyst" "Necrotic Catalyst" "Neural Catalyst" "Skittering Catalyst" "Tul's Catalyst" "Uul-Netol's Catalyst" "Xoph's Catalyst"
-    SetFontSize 30
-    DisableDropSound
-
-Hide # 通货 - 赛季通货* - 催化剂 - 100E★ - 由前置20E市场分档接管
+Show # 通货 - 赛季通货* - 催化剂 - 100E★
     Class "Stackable Currency" 
     BaseType "Refined Necrotic Catalyst" 
     SetTextColor 0 47 167 
     SetBackgroundColor 255 255 255 
     SetBorderColor 0 47 167 
     SetFontSize 40
-#      MinimapIcon 1 Blue Triangle 
-#      PlayEffect Blue
-#      CustomAlertSound "音效\HYL.mp3" 300
+    MinimapIcon 1 Blue Triangle 
+    PlayEffect Blue
+    CustomAlertSound "音效\HYL.mp3" 300
     DisableDropSound 
 
-Hide # 通货 - 赛季通货* - 催化剂 - 50E★ - 由前置20E市场分档接管
+Show # 通货 - 赛季通货* - 催化剂 - 50E★
     Class "Stackable Currency" 
     BaseType "Refined Reaver Catalyst" "Necrotic Catalyst" 
     SetTextColor 187 27 120 
     SetBackgroundColor 255 255 255 255 
     SetBorderColor 144 10 109 
     SetFontSize 40
-#      MinimapIcon 1 Pink Triangle 
-#      PlayEffect Pink
-#      CustomAlertSound "音效\GXFC.mp3" 300
+    MinimapIcon 1 Pink Triangle 
+    PlayEffect Pink
+    CustomAlertSound "音效\GXFC.mp3" 300
     DisableDropSound 
 
-Hide # 通货 - 赛季通货* - 催化剂 - 10E★ - 由前置20E市场分档接管
+Hide # 通货 - 赛季通货* - 催化剂 - 10E★ - 赛季末低于20E
     Class "Stackable Currency" 
     BaseType "Refined Tul's Catalyst" "Refined Sibilant Catalyst" 
     SetTextColor 109 60 60 
@@ -675,18 +633,18 @@ Hide # 通货 - 赛季通货* - 催化剂 - 10E★ - 由前置20E市场分档接
 #      CustomAlertSound "音效\MBOYY.mp3" 300
     DisableDropSound 
 
-Hide # 通货 - 赛季通货* - 催化剂 - 精炼催化剂 - 由前置20E市场分档接管
+Show # 通货 - 赛季通货* - 催化剂 - 精炼催化剂
     Class "Stackable Currency" 
     BaseType "Refined Flesh Catalyst" "Refined Carapace Catalyst" "Refined Uul-Netol's Catalyst" "Refined Xoph's Catalyst" "Refined Tul's Catalyst" "Refined Esh's Catalyst" "Refined Chayula's Catalyst" "Refined Reaver Catalyst" "Refined Sibilant Catalyst" "Refined Skittering Catalyst" 
     SetTextColor 0 0 0 
     SetBackgroundColor 180 75 225 255 
     SetBorderColor 0 0 0 
     SetFontSize 40
-#      PlayEffect White
-#      CustomAlertSound "音效\MBWOWW.mp3" 300
+    PlayEffect White
+    CustomAlertSound "音效\MBWOWW.mp3" 300
     DisableDropSound 
 
-Hide # 通货 - 赛季通货* - 催化剂 - 10E以上★ - 由前置20E市场分档接管
+Hide # 通货 - 赛季通货* - 催化剂 - 10E以上★ - 赛季末低于20E
     Class "Stackable Currency" 
     BaseType "Reaver Catalyst" 
     SetTextColor 109 60 60 
@@ -699,17 +657,17 @@ Hide # 通货 - 赛季通货* - 催化剂 - 10E以上★ - 由前置20E市场分
 #      CustomAlertSound "音效\MBOYY.mp3" 300
     DisableDropSound 
 
-Hide # 通货 - 赛季通货* - 催化剂 - 有价值 - 由前置20E市场分档接管
+Show # 通货 - 赛季通货* - 催化剂 - 有价值
     Class "Stackable Currency" 
     BaseType "Xoph's Catalyst" "Tul's Catalyst" "Esh's Catalyst" "Sibilant Catalyst" "Chayula's Catalyst" 
     SetTextColor 0 0 0 
     SetBackgroundColor 180 75 225 255 
     SetBorderColor 0 0 0 
     SetFontSize 40
-#      MinimapIcon 1 Purple Triangle 
-#      PlayEffect Purple
+    MinimapIcon 1 Purple Triangle 
+    PlayEffect Purple
 #      PlayAlertSound 1 300 
-#      CustomAlertSound "音效\MBWOWW.mp3" 300
+    CustomAlertSound "音效\MBWOWW.mp3" 300
     DisableDropSound 
 
 Hide # 通货 - 赛季通货* - 催化剂 - 全部
@@ -873,7 +831,7 @@ Hide # 通货 - 赛季通货* - 先祖密藏 - 全部文物
 
 Show # 通货 - 赛季通货* - 精华 - 国际服赛季末市场 100E-1D★
     Class "Stackable Currency"
-    BaseType == "Essence of Delirium" "Essence of Horror" "Essence of Hysteria" "Perfect Essence of Command"
+    BaseType == "Essence of Abrasion" "Essence of Delirium" "Essence of Horror" "Essence of Hysteria"
     SetTextColor 0 47 167
     SetBackgroundColor 255 255 255
     SetBorderColor 0 47 167
@@ -883,9 +841,21 @@ Show # 通货 - 赛季通货* - 精华 - 国际服赛季末市场 100E-1D★
     CustomAlertSound "音效\HYL.mp3" 300
     DisableDropSound
 
+Show # 通货 - 赛季通货* - 精华 - 国际服赛季末市场 50E-99E★
+    Class "Stackable Currency"
+    BaseType == "Greater Essence of Haste"
+    SetTextColor 138 43 226
+    SetBackgroundColor 255 255 255
+    SetBorderColor 138 43 226
+    SetFontSize 45
+    MinimapIcon 1 Purple Triangle
+    PlayEffect Purple
+    CustomAlertSound "音效\GXFC.mp3" 300
+    DisableDropSound
+
 Show # 通货 - 赛季通货* - 精华 - 国际服赛季末市场 20E-49E★
     Class "Stackable Currency"
-    BaseType == "Essence of the Breach" "Greater Essence of Seeking" "Perfect Essence of Abrasion" "Perfect Essence of Electricity" "Perfect Essence of Haste" "Perfect Essence of Thawing" "Perfect Essence of the Infinite"
+    BaseType == "Essence of the Abyss" "Essence of the Breach" "Perfect Essence of Ruin" "Perfect Essence of Seeking" "Perfect Essence of the Body"
     SetTextColor 0 0 0
     SetBackgroundColor 245 139 87 255
     SetBorderColor 0 0 0
@@ -897,7 +867,7 @@ Show # 通货 - 赛季通货* - 精华 - 国际服赛季末市场 20E-49E★
 
 Hide # 通货 - 赛季通货* - 精华 - 国际服赛季末市场 20E以下或低置信度
     Class "Stackable Currency"
-    BaseType == "Essence of Abrasion" "Essence of Alacrity" "Essence of Battle" "Essence of Command" "Essence of Electricity" "Essence of Enhancement" "Essence of Flames" "Essence of Grounding" "Essence of Haste" "Essence of Ice" "Essence of Insanity" "Essence of Insulation" "Essence of Opulence" "Essence of Ruin" "Essence of Seeking" "Essence of Sorcery" "Essence of Thawing" "Essence of the Abyss" "Essence of the Body" "Essence of the Infinite" "Essence of the Mind" "Greater Essence of Abrasion" "Greater Essence of Alacrity" "Greater Essence of Battle" "Greater Essence of Command" "Greater Essence of Electricity" "Greater Essence of Enhancement" "Greater Essence of Flames" "Greater Essence of Grounding" "Greater Essence of Haste" "Greater Essence of Ice" "Greater Essence of Insulation" "Greater Essence of Opulence" "Greater Essence of Ruin" "Greater Essence of Sorcery" "Greater Essence of Thawing" "Greater Essence of the Body" "Greater Essence of the Infinite" "Greater Essence of the Mind" "Lesser Essence of Abrasion" "Lesser Essence of Alacrity" "Lesser Essence of Battle" "Lesser Essence of Command" "Lesser Essence of Electricity" "Lesser Essence of Enhancement" "Lesser Essence of Flames" "Lesser Essence of Grounding" "Lesser Essence of Haste" "Lesser Essence of Ice" "Lesser Essence of Insulation" "Lesser Essence of Opulence" "Lesser Essence of Ruin" "Lesser Essence of Seeking" "Lesser Essence of Sorcery" "Lesser Essence of Thawing" "Lesser Essence of the Body" "Lesser Essence of the Infinite" "Lesser Essence of the Mind" "Perfect Essence of Alacrity" "Perfect Essence of Battle" "Perfect Essence of Enhancement" "Perfect Essence of Flames" "Perfect Essence of Grounding" "Perfect Essence of Ice" "Perfect Essence of Insulation" "Perfect Essence of Opulence" "Perfect Essence of Ruin" "Perfect Essence of Seeking" "Perfect Essence of Sorcery" "Perfect Essence of the Body" "Perfect Essence of the Mind"
+    BaseType == "Essence of Alacrity" "Essence of Battle" "Essence of Command" "Essence of Electricity" "Essence of Enhancement" "Essence of Flames" "Essence of Grounding" "Essence of Haste" "Essence of Ice" "Essence of Insanity" "Essence of Insulation" "Essence of Opulence" "Essence of Ruin" "Essence of Seeking" "Essence of Sorcery" "Essence of Thawing" "Essence of the Body" "Essence of the Infinite" "Essence of the Mind" "Greater Essence of Abrasion" "Greater Essence of Alacrity" "Greater Essence of Battle" "Greater Essence of Command" "Greater Essence of Electricity" "Greater Essence of Enhancement" "Greater Essence of Flames" "Greater Essence of Grounding" "Greater Essence of Ice" "Greater Essence of Insulation" "Greater Essence of Opulence" "Greater Essence of Ruin" "Greater Essence of Seeking" "Greater Essence of Sorcery" "Greater Essence of Thawing" "Greater Essence of the Body" "Greater Essence of the Infinite" "Greater Essence of the Mind" "Lesser Essence of Abrasion" "Lesser Essence of Alacrity" "Lesser Essence of Battle" "Lesser Essence of Command" "Lesser Essence of Electricity" "Lesser Essence of Enhancement" "Lesser Essence of Flames" "Lesser Essence of Grounding" "Lesser Essence of Haste" "Lesser Essence of Ice" "Lesser Essence of Insulation" "Lesser Essence of Opulence" "Lesser Essence of Ruin" "Lesser Essence of Seeking" "Lesser Essence of Sorcery" "Lesser Essence of Thawing" "Lesser Essence of the Body" "Lesser Essence of the Infinite" "Lesser Essence of the Mind" "Perfect Essence of Abrasion" "Perfect Essence of Alacrity" "Perfect Essence of Battle" "Perfect Essence of Command" "Perfect Essence of Electricity" "Perfect Essence of Enhancement" "Perfect Essence of Flames" "Perfect Essence of Grounding" "Perfect Essence of Haste" "Perfect Essence of Ice" "Perfect Essence of Insulation" "Perfect Essence of Opulence" "Perfect Essence of Sorcery" "Perfect Essence of Thawing" "Perfect Essence of the Infinite" "Perfect Essence of the Mind"
     SetFontSize 30
     DisableDropSound
 
@@ -1200,7 +1170,7 @@ Hide # 通货 - 赛季通货* - 雕像 - 全部雕像
 
 Show # 通货 - 赛季通货* - 符文 - 国际服赛季末市场 1D以上★
     Class "Augment"
-    BaseType == "Aldur's Legacy" "Astrid's Creativity" "Carved Majesty" "Emergent Possibility" "Greater Rune of Alacrity" "Greater Rune of Leadership" "Perfect Adept Rune" "Perfect Body Rune" "Perfect Charging Rune" "Perfect Desert Rune" "Perfect Glacial Rune" "Perfect Inspiration Rune" "Perfect Iron Rune" "Perfect Mind Rune" "Perfect Rebirth Rune" "Perfect Resolve Rune" "Perfect Robust Rune" "Perfect Stone Rune" "Perfect Storm Rune" "Perfect Vision Rune" "Perfect Ward Rune" "Raven-Touched Shard" "Serle's Triumph" "Warding Rune of Equinox"
+    BaseType == "Aldur's Legacy" "Astrid's Creativity" "Carved Majesty" "Craiceann's Rune of Warding" "Emergent Possibility" "Perfect Adept Rune" "Perfect Body Rune" "Perfect Charging Rune" "Perfect Desert Rune" "Perfect Glacial Rune" "Perfect Inspiration Rune" "Perfect Iron Rune" "Perfect Mind Rune" "Perfect Rebirth Rune" "Perfect Resolve Rune" "Perfect Robust Rune" "Perfect Stone Rune" "Perfect Storm Rune" "Perfect Vision Rune" "Perfect Ward Rune" "Raven-Touched Shard" "Serle's Triumph"
     SetTextColor 245 245 245
     SetBackgroundColor 255 0 58
     SetBorderColor 156 2 2
@@ -1212,7 +1182,7 @@ Show # 通货 - 赛季通货* - 符文 - 国际服赛季末市场 1D以上★
 
 Show # 通货 - 赛季通货* - 符文 - 国际服赛季末市场 100E-1D★
     Class "Augment"
-    BaseType == "Betrayal of Aldur" "Cadigan's Epiphany" "Carved Cunning" "Emergent Vigour" "Masterwork Rune" "Rune of Vitality" "The Greatwolf's Rune of Claws" "Uhtred's Sidereus"
+    BaseType == "Cadigan's Epiphany" "Carved Cunning" "Emergent Vigour" "Greater Rune of Alacrity" "Greater Rune of Leadership" "Greater Rune of Tithing" "Kolr's Hunt" "Lesser Robust Rune" "Masterwork Rune" "Rune of Renown"
     SetTextColor 0 47 167
     SetBackgroundColor 255 255 255
     SetBorderColor 0 47 167
@@ -1224,7 +1194,7 @@ Show # 通货 - 赛季通货* - 符文 - 国际服赛季末市场 100E-1D★
 
 Show # 通货 - 赛季通货* - 符文 - 国际服赛季末市场 50E-99E★
     Class "Augment"
-    BaseType == "Carved Tenacity" "Hedgewitch Assandra's Rune of Wisdom" "Katla's Gloom" "Kolr's Hunt" "Rune of Foundations" "Saqawal's Rune of the Sky" "Thane Girt's Rune of Wildness" "Warding Rune of Reinforcement"
+    BaseType == "Carved Tenacity" "Hedgewitch Assandra's Rune of Wisdom" "Robust Rune" "Storm Rune" "Warding Rune of Reinforcement"
     SetTextColor 138 43 226
     SetBackgroundColor 255 255 255
     SetBorderColor 138 43 226
@@ -1236,7 +1206,7 @@ Show # 通货 - 赛季通货* - 符文 - 国际服赛季末市场 50E-99E★
 
 Show # 通货 - 赛季通货* - 符文 - 国际服赛季末市场 20E-49E★
     Class "Augment"
-    BaseType == "Ancient Rune of Animosity" "Ancient Rune of Detonation" "Carved Mischief" "Emergent Instinct" "Emergent Protection" "Farrul's Rune of the Chase" "Fenumus' Rune of Spinning" "Greater Ward Rune" "Rune of Accumulation" "Rune of Renown" "Rune of the Blossom" "Rune of the Prism" "The Greatwolf's Rune of Willpower" "Warding Rune of Heart"
+    BaseType == "Ancient Rune of Detonation" "Ancient Rune of the Titan" "Carved Mischief" "Emergent Instinct" "Emergent Protection" "Fenumus' Rune of Agony" "Fenumus' Rune of Draining" "Fenumus' Rune of Spinning" "Katla's Gloom" "Lesser Glacial Rune" "Lesser Iron Rune" "Rune of Foundations" "Rune of the Blossom" "Rune of the Prism" "Saqawal's Rune of the Sky" "Uhtred's Sidereus" "Warding Rune of Heart"
     SetTextColor 0 0 0
     SetBackgroundColor 245 139 87 255
     SetBorderColor 0 0 0
@@ -1248,7 +1218,7 @@ Show # 通货 - 赛季通货* - 符文 - 国际服赛季末市场 20E-49E★
 
 Hide # 通货 - 赛季通货* - 符文 - 国际服赛季末市场 20E以下或低置信度
     Class "Augment"
-    BaseType == "Adept Rune" "Ancient Rune of Control" "Ancient Rune of Decay" "Ancient Rune of Discovery" "Ancient Rune of Dueling" "Ancient Rune of Prowess" "Ancient Rune of Retaliation" "Ancient Rune of Shattering" "Ancient Rune of Splinters" "Ancient Rune of the Horde" "Ancient Rune of the Titan" "Ancient Rune of Witchcraft" "Body Rune" "Breath of Aldur" "Charging Rune" "Countess Seske's Rune of Archery" "Courtesan Mannan's Rune of Cruelty" "Craiceann's Rune of Recovery" "Craiceann's Rune of Warding" "Desert Rune" "Farrul's Rune of Grace" "Farrul's Rune of the Hunt" "Fenumus' Rune of Agony" "Fenumus' Rune of Draining" "Glacial Rune" "Greater Adept Rune" "Greater Body Rune" "Greater Charging Rune" "Greater Desert Rune" "Greater Glacial Rune" "Greater Inspiration Rune" "Greater Iron Rune" "Greater Mind Rune" "Greater Rebirth Rune" "Greater Resolve Rune" "Greater Robust Rune" "Greater Rune of Nobility" "Greater Rune of Tithing" "Greater Stone Rune" "Greater Storm Rune" "Greater Vision Rune" "Inspiration Rune" "Ire of Aldur" "Iron Rune" "Lady Hestra's Rune of Winter" "Lesser Adept Rune" "Lesser Body Rune" "Lesser Desert Rune" "Lesser Glacial Rune" "Lesser Inspiration Rune" "Lesser Iron Rune" "Lesser Mind Rune" "Lesser Rebirth Rune" "Lesser Resolve Rune" "Lesser Robust Rune" "Lesser Stone Rune" "Lesser Storm Rune" "Lesser Vision Rune" "Lesser Ward Rune" "Medved's Tending" "Mind Rune" "Passion of Aldur" "Rebirth Rune" "Resolve Rune" "Robust Rune" "Rune of Acrobatics" "Rune of Confrontation" "Rune of Consistency" "Rune of Culmination" "Rune of Reach" "Rune of the Hunt" "Rune of Vital Flame" "Saqawal's Rune of Erosion" "Saqawal's Rune of Memory" "Stone Rune" "Storm Rune" "Thane Grannell's Rune of Mastery" "Thane Leld's Rune of Spring" "Thane Myrk's Rune of Summer" "Thrud's Might" "Vision Rune" "Vorana's Carnage" "Ward Rune" "Warding Rune of Annihilation" "Warding Rune of Armature" "Warding Rune of Bodyguards" "Warding Rune of Courage" "Warding Rune of Desperation" "Warding Rune of Disintegration" "Warding Rune of Glancing" "Warding Rune of Hollowing" "Warding Rune of Nourishment" "Warding Rune of Obsession" "Warding Rune of Protection" "Warding Rune of Salvaging" "Warding Rune of Stability" "Warding Rune of Symbiosis"
+    BaseType == "Adept Rune" "Ancient Rune of Animosity" "Ancient Rune of Control" "Ancient Rune of Decay" "Ancient Rune of Discovery" "Ancient Rune of Dueling" "Ancient Rune of Prowess" "Ancient Rune of Retaliation" "Ancient Rune of Shattering" "Ancient Rune of Splinters" "Ancient Rune of the Horde" "Ancient Rune of Witchcraft" "Betrayal of Aldur" "Body Rune" "Breath of Aldur" "Charging Rune" "Countess Seske's Rune of Archery" "Courtesan Mannan's Rune of Cruelty" "Craiceann's Rune of Recovery" "Desert Rune" "Farrul's Rune of Grace" "Farrul's Rune of the Chase" "Farrul's Rune of the Hunt" "Glacial Rune" "Greater Adept Rune" "Greater Body Rune" "Greater Charging Rune" "Greater Desert Rune" "Greater Glacial Rune" "Greater Inspiration Rune" "Greater Iron Rune" "Greater Mind Rune" "Greater Rebirth Rune" "Greater Resolve Rune" "Greater Robust Rune" "Greater Rune of Nobility" "Greater Stone Rune" "Greater Storm Rune" "Greater Vision Rune" "Greater Ward Rune" "Inspiration Rune" "Ire of Aldur" "Iron Rune" "Lady Hestra's Rune of Winter" "Lesser Adept Rune" "Lesser Body Rune" "Lesser Desert Rune" "Lesser Inspiration Rune" "Lesser Mind Rune" "Lesser Rebirth Rune" "Lesser Resolve Rune" "Lesser Stone Rune" "Lesser Storm Rune" "Lesser Vision Rune" "Lesser Ward Rune" "Medved's Tending" "Mind Rune" "Passion of Aldur" "Rebirth Rune" "Resolve Rune" "Rune of Accumulation" "Rune of Acrobatics" "Rune of Confrontation" "Rune of Consistency" "Rune of Culmination" "Rune of Reach" "Rune of the Hunt" "Rune of Vital Flame" "Rune of Vitality" "Saqawal's Rune of Erosion" "Saqawal's Rune of Memory" "Stone Rune" "Thane Girt's Rune of Wildness" "Thane Grannell's Rune of Mastery" "Thane Leld's Rune of Spring" "Thane Myrk's Rune of Summer" "The Greatwolf's Rune of Claws" "The Greatwolf's Rune of Willpower" "Thrud's Might" "Vision Rune" "Vorana's Carnage" "Ward Rune" "Warding Rune of Annihilation" "Warding Rune of Armature" "Warding Rune of Bodyguards" "Warding Rune of Courage" "Warding Rune of Desperation" "Warding Rune of Disintegration" "Warding Rune of Equinox" "Warding Rune of Glancing" "Warding Rune of Hollowing" "Warding Rune of Nourishment" "Warding Rune of Obsession" "Warding Rune of Protection" "Warding Rune of Salvaging" "Warding Rune of Stability" "Warding Rune of Symbiosis"
     SetFontSize 30
     DisableDropSound
 
@@ -1384,74 +1354,20 @@ Hide # 通货 - 赛季通货* - 符文 - 全部次级普通符文
 #      CustomAlertSound "音效\接着奏乐.mp3" 300
 #      DisableDropSound 
 
-Show # 通货 - 赛季通货* - 灵核 - 国际服赛季末市场 1D以上★
-    Class "Augment"
-    BaseType == "Soul Core of Azcapa" "Xopec's Soul Core of Power"
-    SetTextColor 245 245 245
-    SetBackgroundColor 255 0 58
-    SetBorderColor 156 2 2
-    SetFontSize 45
-    MinimapIcon 0 Red Triangle
-    PlayEffect Red
-    CustomAlertSound "音效\CYGG.mp3" 300
-    DisableDropSound
-
-Show # 通货 - 赛季通货* - 灵核 - 国际服赛季末市场 100E-1D★
-    Class "Augment"
-    BaseType == "Soul Core of Quipolatl"
-    SetTextColor 0 47 167
-    SetBackgroundColor 255 255 255
-    SetBorderColor 0 47 167
-    SetFontSize 45
-    MinimapIcon 1 Blue Triangle
-    PlayEffect Blue
-    CustomAlertSound "音效\HYL.mp3" 300
-    DisableDropSound
-
-Show # 通货 - 赛季通货* - 灵核 - 国际服赛季末市场 50E-99E★
-    Class "Augment"
-    BaseType == "Opiloti's Soul Core of Assault" "Soul Core of Jiquani" "Tzamoto's Soul Core of Ferocity"
-    SetTextColor 138 43 226
-    SetBackgroundColor 255 255 255
-    SetBorderColor 138 43 226
-    SetFontSize 45
-    MinimapIcon 1 Purple Triangle
-    PlayEffect Purple
-    CustomAlertSound "音效\GXFC.mp3" 300
-    DisableDropSound
-
-Show # 通货 - 赛季通货* - 灵核 - 国际服赛季末市场 20E-49E★
-    Class "Augment"
-    BaseType == "Estazunti's Soul Core of Convalescence" "Guatelitzi's Soul Core of Endurance" "Soul Core of Zalatl" "Xipocado's Soul Core of Dominion"
-    SetTextColor 0 0 0
-    SetBackgroundColor 245 139 87 255
-    SetBorderColor 0 0 0
-    SetFontSize 40
-    MinimapIcon 2 Orange Triangle
-    PlayEffect Orange
-    CustomAlertSound "音效\MBWDD.mp3" 300
-    DisableDropSound
-
-Hide # 通货 - 赛季通货* - 灵核 - 国际服赛季末市场 20E以下或低置信度
-    Class "Augment"
-    BaseType == "Atmohua's Soul Core of Retreat" "Cholotl's Soul Core of War" "Citaqualotl's Soul Core of Foulness" "Hayoxi's Soul Core of Heatproofing" "Quipolatl's Soul Core of Flow" "Soul Core of Atmohua" "Soul Core of Cholotl" "Soul Core of Citaqualotl" "Soul Core of Opiloti" "Soul Core of Puhuarte" "Soul Core of Tacati" "Soul Core of Ticaba" "Soul Core of Topotante" "Soul Core of Tzamoto" "Soul Core of Xopec" "Soul Core of Zantipi" "Tacati's Soul Core of Affliction" "Topotante's Soul Core of Dampening" "Uromoti's Soul Core of Attenuation" "Zalatl's Soul Core of Insulation"
-    SetFontSize 30
-    DisableDropSound
-
-Hide # 通货 - 赛季通货* - 灵核 - 50E★ - 由前置20E市场分档接管
+Show # 通货 - 赛季通货* - 灵核 - 50E★
     Class "Augment" 
     BaseType "Soul Core of Quipolatl" "Soul Core of Azcapa" "Xopec's Soul Core of Power" "Xipocado's Soul Core of Dominion" 
     SetTextColor 138 43 226 
     SetBackgroundColor 255 255 255 
     SetBorderColor 138 43 226 
     SetFontSize 45
-#      MinimapIcon 1 Red Triangle 
-#      PlayEffect Red
+    MinimapIcon 1 Red Triangle 
+    PlayEffect Red
 #      PlayAlertSound 1 300 
-#      CustomAlertSound "音效\GXFC.mp3" 300
+    CustomAlertSound "音效\GXFC.mp3" 300
     DisableDropSound 
 
-Hide # 通货 - 赛季通货* - 灵核 - 10E★ - 由前置20E市场分档接管
+Hide # 通货 - 赛季通货* - 灵核 - 10E★ - 赛季末低于20E
     Class "Augment" 
     BaseType "Soul Core of Tacati" "Soul Core of Jiquani" "Soul Core of Zalatl" "Soul Core of Atmohua" "Opiloti's Soul Core of Assault" "Tzamoto's Soul Core of Ferocity" "Estazunti's Soul Core of Convalescence" 
     SetTextColor 254 254 254 
@@ -1464,15 +1380,15 @@ Hide # 通货 - 赛季通货* - 灵核 - 10E★ - 由前置20E市场分档接管
 #      CustomAlertSound "音效\MBWDD.mp3" 300
     DisableDropSound 
 
-Hide # 通货 - 赛季通货* - 灵核 - 有价值 - 由前置20E市场分档接管
+Show # 通货 - 赛季通货* - 灵核 - 有价值
     Class "Augment" 
     BaseType "Soul Core of Jiquani" "Soul Core of Azcapa" "Soul Core of Tacati" "Atmohua's Soul Core of Retreat" "Xopec's Soul Core of Power" "Soul Core of Quipolatl" 
     SetTextColor 0 0 0 
     SetBackgroundColor 164 82 234 255 
     SetBorderColor 0 0 0 
     SetFontSize 40
-#      MinimapIcon 1 Red Triangle 
-#      PlayEffect Red
+    MinimapIcon 1 Red Triangle 
+    PlayEffect Red
 #      PlayAlertSound 1 300 
 #      CustomAlertSound "音效\灵核.mp3" 300
     DisableDropSound 
@@ -1697,8 +1613,7 @@ Show # 通货 - 基础通货* - 常规通货 - 剥离石
     CustomAlertSound "音效\GXFC.mp3" 300
 
 
-Show # 通货 - 基础通货* - 20E堆叠 - Perfect Regal Orb（2个以上）
-    StackSize >= 2
+Show # 通货 - 基础通货* - 常规通货 - 完美富豪石
     Class "Stackable Currency" 
     BaseType "Perfect Regal Orb" 
     SetTextColor 0 164 170 
@@ -1707,21 +1622,8 @@ Show # 通货 - 基础通货* - 20E堆叠 - Perfect Regal Orb（2个以上）
     SetFontSize 45
     MinimapIcon 1 Cyan Circle 
     PlayEffect Cyan
-    PlayAlertSound 3 300 
-    CustomAlertSound "音效\MBWDD.mp3" 300
-
-
-Hide # 通货 - 基础通货* - 常规通货 - 完美富豪石 - 单次掉落低于20E
-    Class "Stackable Currency" 
-    BaseType "Perfect Regal Orb" 
-    SetTextColor 0 164 170 
-    SetBackgroundColor 255 255 255 
-    SetBorderColor 0 0 0 
-    SetFontSize 45
-#      MinimapIcon 1 Cyan Circle 
-#      PlayEffect Cyan
 #      PlayAlertSound 3 300 
-#      CustomAlertSound "音效\MBWDD.mp3" 300
+    CustomAlertSound "音效\MBWDD.mp3" 300
 
 
 Show # 通货 - 基础通货* - 常规通货 - 高级混沌石
@@ -1737,21 +1639,7 @@ Show # 通货 - 基础通货* - 常规通货 - 高级混沌石
     CustomAlertSound "音效\GXFC.mp3" 300
 
 
-Show # 通货 - 基础通货* - 20E堆叠 - Orb of Chance（5个以上）
-    StackSize >= 5
-    Class "Stackable Currency" 
-    BaseType "Orb of Chance" 
-    SetTextColor 0 164 170 
-    SetBackgroundColor 255 255 255 
-    SetBorderColor 0 0 0 
-    SetFontSize 45
-    MinimapIcon 1 Cyan Circle 
-    PlayEffect Cyan
-    PlayAlertSound 3 300 
-    CustomAlertSound "音效\MBWDD.mp3" 300
-
-
-Hide # 通货 - 基础通货* - 常规通货 - 机会石 - 单次掉落低于20E
+Hide # 通货 - 基础通货* - 常规通货 - 机会石 - 赛季末低于20E
     Class "Stackable Currency" 
     BaseType "Orb of Chance" 
     SetTextColor 0 164 170 
@@ -1764,21 +1652,7 @@ Hide # 通货 - 基础通货* - 常规通货 - 机会石 - 单次掉落低于20E
 #      CustomAlertSound "音效\MBWDD.mp3" 300
 
 
-Show # 通货 - 基础通货* - 20E堆叠 - Greater Exalted Orb（6个以上）
-    StackSize >= 6
-    Class "Stackable Currency" 
-    BaseType "Greater Exalted Orb" 
-    SetTextColor 255 78 119 
-    SetBackgroundColor 255 255 255 
-    SetBorderColor 255 78 119 
-    SetFontSize 43
-    MinimapIcon 2 Pink Circle 
-    PlayEffect Pink
-    PlayAlertSound 4 300 
-    CustomAlertSound "音效\mB.mp3" 300
-
-
-Hide # 通货 - 基础通货* - 常规通货 - 高级崇高石 - 单次掉落低于20E
+Hide # 通货 - 基础通货* - 常规通货 - 高级崇高石 - 赛季末低于20E
     Class "Stackable Currency" 
     BaseType "Greater Exalted Orb" 
     SetTextColor 255 78 119 
@@ -1815,20 +1689,6 @@ Hide # 通货 - 基础通货* - 常规通货 - 高等工匠石
 #      PlayEffect White
 #      PlayAlertSound 2 300 
 #      CustomAlertSound "音效\高等工匠石.mp3" 300
-
-
-Show # 通货 - 基础通货* - 20E堆叠 - Gemcutter's Prism（5个以上）
-    StackSize >= 5
-    Class "Stackable Currency" 
-    BaseType "Gemcutter's Prism" 
-    SetTextColor 171 86 0 
-    SetBackgroundColor 255 255 255 
-    SetBorderColor 190 117 0 
-    SetFontSize 43
-    MinimapIcon 2 Yellow Circle 
-    PlayEffect Yellow
-    PlayAlertSound 2 300 
-    CustomAlertSound "音效\MBWOWW.mp3" 300
 
 
 Hide # 通货 - 基础通货* - 常规通货 - 宝石匠的棱镜
@@ -1884,19 +1744,6 @@ Hide # 通货 - 基础通货* - 常规通货 - 崇高石
 #      CustomAlertSound "音效\MBWOWW.mp3" 300
 
 
-Show # 通货 - 基础通货* - 20E堆叠 - Greater Regal Orb（6个以上）
-    StackSize >= 6
-    Class "Stackable Currency" 
-    BaseType "Greater Regal Orb" 
-    SetTextColor 251 210 106 
-    SetBackgroundColor 0 0 0 
-    SetBorderColor 251 210 106 
-    SetFontSize 43
-    MinimapIcon 2 Yellow Circle 
-    PlayAlertSound 13 300 
-    CustomAlertSound "音效\高级富豪石.mp3" 300
-
-
 Hide # 通货 - 基础通货* - 常规通货 - 高级富豪石
     Class "Stackable Currency" 
     BaseType "Greater Regal Orb" 
@@ -1909,21 +1756,7 @@ Hide # 通货 - 基础通货* - 常规通货 - 高级富豪石
 #      CustomAlertSound "音效\高级富豪石.mp3" 300
 
 
-Show # 通货 - 基础通货* - 20E堆叠 - Perfect Orb of Transmutation（5个以上）
-    StackSize >= 5
-    Class "Stackable Currency" 
-    BaseType "Perfect Orb of Transmutation" 
-    SetTextColor 255 78 119 
-    SetBackgroundColor 255 255 255 
-    SetBorderColor 255 78 119 
-    SetFontSize 43
-    MinimapIcon 1 Pink Circle 
-    PlayEffect Pink
-    PlayAlertSound 11 300 
-    CustomAlertSound "音效\mB.mp3" 300
-
-
-Hide # 通货 - 基础通货* - 常规通货 - 完美蜕变石 - 单次掉落低于20E
+Hide # 通货 - 基础通货* - 常规通货 - 完美蜕变石 - 赛季末低于20E
     Class "Stackable Currency" 
     BaseType "Perfect Orb of Transmutation" 
     SetTextColor 255 78 119 
@@ -1934,20 +1767,6 @@ Hide # 通货 - 基础通货* - 常规通货 - 完美蜕变石 - 单次掉落低
 #      PlayEffect Pink
 #      PlayAlertSound 11 300 
 #      CustomAlertSound "音效\mB.mp3" 300
-
-
-Show # 通货 - 基础通货* - 20E堆叠 - Vaal Orb（7个以上）
-    StackSize >= 7
-    Class "Stackable Currency" 
-    BaseType "Vaal Orb" 
-    SetTextColor 255 78 119 
-    SetBackgroundColor 255 255 255 
-    SetBorderColor 255 78 119 
-    SetFontSize 40
-    MinimapIcon 2 Pink Circle 
-    PlayEffect Pink
-    PlayAlertSound 13 300 
-    CustomAlertSound "音效\mB.mp3" 300
 
 
 Hide # 通货 - 基础通货* - 常规通货 - 瓦尔宝珠
@@ -1961,20 +1780,6 @@ Hide # 通货 - 基础通货* - 常规通货 - 瓦尔宝珠
     PlayEffect Pink
 #      PlayAlertSound 13 300 
     CustomAlertSound "音效\mB.mp3" 300
-
-
-Show # 通货 - 基础通货* - 20E堆叠 - Glassblower's Bauble（8个以上）
-    StackSize >= 8
-    Class "Stackable Currency" 
-    BaseType "Glassblower's Bauble" 
-    SetTextColor 171 86 0 
-    SetBackgroundColor 255 255 255 
-    SetBorderColor 190 117 0 
-    SetFontSize 40
-    MinimapIcon 2 Yellow Circle 
-    PlayEffect Yellow
-    PlayAlertSound 11 300 
-    CustomAlertSound "音效\玻璃弹珠.mp3" 300
 
 
 Hide # 通货 - 基础通货* - 常规通货 - 玻璃弹珠
@@ -2014,20 +1819,6 @@ Hide # 通货 - 基础通货* - 常规通货 - 重铸石
 #      CustomAlertSound "音效\重铸石.mp3" 300
 
 
-Show # 通货 - 基础通货* - 20E堆叠 - Armourer's Scrap（19个以上）
-    StackSize >= 19
-    Class "Stackable Currency" 
-    BaseType "Armourer's Scrap" 
-    SetTextColor 0 0 0 
-    SetBackgroundColor 251 210 106 
-    SetBorderColor 0 0 0 
-    SetFontSize 43
-    MinimapIcon 2 White Circle 
-    PlayEffect White
-    PlayAlertSound 11 300 
-    CustomAlertSound "音效\护甲片.mp3" 300
-
-
 Hide # 通货 - 基础通货* - 常规通货 - 护甲片
     Class "Stackable Currency" 
     BaseType "Armourer's Scrap" 
@@ -2039,20 +1830,6 @@ Hide # 通货 - 基础通货* - 常规通货 - 护甲片
 #      PlayEffect White
 #      PlayAlertSound 11 300 
 #      CustomAlertSound "音效\护甲片.mp3" 300
-
-
-Show # 通货 - 基础通货* - 20E堆叠 - Arcanist's Etcher（4个以上）
-    StackSize >= 4
-    Class "Stackable Currency" 
-    BaseType "Arcanist's Etcher" 
-    SetTextColor 0 0 0 
-    SetBackgroundColor 251 210 106 
-    SetBorderColor 0 0 0 
-    SetFontSize 43
-    MinimapIcon 2 White Circle 
-    PlayEffect White
-    PlayAlertSound 11 300 
-    CustomAlertSound "音效\奥术师的铭刻.mp3" 300
 
 
 Hide # 通货 - 基础通货* - 常规通货 - 奥术师的铭刻
@@ -3093,7 +2870,7 @@ Show # 珠宝 - 失落珠宝* - 腐化失落珠宝 - 纯腐化稀有
 
 Show # 珠宝 - 失落珠宝* - 腐化失落珠宝 - 纯腐化魔法
     Corrupted True
-    Rarity Magic
+    Rarity Rare
     BaseType "Time-Lost Emerald" "Time-Lost Ruby" "Time-Lost Sapphire" 
     SetTextColor 255 0 0 
     SetBackgroundColor 0 0 0 
@@ -3215,7 +2992,7 @@ Show # 珠宝 - 常规珠宝* - 腐化常规珠宝 - 纯腐化稀有
 
 Show # 珠宝 - 常规珠宝* - 腐化常规珠宝 - 纯腐化魔法
     Corrupted True
-    Rarity Magic
+    Rarity Rare
     BaseType == "Emerald" "Ruby" "Sapphire" 
     SetTextColor 255 0 0 
     SetBackgroundColor 0 0 0 
@@ -3508,124 +3285,70 @@ Show # 技能石 - 卡古兰宝石 - 辅助技能
     CustomAlertSound "音效\卡古兰宝石.mp3" 300
     DisableDropSound 
 
-Show # 技能石 - 血脉辅助宝石 - 国际服赛季末市场 1D以上★
-    Class "Skill Gems" "Support Gems"
-    BaseType == "Amanamu's Tithe" "Atalui's Bloodletting" "Atziri's Allure" "Atziri's Communion" "Breachlord's Amalgam" "Breachlord's Rift" "Dialla's Desire" "Esh's Radiance" "Garukhan's Resolve" "Her Declaration" "Ixchel's Torment" "Khatal's Rejuvenation" "Olroth's Conviction" "Rakiata's Flow" "Rigwald's Ferocity" "Seraph's Heart" "Tul's Stillness" "Uhtred's Augury" "Uhtred's Exodus" "Uhtred's Omen" "Uul-Netol's Embrace" "Vorana's Siege" "Xoph's Pyre"
-    SetTextColor 255 255 255
-    SetBackgroundColor 205 0 0 230
-    SetBorderColor 255 0 0
-    SetFontSize 45
-    MinimapIcon 0 Red Kite
-    PlayEffect Red
-    CustomAlertSound "音效\CYGG.mp3" 300
-    DisableDropSound
-
-Show # 技能石 - 血脉辅助宝石 - 国际服赛季末市场 100E-1D★
-    Class "Skill Gems" "Support Gems"
-    BaseType == "Arbiter's Ignition" "Catha's Brilliance" "Mórrigan's Insight"
-    SetTextColor 245 16 16
-    SetBackgroundColor 255 255 255
-    SetBorderColor 255 0 0
-    SetFontSize 45
-    MinimapIcon 1 Red Kite
-    PlayEffect Red
-    CustomAlertSound "音效\heiheihei.mp3" 300
-    DisableDropSound
-
-Show # 技能石 - 血脉辅助宝石 - 国际服赛季末市场 50E-99E★
-    Class "Skill Gems" "Support Gems"
-    BaseType == "Ahn's Citadel" "Atziri's Impatience" "Doedre's Undoing" "Medved's Felling" "Uhtred's Constellation" "Uhtred's Rite"
-    SetTextColor 0 47 167
-    SetBackgroundColor 255 255 255
-    SetBorderColor 0 47 167
-    SetFontSize 45
-    MinimapIcon 1 Blue Kite
-    PlayEffect Blue
-    CustomAlertSound "音效\hjmld.mp3" 300
-    DisableDropSound
-
-Show # 技能石 - 血脉辅助宝石 - 国际服赛季末市场 20E-49E★
-    Class "Skill Gems" "Support Gems"
-    BaseType == "Ailith's Chimes" "Arbiter's Reach" "Hayoxi's Fulmination" "Sione's Temper" "Styrn's Mountain" "Zarokh's Refrain" "Zarokh's Revolt" "Zerphi's Infamy"
-    SetTextColor 20 240 240
-    SetBackgroundColor 0 79 75 255
-    SetBorderColor 20 240 240
-    SetFontSize 45
-    MinimapIcon 2 Orange Kite
-    PlayEffect Orange
-    CustomAlertSound "音效\MBWDD.mp3" 300
-    DisableDropSound
-
-Hide # 技能石 - 血脉辅助宝石 - 国际服赛季末市场 20E以下或低置信度
-    Class "Skill Gems" "Support Gems"
-    BaseType == "Arakaali's Lust" "Arjun's Medal" "Bhatair's Vengeance" "Brutus' Brain" "Cirel's Cultivation" "Daresso's Passion" "Dominus' Grasp" "Einhar's Beastrite" "Eonyr's Thunder" "Esh's Prowess" "Guatelitzi's Ablation" "Helbrym's Hide" "Kalisa's Crescendo" "Kaom's Madness" "Kulemak's Dominion" "Kurgal's Leash" "Morgana's Tempest" "Oisín's Oath" "Olroth's Hubris" "Paquate's Pact" "Prototype Seventeen" "Ratha's Assault" "Romira's Requital" "Styrn's Ferocity" "Tacati's Ire" "Tangmazu's Thurible" "Tasalio's Rhythm" "Tawhoa's Tending" "Tecrod's Revenge" "Trickster's Shard" "Tul's Avalanche" "Uruk's Smelting" "Varashta's Blessing" "Vilenta's Propulsion" "Vruun's Aftermath" "Vruun's Inevitability" "Xibaqua's Rending"
-    SetFontSize 30
-    DisableDropSound
-
-Hide # 技能石 - 血脉辅助宝石 - 100D★ - 由前置20E市场分档接管
+Show # 技能石 - 血脉辅助宝石 - 100D★
     BaseType "Garukhan's Resolve" "Uul-Netol's Embrace" "Atziri's Communion" "Dialla's Desire" "Rakiata's Flow" "Rigwald's Ferocity" "Uhtred's Exodus" "Tul's Stillness" "Her Declaration" "Seraph's Heart" "Esh's Radiance" "Uhtred's Augury" "Vorana's Siege" "Xoph's Pyre" "Olroth's Conviction" "Uhtred's Omen" "Breachlord's Rift" 
     SetTextColor 255 255 255 
     SetBackgroundColor 205 0 0 230 
     SetBorderColor 255 0 0 
     SetFontSize 45
-#      MinimapIcon 0 Red Kite 
-#      PlayEffect Red
-#      PlayAlertSound 9 300 
-#      CustomAlertSound "音效\CYGG.mp3" 300
+    MinimapIcon 0 Red Kite 
+    PlayEffect Red
+    PlayAlertSound 9 300 
+    CustomAlertSound "音效\CYGG.mp3" 300
     DisableDropSound 
 
-Hide # 技能石 - 血脉辅助宝石 - 超高价值 - 由前置20E市场分档接管
+Show # 技能石 - 血脉辅助宝石 - 超高价值
     Class "Skill Gems" "Support Gems" 
     BaseType "Catha's Brilliance" "Amanamu's Tithe" 
     SetTextColor 255 255 255 
     SetBackgroundColor 255 40 0 230 
     SetBorderColor 255 40 0 0 
     SetFontSize 45
-#      MinimapIcon 0 Red Kite 
-#      PlayEffect Red
+    MinimapIcon 0 Red Kite 
+    PlayEffect Red
 #      PlayAlertSound 1 300 
-#      CustomAlertSound "音效\超级血脉宝石.mp3" 300
+    CustomAlertSound "音效\超级血脉宝石.mp3" 300
     DisableDropSound 
 
-Hide # 技能石 - 血脉辅助宝石 - 高价值 - 由前置20E市场分档接管
+Show # 技能石 - 血脉辅助宝石 - 高价值
     Class "Skill Gems" "Support Gems" 
     BaseType "Breachlord's Amalgam" "Atalui's Bloodletting" "Khatal's Rejuvenation" "Arbiter's Ignition" 
     SetTextColor 255 255 255 
     SetBackgroundColor 205 0 0 230 
     SetBorderColor 255 0 0 
     SetFontSize 45
-#      MinimapIcon 0 Red Kite 
-#      PlayEffect Red
+    MinimapIcon 0 Red Kite 
+    PlayEffect Red
 #      PlayAlertSound 1 300 
-#      CustomAlertSound "音效\heiheihei.mp3" 300
+    CustomAlertSound "音效\heiheihei.mp3" 300
     DisableDropSound 
 
-Hide # 技能石 - 血脉辅助宝石 - 中高价值 - 由前置20E市场分档接管
+Show # 技能石 - 血脉辅助宝石 - 中高价值
     Class "Skill Gems" "Support Gems" 
     BaseType "Ixchel's Torment" "Sione's Temper" "Brutus' Brain" "Uhtred's Constellation" "Mórrigan's Insight" "Atziri's Allure" "Zerphi's Infamy" "Medved's Felling" "Ailith's Chimes" 
     SetTextColor 245 16 16 
     SetBackgroundColor 255 255 255 
     SetBorderColor 255 0 0 
     SetFontSize 45
-#      MinimapIcon 2 Pink Kite 
-#      PlayEffect Pink
+    MinimapIcon 2 Pink Kite 
+    PlayEffect Pink
 #      PlayAlertSound 11 300 
-#      CustomAlertSound "音效\hjmld.mp3" 300
+    CustomAlertSound "音效\hjmld.mp3" 300
     DisableDropSound 
 
-Hide # 技能石 - 血脉辅助宝石 - 中价值 - 由前置20E市场分档接管
+Show # 技能石 - 血脉辅助宝石 - 中价值
     Class "Skill Gems" "Support Gems" 
     BaseType "Doedre's Undoing" "Zarokh's Revolt" "Atziri's Impatience" "Uruk's Smelting" "Atziri's Allure" "Uhtred's Rite" "Hayoxi's Fulmination" "Medved's Felling" "Arbiter's Reach" "Ahn's Citadel" "Romira's Requital" "Kalisa's Crescendo" "Morgana's Tempest" "Tul's Avalanche" "Oisín's Oath" "Styrn's Mountain" "Zarokh's Refrain" "Kurgal's Leash" "Uhtred's Constellation" 
     SetTextColor 230 40 122 
     SetBackgroundColor 105 0 45 255 
     SetBorderColor 240 20 115 
     SetFontSize 42
-#      MinimapIcon 2 Orange Kite 
+    MinimapIcon 2 Orange Kite 
 #      PlayAlertSound 11 300 
-#      CustomAlertSound "音效\MBWDD.mp3" 300
+    CustomAlertSound "音效\MBWDD.mp3" 300
     DisableDropSound 
 
-Hide # 技能石 - 血脉辅助宝石 - 全部 - 由前置20E市场分档接管
+Hide # 技能石 - 血脉辅助宝石 - 全部 - 赛季末低于20E
     Class "Skill Gems" "Support Gems" 
     BaseType "Atalui's Bloodletting" "Einhar's Beastrite" "Vilenta's Propulsion" "Ahn's Citadel" "Brutus' Brain" "Tecrod's Revenge" "Uruk's Smelting" "Paquate's Pact" "Ailith's Chimes" "Doedre's Undoing" "Ratha's Assault" "Arjun's Medal" "Kaom's Madness" "Sione's Temper" "Ixchel's Torment" "Romira's Requital" "Tawhoa's Tending" "Dominus' Grasp" "Dialla's Desire" "Kalisa's Crescendo" "Xoph's Pyre" "Esh's Radiance" "Tul's Stillness" "Uul-Netol's Embrace" "Rakiata's Flow" "Rigwald's Ferocity" "Uhtred's Exodus" "Uhtred's Omen" "Uhtred's Augury" "Daresso's Passion" "Atziri's Allure" "Tacati's Ire" "Zarokh's Refrain" "Garukhan's Resolve" "Kurgal's Leash" "Kulemak's Dominion" "Amanamu's Tithe" "Varashta's Blessing" "Arbiter's Ignition" "Arakaali's Lust" "Xibaqua's Rending" "Oisín's Oath" "Tasalio's Rhythm" "Atziri's Communion" "Dreamer's Knell" "Khatal's Rejuvenation" "Helbrym's Hide" "Atziri's Call" "Guatelitzi's Ablation" "Morgana's Tempest" "Hayoxi's Fulmination" "Eonyr's Thunder" "Bhatair's Vengeance" "Atziri's Impatience" "Zarokh's Revolt" "Zerphi's Infamy" "Cirel's Cultivation" 
     SetTextColor 255 255 255 
@@ -3636,69 +3359,15 @@ Hide # 技能石 - 血脉辅助宝石 - 全部 - 由前置20E市场分档接管
 #      CustomAlertSound "音效\MBWOWW.mp3" 300
     DisableDropSound 
 
-Show # 技能石 - 未切割宝石 - 国际服赛季末市场 1D以上★
-    Class "Skill Gems" "Support Gems"
-    BaseType == "Uncut Skill Gem (Level 20)" "Uncut Spirit Gem (Level 20)"
-    SetTextColor 255 255 255
-    SetBackgroundColor 205 0 0 230
-    SetBorderColor 255 0 0
-    SetFontSize 45
-    MinimapIcon 0 Red Kite
-    PlayEffect Red
-    CustomAlertSound "音效\CYGG.mp3" 300
-    DisableDropSound
-
-Show # 技能石 - 未切割宝石 - 国际服赛季末市场 100E-1D★
-    Class "Skill Gems" "Support Gems"
-    BaseType == "Uncut Skill Gem (Level 1)" "Uncut Skill Gem (Level 7)" "Uncut Spirit Gem (Level 14)" "Uncut Spirit Gem (Level 15)" "Uncut Spirit Gem (Level 16)" "Uncut Spirit Gem (Level 4)"
-    SetTextColor 245 16 16
-    SetBackgroundColor 255 255 255
-    SetBorderColor 255 0 0
-    SetFontSize 45
-    MinimapIcon 1 Red Kite
-    PlayEffect Red
-    CustomAlertSound "音效\hjmld2.mp3" 300
-    DisableDropSound
-
-Show # 技能石 - 未切割宝石 - 国际服赛季末市场 50E-99E★
-    Class "Skill Gems" "Support Gems"
-    BaseType == "Uncut Skill Gem (Level 8)" "Uncut Spirit Gem (Level 13)" "Uncut Spirit Gem (Level 19)"
-    SetTextColor 0 47 167
-    SetBackgroundColor 255 255 255
-    SetBorderColor 0 47 167
-    SetFontSize 45
-    MinimapIcon 1 Blue Kite
-    PlayEffect Blue
-    CustomAlertSound "音效\精神宝石.mp3" 300
-    DisableDropSound
-
-Show # 技能石 - 未切割宝石 - 国际服赛季末市场 20E-49E★
-    Class "Skill Gems" "Support Gems"
-    BaseType == "Uncut Skill Gem (Level 13)" "Uncut Skill Gem (Level 9)" "Uncut Spirit Gem (Level 17)" "Uncut Spirit Gem (Level 18)"
-    SetTextColor 20 240 240
-    SetBackgroundColor 0 79 75 255
-    SetBorderColor 20 240 240
-    SetFontSize 45
-    MinimapIcon 2 Orange Kite
-    PlayEffect Orange
-    CustomAlertSound "音效\技能宝石.mp3" 300
-    DisableDropSound
-
-Hide # 技能石 - 未切割宝石 - 国际服赛季末市场 20E以下或低置信度
-    Class "Skill Gems" "Support Gems"
-    BaseType == "Uncut Skill Gem (Level 10)" "Uncut Skill Gem (Level 11)" "Uncut Skill Gem (Level 12)" "Uncut Skill Gem (Level 14)" "Uncut Skill Gem (Level 15)" "Uncut Skill Gem (Level 16)" "Uncut Skill Gem (Level 17)" "Uncut Skill Gem (Level 18)" "Uncut Skill Gem (Level 19)" "Uncut Skill Gem (Level 2)" "Uncut Skill Gem (Level 3)" "Uncut Skill Gem (Level 4)" "Uncut Skill Gem (Level 5)" "Uncut Skill Gem (Level 6)" "Uncut Spirit Gem (Level 10)" "Uncut Spirit Gem (Level 11)" "Uncut Spirit Gem (Level 12)" "Uncut Spirit Gem (Level 5)" "Uncut Spirit Gem (Level 6)" "Uncut Spirit Gem (Level 7)" "Uncut Spirit Gem (Level 8)" "Uncut Spirit Gem (Level 9)" "Uncut Support Gem (Level 1)" "Uncut Support Gem (Level 2)" "Uncut Support Gem (Level 3)" "Uncut Support Gem (Level 4)" "Uncut Support Gem (Level 5)"
-    SetFontSize 30
-    DisableDropSound
-
-Hide # 技能石 - 技能宝石 - 20级 - 由前置20E市场分档接管
+Show # 技能石 - 技能宝石 - 20级
     BaseType "Uncut Skill Gem (Level 20)" 
     SetTextColor 255 0 0 
     SetBackgroundColor 255 255 255 
     SetBorderColor 255 0 0 
     SetFontSize 45
-#      MinimapIcon 1 Orange Kite 
+    MinimapIcon 1 Orange Kite 
 #      PlayAlertSound 9 300 
-#      CustomAlertSound "音效\hjmld2.mp3" 300
+    CustomAlertSound "音效\hjmld2.mp3" 300
     DisableDropSound 
 
 Hide # 技能石 - 技能宝石 - 大于等于19级
@@ -3767,37 +3436,37 @@ Hide # 技能石 - 辅助宝石 - 全部等级
 #      CustomAlertSound "音效\辅助宝石.mp3" 300
     DisableDropSound 
 
-Hide # 技能石 - 精神宝石 - 20级 - 由前置20E市场分档接管
+Show # 技能石 - 精神宝石 - 20级
     BaseType "Uncut Spirit Gem (Level 20)" 
     SetTextColor 255 0 0 
     SetBackgroundColor 255 255 255 
     SetBorderColor 255 0 0 
     SetFontSize 45
-#      MinimapIcon 1 Orange Kite 
+    MinimapIcon 1 Orange Kite 
 #      PlayAlertSound 9 300 
-#      CustomAlertSound "音效\hjmld2.mp3" 300
+    CustomAlertSound "音效\hjmld2.mp3" 300
     DisableDropSound 
 
-Hide # 技能石 - 精神宝石 - 大于等于19级 - 由前置20E市场分档接管
+Show # 技能石 - 精神宝石 - 大于等于19级
     BaseType "Uncut Spirit Gem (Level 19)" 
     SetTextColor 0 47 167 
     SetBackgroundColor 255 255 255 
     SetBorderColor 0 47 167 
     SetFontSize 45
-#      MinimapIcon 1 Orange Kite 
+    MinimapIcon 1 Orange Kite 
 #      PlayAlertSound 9 300 
-#      CustomAlertSound "音效\精神宝石.mp3" 300
+    CustomAlertSound "音效\精神宝石.mp3" 300
     DisableDropSound 
 
-Hide # 技能石 - 精神宝石 - 大于等于17级
-    BaseType "Uncut Spirit Gem (Level 17)" "Uncut Spirit Gem (Level 18)" "Uncut Spirit Gem (Level 19)" "Uncut Spirit Gem (Level 20)" 
+Show # 技能石 - 精神宝石 - 17至18级（20E以上）
+    BaseType "Uncut Spirit Gem (Level 17)" "Uncut Spirit Gem (Level 18)"
     SetTextColor 20 240 240 
     SetBackgroundColor 0 79 75 255 
     SetBorderColor 20 240 240 
     SetFontSize 40
-#      MinimapIcon 1 Orange Kite 
+    MinimapIcon 2 Orange Kite
 #      PlayAlertSound 9 300 
-#      CustomAlertSound "音效\精神宝石.mp3" 300
+    CustomAlertSound "音效\精神宝石.mp3" 300
     DisableDropSound 
 
 Hide # 技能石 - 精神宝石 - 全部等级
@@ -3994,7 +3663,7 @@ Hide # 传奇装备 - 唯一确定传奇 - 10E以上 - 赛季末低于20E
 
 Hide # 传奇装备 - 有价值基底 - 垃圾
     Rarity Unique
-    BaseType "Acrid Wand" "Aged Cuffs" "Amber Amulet" "Amethyst Ring" "Artillery Bow" "Ashen Staff" "Assassin Garb" "Attuned Wand" "Barbed Spear" "Barricade Tower Shield" "Beaded Circlet" "Blazon Crest Shield" "Blunt Quiver" "Bone Raiment" "Bone Wand" "Braced Sabatons" "Braced Tower Shield" "Brimmed Helm" "Bronze Greaves" "Chain Mail" "Changeling Talisman" "Chiming Staff" "Cleric Vestments" "Cloaked Mail" "Composite Bow" "Covered Sabatons" "Covert Hood" "Cowled Helm" "Crescent Quarterstaff" "Crescent Targe" "Crumbling Maul" "Crystal Focus" "Cultist Crown" "Cultist Greathammer" "Death Mask" "Doubled Gauntlets" "Dualstring Bow" "Dyad Crossbow" "Effigial Tower Shield" "Elementalist Robe" "Elite Greathelm" "Emblem Crest Shield" "Embossed Boots" "Emerald Ring" "Engraved Focus" "Execratus Hammer" "Explorer Armour" "Familial Talisman" "Feathered Robe" "Feathered Tiara" "Felled Greatclub" "Fierce Greathelm" "Fire Quiver" "Firm Bracers" "Forge Maul" "Full Plate" "Fur Plate" "Gelid Staff" "Gold Amulet" "Goldcast Cuffs" "Gothic Quarterstaff" "Guarded Helm" "Hardwood Spear" "Hardwood Targe" "Havoc Raiment" "Helix Spear" "Hermit Garb" "Hewn Mask" "Hexer's Robe" "Hooded Mask" "Horned Crown" "Hunter Hood" "Hunting Shoes" "Hunting Spear" "Intricate Gloves" "Iron Buckler" "Iron Cuirass" "Iron Ring" "Ironclad Vestments" "Ironhead Spear" "Jade Tiara" "Jingling Crest Shield" "Keth Raiment" "Knight Armour" "Lace Hood" "Laced Boots" "Lamellar Mail" "Layered Gauntlets" "Leaden Greathammer" "Leather Buckler" "Leather Vest" "Leatherbound Hood" "Linen Belt" "Linen Wraps" "Lizardscale Boots" "Long Quarterstaff" "Mail Belt" "Mail Sabatons" "Mail Vestments" "Makeshift Crossbow" "Marabout Garb" "Maraketh Cuirass" "Oak Greathammer" "Omen Sceptre" "Ornate Buckler" "Painted Tower Shield" "Pathfinder Coat" "Pearl Ring" "Pilgrim Vestments" "Plate Gauntlets" "Plated Buckler" "Plated Raiment" "Pointed Maul" "Pyrophyte Staff" "Quilted Vest" "Raider Plate" "Rampart Tower Shield" "Rattling Sceptre" "Rawhide Belt" "Recurve Bow" "Rhoahide Coat" "Ridged Buckler" "Ringmail Gauntlets" "Riveted Mitts" "Rogue Armour" "Rough Greaves" "Ruby Ring" "Rusted Cuirass" "Rusted Greathelm" "Scale Mail" "Scalper's Jacket" "Scout's Vest" "Sectioned Bracers" "Serpentscale Coat" "Shabby Hood" "Shielded Helm" "Shortbow" "Shrouded Vest" "Sigil Crest Shield" "Silk Slippers" "Slim Mace" "Smithing Hammer" "Soldier Greathelm" "Sombre Gloves" "Spiked Buckler" "Splintered Tower Shield" "Stacked Sabatons" "Steel Plate" "Steelpoint Quarterstaff" "Steeltoe Boots" "Stitched Gloves" "Straw Sandals" "Strider Vest" "Studded Greatclub" "Studded Vest" "Suede Bracers" "Tempered Mitts" "Temple Maul" "Tense Crossbow" "Threaded Shoes" "Tideseer Mantle" "Titan Mitts" "Tonal Focus" "Topaz Ring" "Toxic Quiver" "Twig Circlet" "Twig Focus" "Vaal Cuirass" "Vagabond Armour" "Veiled Mask" "Velour Shoes" "Verisium Cuffs" "Vicious Talisman" "Visored Helm" "Volatile Wand" "Voltaic Staff" "Votive Raiment" "War Spear" "Warpick" "Warrior Greathelm" "Waxed Jacket" "Wayfarer Jacket" "Wicker Tiara" "Withered Wand" "Wooden Buckler" "Wooden Club" "Woven Focus" "Wrapped Quarterstaff" "Wrapped Sandals" "Zealot Bow" "Omen Crest Shield" "Stone Greaves" "Martyr Crown" "Vaal Tower Shield" "Anchorite Garb" "Gold Circlet" "Sacrificial Mantle" "Crimson Amulet" "Solar Amulet" "Plated Vestments" "Bolstered Mitts" "Lapis Amulet" "Iron Crown" "Marching Mace" "Corsair Cap" "Velvet Cap" "Enlightened Robe" "Long Belt" "Solid Mask" "Wrapped Greathelm" "Secured Leggings" "Visceral Quiver" "Spiral Wraps" "Azure Amulet" "Sapphire Ring" "Bloodstone Amulet" "Torn Gloves" 
+    BaseType "Acrid Wand" "Aged Cuffs" "Amber Amulet" "Amethyst Ring" "Artillery Bow" "Ashen Staff" "Assassin Garb" "Attuned Wand" "Barbed Spear" "Barricade Tower Shield" "Beaded Circlet" "Blazon Crest Shield" "Blunt Quiver" "Bone Raiment" "Bone Wand" "Braced Sabatons" "Braced Tower Shield" "Brimmed Helm" "Bronze Greaves" "Chain Mail" "Changeling Talisman" "Chiming Staff" "Cleric Vestments" "Cloaked Mail" "Composite Bow" "Covered Sabatons" "Covert Hood" "Cowled Helm" "Crescent Quarterstaff" "Crescent Targe" "Crumbling Maul" "Crystal Focus" "Cultist Crown" "Cultist Greathammer" "Death Mask" "Doubled Gauntlets" "Dualstring Bow" "Dyad Crossbow" "Effigial Tower Shield" "Elementalist Robe" "Elite Greathelm" "Emblem Crest Shield" "Embossed Boots" "Emerald Ring" "Engraved Focus" "Execratus Hammer" "Explorer Armour" "Familial Talisman" "Feathered Robe" "Feathered Tiara" "Felled Greatclub" "Fierce Greathelm" "Fire Quiver" "Firm Bracers" "Forge Maul" "Full Plate" "Fur Plate" "Gelid Staff" "Gold Amulet" "Goldcast Cuffs" "Gothic Quarterstaff" "Guarded Helm" "Hardwood Spear" "Hardwood Targe" "Havoc Raiment" "Helix Spear" "Hermit Garb" "Hewn Mask" "Hexer's Robe" "Hooded Mask" "Horned Crown" "Hunter Hood" "Hunting Shoes" "Hunting Spear" "Intricate Gloves" "Iron Buckler" "Iron Cuirass" "Iron Ring" "Ironclad Vestments" "Ironhead Spear" "Jade Tiara" "Jingling Crest Shield" "Keth Raiment" "Knight Armour" "Lace Hood" "Laced Boots" "Lamellar Mail" "Layered Gauntlets" "Leaden Greathammer" "Leather Buckler" "Leather Vest" "Leatherbound Hood" "Linen Belt" "Linen Wraps" "Lizardscale Boots" "Long Quarterstaff" "Mail Belt" "Mail Sabatons" "Mail Vestments" "Makeshift Crossbow" "Marabout Garb" "Maraketh Cuirass" "Oak Greathammer" "Omen Sceptre" "Ornate Buckler" "Painted Tower Shield" "Pathfinder Coat" "Pearl Ring" "Pilgrim Vestments" "Plate Gauntlets" "Plated Buckler" "Plated Raiment" "Pointed Maul" "Pyrophyte Staff" "Quilted Vest" "Raider Plate" "Rampart Tower Shield" "Rattling Sceptre" "Rawhide Belt" "Recurve Bow" "Rhoahide Coat" "Ridged Buckler" "Ringmail Gauntlets" "Riveted Mitts" "Rogue Armour" "Rough Greaves" "Ruby Ring" "Rusted Cuirass" "Rusted Greathelm" "Scale Mail" "Scalper's Jacket" "Scout's Vest" "Sectioned Bracers" "Serpentscale Coat" "Shabby Hood" "Shielded Helm" "Shortbow" "Shrouded Vest" "Sigil Crest Shield" "Silk Slippers" "Slim Mace" "Smithing Hammer" "Soldier Greathelm" "Sombre Gloves" "Spiked Buckler" "Splintered Tower Shield" "Stacked Sabatons" "Steel Plate" "Steelpoint Quarterstaff" "Steeltoe Boots" "Stitched Gloves" "Straw Sandals" "Strider Vest" "Studded Greatclub" "Studded Vest" "Suede Bracers" "Tempered Mitts" "Temple Maul" "Tense Crossbow" "Threaded Shoes" "Tideseer Mantle" "Titan Mitts" "Tonal Focus" "Topaz Ring" "Toxic Quiver" "Twig Circlet" "Twig Focus" "Vaal Cuirass" "Vagabond Armour" "Veiled Mask" "Velour Shoes" "Verisium Cuffs" "Vicious Talisman" "Visored Helm" "Volatile Wand" "Voltaic Staff" "Votive Raiment" "War Spear" "Warpick" "Warrior Greathelm" "Waxed Jacket" "Wayfarer Jacket" "Wicker Tiara" "Withered Wand" "Wooden Buckler" "Wooden Club" "Woven Focus" "Wrapped Quarterstaff" "Wrapped Sandals" "Zealot Bow" "Omen Crest Shield" "Stone Greaves""Martyr Crown" "Vaal Tower Shield""Anchorite Garb" "Gold Circlet" "Sacrificial Mantle" "Crimson Amulet" "Solar Amulet" "Plated Vestments" "Bolstered Mitts" "Lapis Amulet" "Iron Crown" "Marching Mace" "Corsair Cap" "Velvet Cap" "Enlightened Robe" "Long Belt" "Solid Mask" "Wrapped Greathelm" "Secured Leggings" "Visceral Quiver" "Spiral Wraps" "Azure Amulet" "Sapphire Ring" "Bloodstone Amulet" "Torn Gloves" 
     SetTextColor 180 96 0 
     SetBackgroundColor 0 0 0 
     SetBorderColor 218 218 218 
@@ -4158,7 +3827,7 @@ Hide # 装备 - 高价值机会石底子1 - 非额外孔普通装备
 # Show # 装备 - 高价值装备白底子2
 #      ItemLevel >= 81
 #      Rarity = Normal
-#      BaseType "Prismatic Ring" "Ruby Ring" "Topaz Ring" "Sapphire Ring" "Amethyst Ring" "Gold Ring" "Sekhema Sandals" "Dunerunner Sandals" "Treerunner Shoes" "Bound Sandals" "Wanderer Shoes" "Sandsworn Sandals" "Daggerfoot Shoes" "Quickslip Shoes" "Solar Amulet" "Stellar Amulet" "Gold Amulet" "Amber Amulet" "Jade Amulet" "Lapis Amulet" "Pearlescent Amulet" "Bloodstone Amulet" "Lunar Amulet" "Azure Amulet" "Crimson Amulet" "Slipstrike Vest" "Vile Robe" "Sleek Jacket" "Ancestral Tiara" "Kamasan Tiara" "Sorcerous Tiara" "Sinister Quarterstaff" "Bladed Quarterstaff" "Razor Quarterstaff" "Skullcrusher Quarterstaff" "Striking Quarterstaff" "Akoyan Spear" "Flying Spear" "Rattling Sceptre" "Siege Crossbow" "Obliterator Bow" "Militant Bow" "Pauascale Gloves" "War Wraps" "Dueling Wand" "Falconer's Jacket" "Charmed Shoes" "Stalking Bracers" 
+#      BaseType "Prismatic Ring""Ruby Ring""Topaz Ring""Sapphire Ring""Amethyst Ring""Gold Ring""Sekhema Sandals""Dunerunner Sandals""Treerunner Shoes""Bound Sandals""Wanderer Shoes""Sandsworn Sandals""Daggerfoot Shoes""Quickslip Shoes""Solar Amulet""Stellar Amulet""Gold Amulet""Amber Amulet""Jade Amulet""Lapis Amulet""Pearlescent Amulet""Bloodstone Amulet""Lunar Amulet""Azure Amulet""Crimson Amulet""Slipstrike Vest""Vile Robe""Sleek Jacket""Ancestral Tiara""Kamasan Tiara""Sorcerous Tiara""Sinister Quarterstaff""Bladed Quarterstaff""Razor Quarterstaff""Skullcrusher Quarterstaff""Striking Quarterstaff""Akoyan Spear""Flying Spear""Rattling Sceptre""Siege Crossbow""Obliterator Bow""Militant Bow""Pauascale Gloves""War Wraps""Dueling Wand""Falconer's Jacket""Charmed Shoes""Stalking Bracers" 
 #      SetTextColor 255 255 255 
 #      SetBackgroundColor 0 0 0 
 #      SetBorderColor 221 255 252 
@@ -4173,7 +3842,7 @@ Hide # 装备 - 高价值机会石底子1 - 非额外孔普通装备
 #      ItemLevel >= 79
 #      UnidentifiedItemTier >= 3
 #      Rarity = Magic
-#      BaseType "Prismatic Ring" "Ruby Ring" "Topaz Ring" "Sapphire Ring" "Amethyst Ring" "Gold Ring" "Sekhema Sandals" "Dunerunner Sandals" "Treerunner Shoes" "Bound Sandals" "Wanderer Shoes" "Sandsworn Sandals" "Daggerfoot Shoes" "Quickslip Shoes" "Solar Amulet" "Stellar Amulet" "Gold Amulet" "Amber Amulet" "Jade Amulet" "Lapis Amulet" "Pearlescent Amulet" "Bloodstone Amulet" "Lunar Amulet" "Azure Amulet" "Crimson Amulet" "Slipstrike Vest" "Vile Robe" "Sleek Jacket" "Ancestral Tiara" "Kamasan Tiara" "Sorcerous Tiara" "Sinister Quarterstaff" "Bladed Quarterstaff" "Razor Quarterstaff" "Skullcrusher Quarterstaff" "Striking Quarterstaff" "Akoyan Spear" "Flying Spear" "Rattling Sceptre" "Siege Crossbow" "Obliterator Bow" "Militant Bow" "Pauascale Gloves" "War Wraps" 
+#      BaseType "Prismatic Ring""Ruby Ring""Topaz Ring""Sapphire Ring""Amethyst Ring""Gold Ring""Sekhema Sandals""Dunerunner Sandals""Treerunner Shoes""Bound Sandals""Wanderer Shoes""Sandsworn Sandals""Daggerfoot Shoes""Quickslip Shoes""Solar Amulet""Stellar Amulet""Gold Amulet""Amber Amulet""Jade Amulet""Lapis Amulet""Pearlescent Amulet""Bloodstone Amulet""Lunar Amulet""Azure Amulet""Crimson Amulet""Slipstrike Vest""Vile Robe""Sleek Jacket""Ancestral Tiara""Kamasan Tiara""Sorcerous Tiara""Sinister Quarterstaff""Bladed Quarterstaff""Razor Quarterstaff""Skullcrusher Quarterstaff""Striking Quarterstaff""Akoyan Spear""Flying Spear""Rattling Sceptre""Siege Crossbow""Obliterator Bow""Militant Bow""Pauascale Gloves""War Wraps" 
 #      SetTextColor 99 147 208 
 #      SetBackgroundColor 14 14 14 255 
 #      SetBorderColor 99 147 208 
@@ -4187,7 +3856,7 @@ Hide # 装备 - 高价值机会石底子1 - 非额外孔普通装备
 #      ItemLevel >= 79
 #      UnidentifiedItemTier >= 3
 #      Rarity = Rare
-#      BaseType "Prismatic Ring" "Ruby Ring" "Topaz Ring" "Sapphire Ring" "Amethyst Ring" "Gold Ring" "Sekhema Sandals" "Dunerunner Sandals" "Treerunner Shoes" "Bound Sandals" "Wanderer Shoes" "Sandsworn Sandals" "Daggerfoot Shoes" "Quickslip Shoes" "Solar Amulet" "Stellar Amulet" "Gold Amulet" "Amber Amulet" "Jade Amulet" "Lapis Amulet" "Pearlescent Amulet" "Bloodstone Amulet" "Lunar Amulet" "Azure Amulet" "Crimson Amulet" "Slipstrike Vest" "Vile Robe" "Sleek Jacket" "Ancestral Tiara" "Kamasan Tiara" "Sorcerous Tiara" "Sinister Quarterstaff" "Bladed Quarterstaff" "Razor Quarterstaff" "Skullcrusher Quarterstaff" "Striking Quarterstaff" "Akoyan Spear" "Flying Spear" "Rattling Sceptre" "Siege Crossbow" "Obliterator Bow" "Militant Bow" "Pauascale Gloves" "War Wraps" 
+#      BaseType "Prismatic Ring""Ruby Ring""Topaz Ring""Sapphire Ring""Amethyst Ring""Gold Ring""Sekhema Sandals""Dunerunner Sandals""Treerunner Shoes""Bound Sandals""Wanderer Shoes""Sandsworn Sandals""Daggerfoot Shoes""Quickslip Shoes""Solar Amulet""Stellar Amulet""Gold Amulet""Amber Amulet""Jade Amulet""Lapis Amulet""Pearlescent Amulet""Bloodstone Amulet""Lunar Amulet""Azure Amulet""Crimson Amulet""Slipstrike Vest""Vile Robe""Sleek Jacket""Ancestral Tiara""Kamasan Tiara""Sorcerous Tiara""Sinister Quarterstaff""Bladed Quarterstaff""Razor Quarterstaff""Skullcrusher Quarterstaff""Striking Quarterstaff""Akoyan Spear""Flying Spear""Rattling Sceptre""Siege Crossbow""Obliterator Bow""Militant Bow""Pauascale Gloves""War Wraps" 
 #      SetTextColor 234 234 48 
 #      SetBackgroundColor 14 14 14 255 
 #      SetBorderColor 234 234 48 
@@ -6178,7 +5847,7 @@ Hide # 装备 - 需要单独高亮的底子 - 戒指 - 非阶级白 - 非额外�
 #      Identified False
 #      ItemLevel >= 81
 #      Rarity = Normal
-#      BaseType "Dueling Wand" "Visceral Quiver" "Primed Quiver" "Sirenscale Gloves" "Omen Sceptre" "Gemini Bow" "Obliterator Bow" "Warmonger Bow" 
+#      BaseType "Dueling Wand""Visceral Quiver""Primed Quiver""Sirenscale Gloves""Omen Sceptre" "Gemini Bow" "Obliterator Bow""Warmonger Bow" 
 #      SetTextColor 255 255 255 
 #      SetBackgroundColor 0 0 0 
 #      SetBorderColor 0 157 255 
@@ -6202,7 +5871,7 @@ Hide # 装备 - 需要单独高亮的底子 - 戒指 - 非阶级白 - 非额外�
 #      Identified False
 #      ItemLevel >= 81
 #      Rarity = Normal
-#      BaseType "Slipstrike Vest" "Ancestral Tiara"  "Amethyst Ring" "Gold Ring" "Breach Ring" "Gold Amulet" "Solar Amulet" "Topaz Ring" "Prismatic Ring" "Sapphire Ring" "Ruby Ring" "Vile Robe" "Visceral Quiver" "Primed Quiver" "Falconer's Jacket" "Sleek Jacket"  "Drakeskin Boots" "Freebooter Cap" 
+#      BaseType "Slipstrike Vest" "Ancestral Tiara"  "Amethyst Ring" "Gold Ring" "Breach Ring" "Gold Amulet" "Solar Amulet" "Topaz Ring" "Prismatic Ring" "Sapphire Ring" "Ruby Ring""Vile Robe""Visceral Quiver""Primed Quiver""Falconer's Jacket""Sleek Jacket"  "Drakeskin Boots" "Freebooter Cap" 
 #      SetTextColor 255 255 255 
 #      SetBackgroundColor 57 69 201 255 
 #      SetBorderColor 255 255 255 
