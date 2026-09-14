@@ -1,44 +1,42 @@
 POE2 0.5.5 Forbidden Rites 10E 过滤器变更报告
-生成时间（UTC）：2026-09-10T02:33:31.836874+00:00
+生成时间（UTC）：2026-09-14T08:36:50.042788+00:00
 稳定门槛：<8E 隐藏；8-12E 保持；>=12E 显示
 
 分类汇率（1 个主计价单位折合 E）：
-- exchange/Abyss: 265.900000E
-- exchange/Breach: 265.900000E
-- exchange/Currency: 265.900000E
-- exchange/Delirium: 265.900000E
-- exchange/Essences: 265.900000E
-- exchange/Expedition: 265.900000E
-- exchange/Fragments: 265.900000E
-- exchange/Idols: 265.900000E
-- exchange/LineageSupportGems: 265.900000E
-- exchange/Ritual: 265.900000E
-- exchange/Runes: 265.900000E
-- exchange/SoulCores: 265.900000E
-- exchange/UncutGems: 265.900000E
-- exchange/Verisium: 265.900000E
-- stash/PrecursorTablets: 223.100000E
-- stash/UniqueAccessories: 217.800000E
-- stash/UniqueArmours: 194.200000E
-- stash/UniqueCharms: 223.100000E
-- stash/UniqueFlasks: 223.100000E
-- stash/UniqueJewels: 223.100000E
-- stash/UniqueSanctumRelics: 223.100000E
-- stash/UniqueTablets: 223.100000E
-- stash/UniqueWeapons: 270.800000E
+- exchange/Abyss: 358.900000E
+- exchange/Breach: 358.900000E
+- exchange/Currency: 358.900000E
+- exchange/Delirium: 358.900000E
+- exchange/Essences: 358.900000E
+- exchange/Expedition: 358.900000E
+- exchange/Fragments: 358.900000E
+- exchange/Idols: 358.900000E
+- exchange/LineageSupportGems: 358.900000E
+- exchange/Ritual: 358.900000E
+- exchange/Runes: 358.900000E
+- exchange/SoulCores: 358.900000E
+- exchange/UncutGems: 358.900000E
+- exchange/Verisium: 358.900000E
+- stash/PrecursorTablets: 352.700000E
+- stash/UniqueAccessories: 352.700000E
+- stash/UniqueArmours: 361.100000E
+- stash/UniqueCharms: 352.700000E
+- stash/UniqueFlasks: 352.700000E
+- stash/UniqueJewels: 352.700000E
+- stash/UniqueSanctumRelics: 352.700000E
+- stash/UniqueTablets: 352.700000E
+- stash/UniqueWeapons: 352.700000E
 
 分类变化（0）：
 
 显著价格变化（显示前 0 项）：
 - 无
 
-验证警告（9）：
-- [Currency] Scroll of Wisdom: 需要堆叠 654，超过最大堆叠 40
+验证警告（7）：
+- [Currency] Scroll of Wisdom: 需要堆叠 865，超过最大堆叠 40
 - [Fragments] Twilight Reliquary Key: 缺少最大堆叠数，未生成 StackSize 2
-- [Ritual] Omen of Gambling: 需要堆叠 15，超过最大堆叠 10
-- [Ritual] Omen of the Liege: 需要堆叠 42，超过最大堆叠 10
-- [Ritual] Sacred Bloom: 缺少最大堆叠数，未生成 StackSize 2
-- [Delirium] Liquid Paranoia: 需要堆叠 12，超过最大堆叠 10
-- [Delirium] Diluted Liquid Greed: 需要堆叠 34，超过最大堆叠 10
-- [Verisium] Medved's Crest of the Circle: 需要堆叠 22，超过最大堆叠 10
-- [Verisium] Veridical Starlit Ore: 缺少最大堆叠数，未生成 StackSize 2
+- [Ritual] Omen of Gambling: 需要堆叠 20，超过最大堆叠 10
+- [Delirium] Diluted Liquid Ire: 需要堆叠 61，超过最大堆叠 10
+- [Delirium] Liquid Paranoia: 需要堆叠 24，超过最大堆叠 10
+- [Delirium] Diluted Liquid Greed: 需要堆叠 19，超过最大堆叠 10
+- [Verisium] Medved's Crest of the Circle: 需要堆叠 55，超过最大堆叠 10

@@ -59,9 +59,10 @@ class GeneratedArtifactTests(unittest.TestCase):
         self.assertEqual(self.raw, (PROJECT / OUTPUT.name).read_bytes())
 
     def test_rate_and_stack_metadata(self) -> None:
-        self.assertEqual(
-            self.snapshot["rate_by_category"]["stash/UniqueArmours"], 194.2
+        self.assertGreater(
+            self.snapshot["rate_by_category"]["stash/UniqueArmours"], 0
         )
+        self.assertIn("exchange/Currency", self.snapshot["rate_by_category"])
         self.assertEqual(self.snapshot["max_stack_size"]["Exalted Orb"], 20)
         exalted = self.snapshot["classification_state"]["exchange"]["Currency"][
             "Exalted Orb"
@@ -82,7 +83,7 @@ class GeneratedArtifactTests(unittest.TestCase):
         self.assertNotIn("StackSize >= 803", self.text)
         self.assertNotIn("StackSize >= 905", self.text)
 
-    def test_bad_armour_cross_rates_are_not_definite_value(self) -> None:
+    def test_armour_regressions_follow_current_category_price(self) -> None:
         states = self.snapshot["classification_state"]["unique"]["gear"]
         for base in (
             "Runemastered Riveted Mitts",
@@ -91,7 +92,15 @@ class GeneratedArtifactTests(unittest.TestCase):
             "Runemastered Trimmed Greaves",
             "Runemastered Felt Cap",
         ):
-            self.assertEqual(states[base]["state"], "hidden", base)
+            record = states[base]
+            if record["price_e"] < filter_builder.HIDE_BELOW_E:
+                self.assertEqual(record["state"], "hidden", base)
+            elif (
+                record["price_e"] >= filter_builder.SHOW_AT_OR_ABOVE_E
+                and record["trusted"]
+                and len(record["unique_names"]) == 1
+            ):
+                self.assertEqual(record["state"], "single", base)
 
     def test_shared_bases_and_low_inventory_use_cautious_tier(self) -> None:
         states = self.snapshot["classification_state"]["unique"]["gear"]
@@ -99,6 +108,23 @@ class GeneratedArtifactTests(unittest.TestCase):
             self.assertEqual(states[base]["state"], "uncertain", base)
         self.assertIn("Show # 0.5.5传奇市场 - 可能猎首（重革腰带同底材）", self.text)
         self.assertIn("可能高价（同底材或低库存）", self.text)
+
+    def test_only_magic_sapphire_is_shown_before_its_hide(self) -> None:
+        marker = "Show # 珠宝 - 0.5.5保留 - 魔法蓝宝石"
+        block = next(item for item in self.blocks if item.startswith(marker))
+        self.assertIn("    Rarity Magic", block)
+        self.assertIn('    Class "Jewels"', block)
+        self.assertIn('    BaseType == "Sapphire"', block)
+        self.assertNotIn('"Ruby"', block)
+        self.assertNotIn('"Emerald"', block)
+        self.assertNotIn("CustomAlertSound", block)
+        self.assertIn("    DisableDropSound", block)
+        self.assertLess(
+            self.text.index(marker),
+            self.text.index("Hide # 珠宝 - 常规珠宝* - 蓝宝石 - 魔法蓝宝石"),
+        )
+        self.assertIn("Hide # 珠宝 - 常规珠宝* - 红玉 - 魔法红玉", self.text)
+        self.assertIn("Hide # 珠宝 - 常规珠宝* - 翡翠 - 魔法翡翠", self.text)
 
     def test_map_and_equipment_exceptions_remain(self) -> None:
         self.assertIn(

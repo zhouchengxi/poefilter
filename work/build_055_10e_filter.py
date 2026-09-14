@@ -34,6 +34,8 @@ HIDE_BELOW_E = 8.0
 SHOW_AT_OR_ABOVE_E = 12.0
 MIN_EXCHANGE_VOLUME_E = 100.0
 MIN_UNIQUE_LISTINGS = 3
+TEN_DIVINE_MULTIPLIER = 10.0
+DIVINE_ORB_NAME = "Divine Orb"
 POE_NINJA_ROOT = "https://poe.ninja/poe2/api/economy"
 POE2DB_ROOT = "https://poe2db.tw/us"
 CHANGE_REPORT_NAME = "forbidden_rites_0.5.5_10e_change_report.txt"
@@ -387,7 +389,7 @@ def classification_record(
 
 def market_style(band: str) -> list[str]:
     styles = {
-        "1D以上": [
+        "10D以上": [
             "    SetTextColor 245 245 245",
             "    SetBackgroundColor 255 0 58",
             "    SetBorderColor 156 2 2",
@@ -395,6 +397,15 @@ def market_style(band: str) -> list[str]:
             "    MinimapIcon 0 Red Triangle",
             "    PlayEffect Red",
             '    CustomAlertSound "音效\\CYGG.mp3" 300',
+        ],
+        "1D以上": [
+            "    SetTextColor 245 245 245",
+            "    SetBackgroundColor 255 0 58",
+            "    SetBorderColor 156 2 2",
+            "    SetFontSize 45",
+            "    MinimapIcon 0 Red Triangle",
+            "    PlayEffect Red",
+            '    CustomAlertSound "音效\\HYL.mp3" 300',
         ],
         "100E-1D": [
             "    SetTextColor 0 47 167",
@@ -425,6 +436,26 @@ def market_style(band: str) -> list[str]:
         ],
     }
     return styles[band]
+
+
+def divine_orb_rule() -> str:
+    """Keep Divine Orbs on their dedicated HYL sound, outside market tiers."""
+    lines = [
+        "Show # 0.5.5专属音效 - 神圣石",
+        '    Class "Stackable Currency"',
+        f"    BaseType == {q(DIVINE_ORB_NAME)}",
+        "    SetTextColor 255 0 0",
+        "    SetBackgroundColor 255 255 255",
+        "    SetBorderColor 255 0 0",
+        "    SetFontSize 45",
+        "    MinimapIcon 0 Red Star",
+        "    PlayEffect Red",
+        '    CustomAlertSound "音效\\HYL.mp3" 300',
+        "    DisableDropSound",
+        "",
+        "",
+    ]
+    return "\r\n".join(lines)
 
 
 def cautious_style() -> list[str]:
@@ -543,12 +574,13 @@ def build_exchange_section(
     dict[str, dict[str, dict[str, Any]]],
     list[str],
 ]:
-    blocks: list[str] = []
+    blocks: list[str] = [divine_orb_rule()]
     stats: dict[str, dict[str, int]] = {}
     states: dict[str, dict[str, dict[str, Any]]] = {}
     warnings: list[str] = []
     for category, category_cn, item_classes, stackable in EXCHANGE_SPECS:
         bands: dict[str, list[str]] = {band: [] for band in BAND_ORDER}
+        ten_divine: list[str] = []
         stack_groups: dict[int, list[str]] = defaultdict(list)
         uncertain: list[str] = []
         hidden: list[str] = []
@@ -574,6 +606,11 @@ def build_exchange_section(
             if wants_single:
                 if trusted:
                     bands[price_band(price_e, divine_price_e)].append(name)
+                    if (
+                        name != DIVINE_ORB_NAME
+                        and price_e >= TEN_DIVINE_MULTIPLIER * divine_price_e
+                    ):
+                        ten_divine.append(name)
                     state = "single"
                 else:
                     uncertain.append(name)
@@ -615,6 +652,10 @@ def build_exchange_section(
                 **extra,
             )
 
+        if ten_divine:
+            blocks.append(
+                market_rule(category_cn, "10D以上", ten_divine, item_classes)
+            )
         for band in BAND_ORDER:
             if bands[band]:
                 blocks.append(market_rule(category_cn, band, bands[band], item_classes))
@@ -628,6 +669,7 @@ def build_exchange_section(
         stats[category] = {
             "rows": len(markets[category]),
             "shown_single": sum(len(names) for names in bands.values()),
+            "shown_10d_override": len(ten_divine),
             "shown_stack": sum(len(names) for names in stack_groups.values()),
             "shown_uncertain": len(uncertain),
             "hidden": final_hidden,
@@ -1013,6 +1055,23 @@ def extra_socket_section() -> str:
     return "".join(blocks)
 
 
+def magic_sapphire_jewel_section() -> str:
+    lines = [
+        "Show # 珠宝 - 0.5.5保留 - 魔法蓝宝石",
+        "    Rarity Magic",
+        '    Class "Jewels"',
+        '    BaseType == "Sapphire"',
+        "    SetTextColor 109 224 249",
+        "    SetBackgroundColor 31 65 72",
+        "    SetBorderColor 50 230 100",
+        "    SetFontSize 40",
+        "    DisableDropSound",
+        "",
+        "",
+    ]
+    return "\r\n".join(lines)
+
+
 def active_unique_show(block: str) -> bool:
     return header(block).startswith("Show # ") and bool(
         re.search(r"(?m)^    Rarity Unique(?:\r?$| )", block)
@@ -1136,6 +1195,7 @@ def validate_filter(
         "Show # 0.5.5传奇市场 - 可能猎首（重革腰带同底材）",
         "Show # 装备 - 0.5.5唯一保留 - 3孔大件",
         "Show # 装备 - 0.5.5唯一保留 - 2孔小件",
+        "Show # 珠宝 - 0.5.5保留 - 魔法蓝宝石",
         "Show # 地图 - 常规异界地图 - T16",
         "Show # 地图 - 常规异界地图 - T15",
         "Show # 地图 - 附魔地图 - T11-T16",
@@ -1150,6 +1210,27 @@ def validate_filter(
     if '"Sacred Bloom"' not in result:
         raise RuntimeError("0.5.5 event item Sacred Bloom is missing")
 
+    divine_marker = "Show # 0.5.5专属音效 - 神圣石"
+    if divine_marker not in result:
+        raise RuntimeError("Dedicated Divine Orb sound rule is missing")
+    divine_block = next(
+        block for block in re.split(r"(?m)(?=^(?:Show|Hide) # )", result)
+        if header(block).startswith(divine_marker)
+    )
+    if 'BaseType == "Divine Orb"' not in divine_block or '音效\\HYL.mp3' not in divine_block:
+        raise RuntimeError("Divine Orb is not assigned to HYL.mp3")
+    if result.index(divine_marker) > result.index('BaseType == "Divine Orb"'):
+        raise RuntimeError("A broader market rule matches Divine Orb before its dedicated rule")
+
+    for block in re.split(r"(?m)(?=^(?:Show|Hide) # )", result):
+        first = header(block)
+        if first.startswith("Show # 0.5.5市场 -") and "10D以上" in first:
+            if '音效\\CYGG.mp3' not in block:
+                raise RuntimeError(f"10D market rule is not assigned to CYGG.mp3: {first}")
+        elif first.startswith("Show # 0.5.5市场 -") and "1D以上" in first:
+            if '音效\\CYGG.mp3' in block or '音效\\HYL.mp3' not in block:
+                raise RuntimeError(f"Sub-10D market tier has the wrong sound: {first}")
+
     if result.index("Show # 0.5.5传奇市场 - 可能猎首") > result.index(
         "Hide # 0.5.5传奇市场 - 普通传奇装备"
     ):
@@ -1158,6 +1239,10 @@ def validate_filter(
         "Hide # 装备 -"
     ):
         raise RuntimeError("Extra-socket rule is below ordinary equipment hides")
+    if result.index("Show # 珠宝 - 0.5.5保留 - 魔法蓝宝石") > result.index(
+        "Hide # 珠宝 - 常规珠宝* - 蓝宝石 - 魔法蓝宝石"
+    ):
+        raise RuntimeError("Magic Sapphire show rule is below its ordinary magic jewel hide")
 
     sounds = set(re.findall(r'(?m)^    CustomAlertSound "音效\\([^"\\]+)"', result))
     missing = sorted(name for name in sounds if not (PROJECT_DIR / "音效" / name).is_file())
@@ -1357,6 +1442,7 @@ def main() -> None:
         "# [08] POE2 0.5.5 Forbidden Rites 10E过滤器\r\n"
         f"# 生成时间（UTC）：{generated_at}；行情：poe.ninja Forbidden Rites\r\n"
         f"# 稳定10E：<{HIDE_BELOW_E:g}E隐藏，{HIDE_BELOW_E:g}-{SHOW_AT_OR_ABOVE_E:g}E保持上次分类，>={SHOW_AT_OR_ABOVE_E:g}E显示；低置信度单独提醒\r\n"
+        "# 音效：10D以上市场通货使用CYGG.mp3；神圣石固定使用HYL.mp3\r\n"
         "# 普通/魔法/稀有装备仅显示额外一孔；保留T15/T16、附魔地图、T14+七词缀及未知物品提醒\r\n"
         "#===============================================================================================================\r\n\r\n"
     )
@@ -1372,6 +1458,7 @@ def main() -> None:
         "tablets": False,
         "precursor_tablets": False,
         "extra_sockets": False,
+        "magic_basic_jewels": False,
     }
     converted_unique = 0
     converted_equipment = 0
@@ -1405,6 +1492,11 @@ def main() -> None:
         if not inserted["jewels"] and first.startswith("Show # 珠宝 - 传奇珠宝 -"):
             output_parts.append(unique_sections["jewels"])
             inserted["jewels"] = True
+        if not inserted["magic_basic_jewels"] and first.startswith(
+            "Hide # 珠宝 - 常规珠宝* - 红玉 - 魔法红玉"
+        ):
+            output_parts.append(magic_sapphire_jewel_section())
+            inserted["magic_basic_jewels"] = True
         if not inserted["flasks"] and first.startswith("Show # 药剂 - 生命传奇药剂"):
             output_parts.append(unique_sections["flasks"])
             inserted["flasks"] = True
