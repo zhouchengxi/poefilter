@@ -9,10 +9,11 @@ from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parents[1]
-SCRIPT = ROOT / "work" / "build_055_10e_filter.py"
-OUTPUT = ROOT / "outputs" / "[08]0.5.5赛季10E-T15+ 天枢过滤器-POE2-曼波语音.filter"
-SNAPSHOT = ROOT / "work" / "forbidden_rites_0.5.5_10e_market_snapshot.json"
 PROJECT = Path("/Users/christina/self/poe")
+SCRIPT = ROOT / "work" / "build_055_10e_filter.py"
+OUTPUT_NAME = "[08]0.5.5赛季10E-T15+ 天枢过滤器-POE2-曼波语音.filter"
+OUTPUT = (PROJECT if ROOT == PROJECT else ROOT / "outputs") / OUTPUT_NAME
+SNAPSHOT = ROOT / "work" / "forbidden_rites_0.5.5_10e_market_snapshot.json"
 
 spec = importlib.util.spec_from_file_location("build_055_10e_filter", SCRIPT)
 assert spec and spec.loader
@@ -68,6 +69,17 @@ class GeneratedArtifactTests(unittest.TestCase):
             "Exalted Orb"
         ]
         self.assertEqual(exalted["state"], "stack:10")
+        self.assertEqual(self.snapshot["classification_schema_version"], 4)
+        self.assertEqual(
+            self.snapshot["priority_alerts"]["threshold_divine"],
+            filter_builder.TEN_DIVINE_MULTIPLIER,
+        )
+        self.assertAlmostEqual(
+            self.snapshot["priority_alerts"]["threshold_exalted"],
+            self.snapshot["divine_price_exalted"]
+            * filter_builder.TEN_DIVINE_MULTIPLIER,
+            places=5,
+        )
 
     def test_no_impossible_generated_stack_rule(self) -> None:
         states = self.snapshot["classification_state"]["exchange"]
@@ -93,21 +105,124 @@ class GeneratedArtifactTests(unittest.TestCase):
             "Runemastered Felt Cap",
         ):
             record = states[base]
-            if record["price_e"] < filter_builder.HIDE_BELOW_E:
+            if record["price_e"] < filter_builder.UNIQUE_HIDE_BELOW_E:
                 self.assertEqual(record["state"], "hidden", base)
             elif (
-                record["price_e"] >= filter_builder.SHOW_AT_OR_ABOVE_E
+                record["price_e"] >= filter_builder.UNIQUE_SHOW_AT_OR_ABOVE_E
                 and record["trusted"]
                 and len(record["unique_names"]) == 1
             ):
                 self.assertEqual(record["state"], "single", base)
+            else:
+                expected = (
+                    "single:hysteresis"
+                    if record["last_stable_state"].split(":", 1)[0] == "single"
+                    else "hidden"
+                )
+                self.assertEqual(record["state"], expected, base)
 
     def test_shared_bases_and_low_inventory_use_cautious_tier(self) -> None:
         states = self.snapshot["classification_state"]["unique"]["gear"]
         for base in ("Silk Robe", "Utility Belt", "Heavy Belt", "Prismatic Ring"):
             self.assertEqual(states[base]["state"], "uncertain", base)
         self.assertIn("Show # 0.5.5传奇市场 - 可能猎首（重革腰带同底材）", self.text)
-        self.assertIn("可能高价（同底材或低库存）", self.text)
+        self.assertIn("可能高价（大奖同底材或价格分歧）", self.text)
+
+    def test_original_high_value_alerts_are_restored(self) -> None:
+        active = self.snapshot["priority_alerts"]["active"]
+        representatives = {
+            "exchange/Currency/Mirror of Kalandra": "神曼波.mp3",
+            "exchange/Currency/Hinekora's Lock": "辛格拉的发辫.mp3",
+            "exchange/Abyss/Kurgal's Gaze": "hjmld.mp3",
+            "exchange/Expedition/Perfect Flux": "溶剂.mp3",
+        }
+        for alert_id, sound in representatives.items():
+            self.assertIn(alert_id, active)
+            self.assertEqual(active[alert_id]["sound"], sound)
+            base_type = active[alert_id]["name"]
+            matches = [
+                block
+                for block in self.blocks
+                if block.startswith("Show # 0.5.5原版高价值强提醒 -")
+                and re.search(
+                    rf'(?m)^    BaseType ==[^\r\n]*"{re.escape(base_type)}"',
+                    block,
+                )
+            ]
+            self.assertTrue(matches, alert_id)
+            self.assertTrue(any(f"音效\\{sound}" in block for block in matches))
+
+    def test_jackpot_shared_bases_use_original_red_star(self) -> None:
+        marker = "Show # 0.5.5原版高价值强提醒 - 大奖共享传奇底材"
+        block = next(item for item in self.blocks if item.startswith(marker))
+        for base_type in filter_builder.FIXED_JACKPOT_SHARED_UNIQUE_BASES:
+            self.assertRegex(
+                block,
+                rf'(?m)^    BaseType ==[^\r\n]*"{re.escape(base_type)}"',
+            )
+        for expected in (
+            "    Rarity Unique",
+            "    SetFontSize 45",
+            "    MinimapIcon 0 Red Star",
+            "    PlayEffect Brown",
+            '    CustomAlertSound "音效\\wyyp.mp3" 300',
+        ):
+            self.assertIn(expected, block)
+        self.assertLess(
+            self.text.index("Show # 0.5.5传奇市场 - 可能猎首"),
+            self.text.index(marker),
+        )
+        self.assertLess(
+            self.text.index("Show # 传奇装备 - 唯一确定传奇 - 卡兰德之触"),
+            self.text.index(marker),
+        )
+
+    def test_sparse_nonprotected_uniques_stay_hidden(self) -> None:
+        states = self.snapshot["classification_state"]["unique"]["gear"]
+        for base_type in (
+            "Glass Shank",
+            "Runemastered Oak Greathammer",
+            "Runemastered Knight Armour",
+        ):
+            if base_type not in states:
+                continue
+            record = states[base_type]
+            if record["credible_listing_count"] < filter_builder.MIN_UNIQUE_LISTINGS:
+                self.assertEqual(record["state"], "hidden", base_type)
+                first = next(
+                    block
+                    for block in self.blocks
+                    if re.search(
+                        rf'(?m)^    BaseType[^\r\n]*"{re.escape(base_type)}"',
+                        block,
+                    )
+                    and "    Rarity Unique" in block
+                )
+                self.assertTrue(first.startswith("Hide #"), base_type)
+
+    def test_voices_keeps_original_dedicated_alert(self) -> None:
+        marker = "Show # 珠宝 - 0.5.5保留 - 天神之音（原版强提醒）"
+        block = next(item for item in self.blocks if item.startswith(marker))
+        for expected in (
+            "    Corrupted True",
+            "    Rarity Unique",
+            '    Class "Jewels"',
+            '    BaseType == "Sapphire"',
+            "    SetTextColor 180 96 0",
+            "    SetBackgroundColor 255 255 255",
+            "    SetBorderColor 255 0 0",
+            "    SetFontSize 42",
+            "    MinimapIcon 2 Brown Cross",
+            '    CustomAlertSound "音效\\天神之音.mp3" 300',
+        ):
+            self.assertIn(expected, block)
+        shared_sapphire = next(
+            item
+            for item in self.blocks
+            if item.startswith("Show # 0.5.5传奇市场 - 传奇珠宝")
+            and '"Sapphire"' in item
+        )
+        self.assertLess(self.text.index(block), self.text.index(shared_sapphire))
 
     def test_only_magic_sapphire_is_shown_before_its_hide(self) -> None:
         marker = "Show # 珠宝 - 0.5.5保留 - 魔法蓝宝石"

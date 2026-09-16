@@ -1,12 +1,219 @@
 #===============================================================================================================
 # [08] POE2 0.5.5 Forbidden Rites 10E过滤器
-# 生成时间（UTC）：2026-09-16T01:36:54.735572+00:00；行情：poe.ninja Forbidden Rites
+# 生成时间（UTC）：2026-09-16T08:19:03.164057+00:00；行情：poe.ninja Forbidden Rites
 # 非传奇稳定10E：<8E隐藏，8-12E保持，>=12E显示
 # 传奇稳定50E：<40E隐藏，40-60E保持，>=60E显示；首次按50E初始化
+# 原版高价值强提醒：可信价值达到10D时恢复专属视觉与音效；低于门槛自动退出
 # 低成交量基础通货直接隐藏；Regal Shard强制隐藏；Heavy Belt使用猎首强提醒
+# 天神之音保留原版显示与专属天神之音.mp3强提醒
 # 音效：10D以上市场通货使用CYGG.mp3；神圣石固定使用HYL.mp3
 # 普通/魔法/稀有装备仅显示额外一孔；保留T15/T16、附魔地图、T14+七词缀及未知物品提醒
 #===============================================================================================================
+
+Show # 0.5.5原版高价值强提醒 - 卡兰德的魔镜 - 10D以上
+    Class "Stackable Currency"
+    BaseType == "Mirror of Kalandra"
+    SetTextColor 255 255 255
+    SetBackgroundColor 205 0 0 230
+    SetBorderColor 255 0 0
+    SetFontSize 45
+    MinimapIcon 0 Red Star
+    PlayEffect Red
+    CustomAlertSound "音效\神曼波.mp3" 300
+    DisableDropSound
+
+Show # 0.5.5原版高价值强提醒 - 辛格拉的发辫 - 10D以上
+    Class "Stackable Currency"
+    BaseType == "Hinekora's Lock"
+    SetTextColor 255 255 255
+    SetBackgroundColor 205 0 0 230
+    SetBorderColor 255 0 0
+    SetFontSize 45
+    MinimapIcon 0 Red Star
+    PlayEffect Red
+    CustomAlertSound "音效\辛格拉的发辫.mp3" 300
+    DisableDropSound
+
+Show # 0.5.5原版高价值强提醒 - 宝库钥匙·神曼波 - 10D以上
+    Class "Vault Keys"
+    BaseType == "Azmeri Reliquary Key" "The Trialmaster's Reliquary Key"
+    SetTextColor 255 255 255
+    SetBackgroundColor 205 0 0 230
+    SetBorderColor 255 0 0
+    SetFontSize 45
+    MinimapIcon 0 Red Diamond
+    PlayEffect Red
+    CustomAlertSound "音效\神曼波.mp3" 300
+    DisableDropSound
+
+Show # 0.5.5原版高价值强提醒 - 宝库钥匙·唐玛祖与无光 - 10D以上
+    Class "Vault Keys"
+    BaseType == "Tangmazu's Reliquary Key" "Zarokh's Reliquary Key: Against the Darkness"
+    SetTextColor 245 245 245
+    SetBackgroundColor 155 28 57
+    SetBorderColor 156 2 2
+    SetFontSize 45
+    MinimapIcon 0 Red Diamond
+    PlayEffect Red
+    CustomAlertSound "音效\heiheihei.mp3" 300
+    DisableDropSound
+
+Show # 0.5.5原版高价值强提醒 - 宝库钥匙·仲裁者 - 10D以上
+    Class "Vault Keys"
+    BaseType == "The Arbiter's Reliquary Key"
+    SetTextColor 255 0 0
+    SetBackgroundColor 255 255 255
+    SetBorderColor 255 0 0
+    SetFontSize 45
+    MinimapIcon 0 Red Diamond
+    PlayEffect Red
+    CustomAlertSound "音效\HJMJH.mp3" 300
+    DisableDropSound
+
+Show # 0.5.5原版高价值强提醒 - 宝库钥匙·夏乌拉 - 10D以上
+    Class "Vault Keys"
+    BaseType == "Xesht's Reliquary Key"
+    SetTextColor 255 0 0
+    SetBackgroundColor 255 255 255
+    SetBorderColor 255 0 0
+    SetFontSize 45
+    MinimapIcon 0 Red Diamond
+    PlayEffect Red
+    CustomAlertSound "音效\宝库钥匙.mp3" 300
+    DisableDropSound
+
+Show # 0.5.5原版高价值强提醒 - 超级血脉辅助 - 10D以上
+    Class "Skill Gems" "Support Gems"
+    BaseType == "Amanamu's Tithe"
+    SetTextColor 255 255 255
+    SetBackgroundColor 255 40 0 230
+    SetBorderColor 255 40 0 0
+    SetFontSize 45
+    MinimapIcon 0 Red Kite
+    PlayEffect Red
+    CustomAlertSound "音效\超级血脉宝石.mp3" 300
+    DisableDropSound
+
+Show # 0.5.5原版高价值强提醒 - 高价血脉辅助 - 10D以上
+    Class "Skill Gems" "Support Gems"
+    BaseType == "Atziri's Communion" "Breachlord's Rift" "Dialla's Desire" "Esh's Radiance" "Garukhan's Resolve" "Her Declaration" "Olroth's Conviction" "Rakiata's Flow" "Rigwald's Ferocity" "Seraph's Heart" "Tul's Stillness" "Uhtred's Augury" "Uhtred's Exodus" "Uhtred's Omen" "Uul-Netol's Embrace" "Vorana's Siege" "Xoph's Pyre"
+    SetTextColor 255 255 255
+    SetBackgroundColor 205 0 0 230
+    SetBorderColor 255 0 0
+    SetFontSize 45
+    MinimapIcon 0 Red Kite
+    PlayEffect Red
+    PlayAlertSound 9 300
+    CustomAlertSound "音效\CYGG.mp3" 300
+    DisableDropSound
+
+Show # 0.5.5原版高价值强提醒 - 超级预兆 - 10D以上
+    Class "Omen"
+    BaseType == "Omen of Chance" "Omen of Sinistral Annulment" "Omen of Sinistral Erasure"
+    SetTextColor 245 245 245
+    SetBackgroundColor 144 0 33
+    SetBorderColor 144 0 33
+    SetFontSize 45
+    MinimapIcon 0 Red Hexagon
+    PlayEffect Red
+    CustomAlertSound "音效\超级预兆.mp3" 300
+    DisableDropSound
+
+Show # 0.5.5原版高价值强提醒 - 库尔加之凝视 - 10D以上
+    Class "Augment"
+    BaseType == "Kurgal's Gaze"
+    SetTextColor 144 0 33
+    SetBackgroundColor 255 255 255
+    SetBorderColor 144 0 33
+    SetFontSize 45
+    MinimapIcon 0 Red Star
+    PlayEffect Red
+    CustomAlertSound "音效\hjmld.mp3" 300
+    DisableDropSound
+
+Show # 0.5.5原版高价值强提醒 - 保存完好的颅骨 - 10D以上
+    Class "Stackable Currency"
+    BaseType == "Preserved Cranium"
+    SetTextColor 144 0 33
+    SetBackgroundColor 255 255 255
+    SetBorderColor 144 0 33
+    SetFontSize 45
+    MinimapIcon 0 Red Triangle
+    PlayEffect Red
+    CustomAlertSound "音效\jyn.mp3" 300
+    DisableDropSound
+
+Show # 0.5.5原版高价值强提醒 - 完美溶剂 - 10D以上
+    Class "Stackable Currency"
+    BaseType == "Perfect Flux"
+    SetTextColor 144 0 33
+    SetBackgroundColor 255 255 255
+    SetBorderColor 144 0 33
+    SetFontSize 40
+    MinimapIcon 1 Red Circle
+    PlayEffect Red
+    CustomAlertSound "音效\溶剂.mp3" 300
+    DisableDropSound
+
+Show # 0.5.5原版高价值强提醒 - 雕刻威仪 - 10D以上
+    Class "Augment"
+    BaseType == "Carved Majesty"
+    SetTextColor 245 245 245
+    SetBackgroundColor 255 0 58
+    SetBorderColor 156 2 2
+    SetFontSize 45
+    MinimapIcon 0 Red Circle
+    PlayEffect Red
+    CustomAlertSound "音效\CYGG.mp3" 300
+    DisableDropSound
+
+Show # 0.5.5原版高价值强提醒 - 奥尔杜尔的遗产 - 10D以上
+    Class "Augment"
+    BaseType == "Aldur's Legacy"
+    SetTextColor 245 245 245
+    SetBackgroundColor 255 0 58
+    SetBorderColor 156 2 2
+    SetFontSize 45
+    MinimapIcon 0 Red Circle
+    PlayEffect Red
+    CustomAlertSound "音效\CYGG.mp3" 300
+    DisableDropSound
+
+Show # 0.5.5原版高价值强提醒 - 新兴活力 - 10D以上
+    Class "Augment"
+    BaseType == "Emergent Vigour"
+    SetTextColor 245 245 245
+    SetBackgroundColor 144 0 33
+    SetBorderColor 144 0 33
+    SetFontSize 45
+    MinimapIcon 0 Red Circle
+    PlayEffect Red
+    CustomAlertSound "音效\HYL.mp3" 300
+    DisableDropSound
+
+Show # 0.5.5原版高价值强提醒 - 渡鸦之触碎片 - 10D以上
+    Class "Augment"
+    BaseType == "Raven-Touched Shard"
+    SetTextColor 245 245 245
+    SetBackgroundColor 255 0 58
+    SetBorderColor 156 2 2
+    SetFontSize 45
+    MinimapIcon 0 Red Circle
+    PlayEffect Red
+    CustomAlertSound "音效\CYGG.mp3" 300
+    DisableDropSound
+
+Show # 0.5.5原版高价值强提醒 - 远古强效蔑视液化情感 - 10D以上
+    Class "Stackable Currency"
+    BaseType == "Ancient Potent Liquid Contempt"
+    SetTextColor 245 245 245
+    SetBackgroundColor 255 0 58
+    SetBorderColor 156 2 2
+    SetFontSize 45
+    MinimapIcon 0 Red Triangle
+    PlayEffect Red
+    CustomAlertSound "音效\CYGG.mp3" 300
+    DisableDropSound
 
 Show # 0.5.5专属音效 - 神圣石
     Class "Stackable Currency"
@@ -46,7 +253,7 @@ Show # 0.5.5市场 - 基础通货 - Forbidden Rites 1D以上★
 
 Show # 0.5.5市场 - 基础通货 - Forbidden Rites 100E-1D★
     Class "Incubators" "Stackable Currency"
-    BaseType == "Core Destabiliser" "Greater Chaos Orb" "Kamasa's Orb of Sacrifice" "Orb of Annulment" "Orb of Extraction" "Perfect Jeweller's Orb" "Perfect Orb of Augmentation" "Vaal Armourer's Infuser" "Vaal Blacksmith's Infuser"
+    BaseType == "Core Destabiliser" "Greater Chaos Orb" "Kamasa's Orb of Sacrifice" "Kopec's Orb of Sacrifice" "Orb of Annulment" "Orb of Extraction" "Perfect Jeweller's Orb" "Perfect Orb of Augmentation" "Vaal Armourer's Infuser" "Vaal Blacksmith's Infuser"
     SetTextColor 0 47 167
     SetBackgroundColor 255 255 255
     SetBorderColor 0 47 167
@@ -58,7 +265,7 @@ Show # 0.5.5市场 - 基础通货 - Forbidden Rites 100E-1D★
 
 Show # 0.5.5市场 - 基础通货 - Forbidden Rites 50E-99E★
     Class "Incubators" "Stackable Currency"
-    BaseType == "Ancient Infuser" "Cryptic Key" "Kopec's Orb of Sacrifice"
+    BaseType == "Ancient Infuser" "Cryptic Key"
     SetTextColor 138 43 226
     SetBackgroundColor 255 255 255
     SetBorderColor 138 43 226
@@ -83,7 +290,7 @@ Show # 0.5.5市场 - 基础通货 - Forbidden Rites 10E-49E★
 Show # 0.5.5市场 - 基础通货 - 堆叠总价10E（2个以上）
     StackSize >= 2
     Class "Incubators" "Stackable Currency"
-    BaseType == "Arcanist's Etcher" "Armourer's Scrap" "Gemcutter's Prism" "Glassblower's Bauble" "Vaal Arcanist's Infuser"
+    BaseType == "Arcanist's Etcher" "Armourer's Scrap" "Gemcutter's Prism" "Vaal Arcanist's Infuser"
     SetTextColor 0 0 0
     SetBackgroundColor 245 139 87 255
     SetBorderColor 0 0 0
@@ -96,20 +303,7 @@ Show # 0.5.5市场 - 基础通货 - 堆叠总价10E（2个以上）
 Show # 0.5.5市场 - 基础通货 - 堆叠总价10E（3个以上）
     StackSize >= 3
     Class "Incubators" "Stackable Currency"
-    BaseType == "Greater Jeweller's Orb" "Greater Orb of Augmentation" "Greater Regal Orb" "Vaal Orb"
-    SetTextColor 0 0 0
-    SetBackgroundColor 245 139 87 255
-    SetBorderColor 0 0 0
-    SetFontSize 40
-    MinimapIcon 2 Orange Triangle
-    PlayEffect Orange
-    CustomAlertSound "音效\MBWDD.mp3" 300
-    DisableDropSound
-
-Show # 0.5.5市场 - 基础通货 - 堆叠总价10E（4个以上）
-    StackSize >= 4
-    Class "Incubators" "Stackable Currency"
-    BaseType == "Greater Exalted Orb"
+    BaseType == "Glassblower's Bauble" "Greater Exalted Orb" "Greater Jeweller's Orb" "Greater Orb of Augmentation" "Greater Regal Orb" "Vaal Orb"
     SetTextColor 0 0 0
     SetBackgroundColor 245 139 87 255
     SetBorderColor 0 0 0
@@ -148,7 +342,7 @@ Show # 0.5.5市场 - 基础通货 - 堆叠总价10E（6个以上）
 Show # 0.5.5市场 - 基础通货 - 堆叠总价10E（7个以上）
     StackSize >= 7
     Class "Incubators" "Stackable Currency"
-    BaseType == "Blacksmith's Whetstone" "Chance Shard" "Greater Orb of Transmutation"
+    BaseType == "Blacksmith's Whetstone"
     SetTextColor 0 0 0
     SetBackgroundColor 245 139 87 255
     SetBorderColor 0 0 0
@@ -161,7 +355,20 @@ Show # 0.5.5市场 - 基础通货 - 堆叠总价10E（7个以上）
 Show # 0.5.5市场 - 基础通货 - 堆叠总价10E（8个以上）
     StackSize >= 8
     Class "Incubators" "Stackable Currency"
-    BaseType == "Artificer's Orb" "Orb of Transmutation"
+    BaseType == "Artificer's Orb" "Greater Orb of Transmutation"
+    SetTextColor 0 0 0
+    SetBackgroundColor 245 139 87 255
+    SetBorderColor 0 0 0
+    SetFontSize 40
+    MinimapIcon 2 Orange Triangle
+    PlayEffect Orange
+    CustomAlertSound "音效\MBWDD.mp3" 300
+    DisableDropSound
+
+Show # 0.5.5市场 - 基础通货 - 堆叠总价10E（9个以上）
+    StackSize >= 9
+    Class "Incubators" "Stackable Currency"
+    BaseType == "Orb of Transmutation"
     SetTextColor 0 0 0
     SetBackgroundColor 245 139 87 255
     SetBorderColor 0 0 0
@@ -191,7 +398,7 @@ Hide # 0.5.5市场 - 基础通货 - 单次掉落不足10E或低置信度
     DisableDropSound
 
 Show # 0.5.5市场 - 地图碎片与钥匙 - Forbidden Rites 10D以上★
-    BaseType == "Azmeri Reliquary Key" "Tangmazu's Reliquary Key" "The Arbiter's Reliquary Key" "The Trialmaster's Reliquary Key"
+    BaseType == "Tangmazu's Reliquary Key" "The Arbiter's Reliquary Key"
     SetTextColor 245 245 245
     SetBackgroundColor 255 0 58
     SetBorderColor 156 2 2
@@ -202,7 +409,7 @@ Show # 0.5.5市场 - 地图碎片与钥匙 - Forbidden Rites 10D以上★
     DisableDropSound
 
 Show # 0.5.5市场 - 地图碎片与钥匙 - Forbidden Rites 1D以上★
-    BaseType == "Azmeri Reliquary Key" "Breachlord Sac" "Cowardly Fate" "Deadly Fate" "Faded Crisis Fragment" "Kulemak's Invitation" "Origin Core" "Origin Cradle" "Origin Spark" "Raven's Reflection" "Simulacrum" "Tangmazu's Reliquary Key" "The Arbiter's Reliquary Key" "The Trialmaster's Reliquary Key" "Victorious Fate" "Weathered Crisis Fragment"
+    BaseType == "Breachlord Sac" "Cowardly Fate" "Deadly Fate" "Faded Crisis Fragment" "Kulemak's Invitation" "Origin Core" "Origin Cradle" "Origin Spark" "Raven's Reflection" "Ritualistic Reliquary Key" "Simulacrum" "Tangmazu's Reliquary Key" "The Arbiter's Reliquary Key" "Victorious Fate" "Weathered Crisis Fragment"
     SetTextColor 245 245 245
     SetBackgroundColor 255 0 58
     SetBorderColor 156 2 2
@@ -235,7 +442,7 @@ Show # 0.5.5市场 - 地图碎片与钥匙 - Forbidden Rites 10E-49E★
     DisableDropSound
 
 Show # 0.5.5市场 - 地图碎片与钥匙 - 可能高价（低成交量，可能高价）
-    BaseType == "Olroth's Reliquary Key" "Ritualistic Reliquary Key" "Xesht's Reliquary Key" "Zarokh's Reliquary Key: Against the Darkness"
+    BaseType == "Azmeri Reliquary Key" "Olroth's Reliquary Key" "The Trialmaster's Reliquary Key" "Xesht's Reliquary Key" "Zarokh's Reliquary Key: Against the Darkness"
     SetTextColor 40 20 0
     SetBackgroundColor 255 214 102 235
     SetBorderColor 138 43 226
@@ -264,7 +471,7 @@ Hide # 0.5.5市场 - 地图碎片与钥匙 - 单次掉落不足10E或低置信�
 
 Show # 0.5.5市场 - 深渊骨骸 - Forbidden Rites 10D以上★
     Class "Stackable Currency"
-    BaseType == "Kurgal's Gaze" "Preserved Cranium"
+    BaseType == "Kurgal's Gaze" "Preserved Cranium" "Tecrod's Gaze"
     SetTextColor 245 245 245
     SetBackgroundColor 255 0 58
     SetBorderColor 156 2 2
@@ -313,7 +520,20 @@ Show # 0.5.5市场 - 深渊骨骸 - Forbidden Rites 10E-49E★
 Show # 0.5.5市场 - 深渊骨骸 - 堆叠总价10E（2个以上）
     StackSize >= 2
     Class "Stackable Currency"
-    BaseType == "Gnawed Collarbone" "Gnawed Jawbone" "Preserved Jawbone"
+    BaseType == "Gnawed Collarbone" "Gnawed Jawbone"
+    SetTextColor 0 0 0
+    SetBackgroundColor 245 139 87 255
+    SetBorderColor 0 0 0
+    SetFontSize 40
+    MinimapIcon 2 Orange Triangle
+    PlayEffect Orange
+    CustomAlertSound "音效\MBWDD.mp3" 300
+    DisableDropSound
+
+Show # 0.5.5市场 - 深渊骨骸 - 堆叠总价10E（3个以上）
+    StackSize >= 3
+    Class "Stackable Currency"
+    BaseType == "Preserved Jawbone"
     SetTextColor 0 0 0
     SetBackgroundColor 245 139 87 255
     SetBorderColor 0 0 0
@@ -356,7 +576,7 @@ Show # 0.5.5市场 - 未切割宝石 - Forbidden Rites 1D以上★
 
 Show # 0.5.5市场 - 未切割宝石 - Forbidden Rites 100E-1D★
     Class "Skill Gems" "Support Gems"
-    BaseType == "Uncut Skill Gem (Level 1)" "Uncut Spirit Gem (Level 14)" "Uncut Spirit Gem (Level 19)" "Uncut Spirit Gem (Level 9)"
+    BaseType == "Uncut Skill Gem (Level 1)" "Uncut Spirit Gem (Level 14)" "Uncut Spirit Gem (Level 16)" "Uncut Spirit Gem (Level 19)" "Uncut Spirit Gem (Level 9)"
     SetTextColor 0 47 167
     SetBackgroundColor 255 255 255
     SetBorderColor 0 47 167
@@ -368,7 +588,7 @@ Show # 0.5.5市场 - 未切割宝石 - Forbidden Rites 100E-1D★
 
 Show # 0.5.5市场 - 未切割宝石 - Forbidden Rites 50E-99E★
     Class "Skill Gems" "Support Gems"
-    BaseType == "Uncut Skill Gem (Level 7)" "Uncut Spirit Gem (Level 15)" "Uncut Spirit Gem (Level 16)"
+    BaseType == "Uncut Skill Gem (Level 7)" "Uncut Spirit Gem (Level 15)"
     SetTextColor 138 43 226
     SetBackgroundColor 255 255 255
     SetBorderColor 138 43 226
@@ -434,7 +654,7 @@ Show # 0.5.5市场 - 血脉辅助宝石 - Forbidden Rites 100E-1D★
 
 Show # 0.5.5市场 - 血脉辅助宝石 - Forbidden Rites 50E-99E★
     Class "Skill Gems" "Support Gems"
-    BaseType == "Atziri's Allure" "Brutus' Brain" "Sione's Temper" "Tecrod's Revenge"
+    BaseType == "Brutus' Brain" "Medved's Felling" "Sione's Temper" "Tecrod's Revenge"
     SetTextColor 138 43 226
     SetBackgroundColor 255 255 255
     SetBorderColor 138 43 226
@@ -446,7 +666,7 @@ Show # 0.5.5市场 - 血脉辅助宝石 - Forbidden Rites 50E-99E★
 
 Show # 0.5.5市场 - 血脉辅助宝石 - Forbidden Rites 10E-49E★
     Class "Skill Gems" "Support Gems"
-    BaseType == "Ahn's Citadel" "Ailith's Chimes" "Arbiter's Reach" "Atziri's Impatience" "Doedre's Undoing" "Eonyr's Thunder" "Hayoxi's Fulmination" "Ixchel's Torment" "Kaom's Madness" "Kurgal's Leash" "Medved's Felling" "Oisín's Oath" "Romira's Requital" "Tangmazu's Thurible" "Trickster's Shard" "Uhtred's Rite" "Uruk's Smelting" "Zarokh's Refrain"
+    BaseType == "Ahn's Citadel" "Ailith's Chimes" "Atziri's Impatience" "Doedre's Undoing" "Dominus' Grasp" "Eonyr's Thunder" "Ixchel's Torment" "Kaom's Madness" "Kurgal's Leash" "Oisín's Oath" "Romira's Requital" "Trickster's Shard" "Uhtred's Rite" "Uruk's Smelting" "Zerphi's Infamy"
     SetTextColor 0 0 0
     SetBackgroundColor 245 139 87 255
     SetBorderColor 0 0 0
@@ -458,7 +678,7 @@ Show # 0.5.5市场 - 血脉辅助宝石 - Forbidden Rites 10E-49E★
 
 Show # 0.5.5市场 - 血脉辅助宝石 - 可能高价（低成交量，可能高价）
     Class "Skill Gems" "Support Gems"
-    BaseType == "Prototype Seventeen" "Xibaqua's Rending" "Zarokh's Revolt"
+    BaseType == "Arbiter's Reach" "Atziri's Allure" "Hayoxi's Fulmination" "Prototype Seventeen" "Tangmazu's Thurible" "Xibaqua's Rending" "Zarokh's Refrain" "Zarokh's Revolt"
     SetTextColor 40 20 0
     SetBackgroundColor 255 214 102 235
     SetBorderColor 138 43 226
@@ -470,7 +690,7 @@ Show # 0.5.5市场 - 血脉辅助宝石 - 可能高价（低成交量，可能�
 
 Hide # 0.5.5市场 - 血脉辅助宝石 - 单次掉落不足10E或低置信度
     Class "Skill Gems" "Support Gems"
-    BaseType == "Arakaali's Lust" "Arjun's Medal" "Bhatair's Vengeance" "Cirel's Cultivation" "Daresso's Passion" "Dominus' Grasp" "Einhar's Beastrite" "Guatelitzi's Ablation" "Helbrym's Hide" "Kalisa's Crescendo" "Kulemak's Dominion" "Morgana's Tempest" "Olroth's Hubris" "Paquate's Pact" "Ratha's Assault" "Tacati's Ire" "Tasalio's Rhythm" "Tawhoa's Tending" "Tul's Avalanche" "Varashta's Blessing" "Vilenta's Propulsion" "Vruun's Aftermath" "Vruun's Inevitability" "Zerphi's Infamy"
+    BaseType == "Arakaali's Lust" "Arjun's Medal" "Bhatair's Vengeance" "Cirel's Cultivation" "Daresso's Passion" "Einhar's Beastrite" "Guatelitzi's Ablation" "Helbrym's Hide" "Kalisa's Crescendo" "Kulemak's Dominion" "Morgana's Tempest" "Olroth's Hubris" "Paquate's Pact" "Ratha's Assault" "Tacati's Ire" "Tasalio's Rhythm" "Tawhoa's Tending" "Tul's Avalanche" "Varashta's Blessing" "Vilenta's Propulsion" "Vruun's Aftermath" "Vruun's Inevitability"
     SetFontSize 30
     DisableDropSound
 
@@ -488,7 +708,7 @@ Show # 0.5.5市场 - 精华 - Forbidden Rites 1D以上★
 
 Show # 0.5.5市场 - 精华 - Forbidden Rites 100E-1D★
     Class "Stackable Currency"
-    BaseType == "Essence of Horror" "Essence of the Breach"
+    BaseType == "Essence of Delirium" "Essence of Horror" "Essence of the Breach"
     SetTextColor 0 47 167
     SetBackgroundColor 255 255 255
     SetBorderColor 0 47 167
@@ -500,7 +720,7 @@ Show # 0.5.5市场 - 精华 - Forbidden Rites 100E-1D★
 
 Show # 0.5.5市场 - 精华 - Forbidden Rites 50E-99E★
     Class "Stackable Currency"
-    BaseType == "Essence of Delirium" "Essence of the Abyss" "Greater Essence of Opulence"
+    BaseType == "Essence of the Abyss" "Greater Essence of Opulence"
     SetTextColor 138 43 226
     SetBackgroundColor 255 255 255
     SetBorderColor 138 43 226
@@ -512,7 +732,7 @@ Show # 0.5.5市场 - 精华 - Forbidden Rites 50E-99E★
 
 Show # 0.5.5市场 - 精华 - Forbidden Rites 10E-49E★
     Class "Stackable Currency"
-    BaseType == "Essence of Abrasion" "Essence of Insanity" "Perfect Essence of Battle" "Perfect Essence of Enhancement" "Perfect Essence of Grounding" "Perfect Essence of Haste" "Perfect Essence of Opulence"
+    BaseType == "Essence of Abrasion" "Essence of Insanity" "Perfect Essence of Abrasion" "Perfect Essence of Battle" "Perfect Essence of Enhancement" "Perfect Essence of Grounding" "Perfect Essence of Haste" "Perfect Essence of Opulence"
     SetTextColor 0 0 0
     SetBackgroundColor 245 139 87 255
     SetBorderColor 0 0 0
@@ -524,7 +744,7 @@ Show # 0.5.5市场 - 精华 - Forbidden Rites 10E-49E★
 
 Show # 0.5.5市场 - 精华 - 可能高价（低成交量，可能高价）
     Class "Stackable Currency"
-    BaseType == "Essence of Command" "Essence of Enhancement" "Essence of Haste" "Essence of Insulation" "Essence of Opulence" "Essence of Seeking" "Essence of Sorcery" "Essence of Thawing" "Essence of the Infinite" "Lesser Essence of Abrasion" "Lesser Essence of Command" "Lesser Essence of Electricity" "Lesser Essence of Haste" "Lesser Essence of Seeking" "Lesser Essence of Sorcery"
+    BaseType == "Essence of Command" "Essence of Enhancement" "Essence of Grounding" "Essence of Haste" "Essence of Insulation" "Essence of Opulence" "Essence of Seeking" "Essence of Sorcery" "Essence of Thawing" "Essence of the Infinite" "Lesser Essence of Abrasion" "Lesser Essence of Seeking"
     SetTextColor 40 20 0
     SetBackgroundColor 255 214 102 235
     SetBorderColor 138 43 226
@@ -537,7 +757,7 @@ Show # 0.5.5市场 - 精华 - 可能高价（低成交量，可能高价）
 Show # 0.5.5市场 - 精华 - 堆叠总价10E（2个以上）
     StackSize >= 2
     Class "Stackable Currency"
-    BaseType == "Greater Essence of Seeking" "Greater Essence of Thawing" "Perfect Essence of Command" "Perfect Essence of Seeking" "Perfect Essence of Sorcery" "Perfect Essence of the Infinite" "Perfect Essence of the Mind"
+    BaseType == "Greater Essence of Command" "Greater Essence of Seeking" "Perfect Essence of Command" "Perfect Essence of Electricity" "Perfect Essence of the Infinite" "Perfect Essence of the Mind"
     SetTextColor 0 0 0
     SetBackgroundColor 245 139 87 255
     SetBorderColor 0 0 0
@@ -550,7 +770,7 @@ Show # 0.5.5市场 - 精华 - 堆叠总价10E（2个以上）
 Show # 0.5.5市场 - 精华 - 堆叠总价10E（3个以上）
     StackSize >= 3
     Class "Stackable Currency"
-    BaseType == "Greater Essence of Command" "Greater Essence of Haste" "Greater Essence of Insulation" "Greater Essence of Ruin"
+    BaseType == "Greater Essence of Haste" "Greater Essence of Ruin" "Perfect Essence of Alacrity" "Perfect Essence of Ice" "Perfect Essence of Sorcery"
     SetTextColor 0 0 0
     SetBackgroundColor 245 139 87 255
     SetBorderColor 0 0 0
@@ -563,7 +783,7 @@ Show # 0.5.5市场 - 精华 - 堆叠总价10E（3个以上）
 Show # 0.5.5市场 - 精华 - 堆叠总价10E（4个以上）
     StackSize >= 4
     Class "Stackable Currency"
-    BaseType == "Greater Essence of Abrasion" "Greater Essence of Grounding" "Perfect Essence of Abrasion" "Perfect Essence of Alacrity"
+    BaseType == "Greater Essence of Grounding" "Greater Essence of Insulation" "Greater Essence of Thawing"
     SetTextColor 0 0 0
     SetBackgroundColor 245 139 87 255
     SetBorderColor 0 0 0
@@ -573,8 +793,21 @@ Show # 0.5.5市场 - 精华 - 堆叠总价10E（4个以上）
     CustomAlertSound "音效\MBWDD.mp3" 300
     DisableDropSound
 
-Show # 0.5.5市场 - 精华 - 堆叠总价10E（8个以上）
-    StackSize >= 8
+Show # 0.5.5市场 - 精华 - 堆叠总价10E（5个以上）
+    StackSize >= 5
+    Class "Stackable Currency"
+    BaseType == "Greater Essence of Abrasion"
+    SetTextColor 0 0 0
+    SetBackgroundColor 245 139 87 255
+    SetBorderColor 0 0 0
+    SetFontSize 40
+    MinimapIcon 2 Orange Triangle
+    PlayEffect Orange
+    CustomAlertSound "音效\MBWDD.mp3" 300
+    DisableDropSound
+
+Show # 0.5.5市场 - 精华 - 堆叠总价10E（6个以上）
+    StackSize >= 6
     Class "Stackable Currency"
     BaseType == "Greater Essence of Enhancement"
     SetTextColor 0 0 0
@@ -588,13 +821,13 @@ Show # 0.5.5市场 - 精华 - 堆叠总价10E（8个以上）
 
 Hide # 0.5.5市场 - 精华 - 单次掉落不足10E或低置信度
     Class "Stackable Currency"
-    BaseType == "Essence of Alacrity" "Essence of Battle" "Essence of Electricity" "Essence of Flames" "Essence of Grounding" "Essence of Ice" "Essence of Ruin" "Essence of the Body" "Essence of the Mind" "Greater Essence of Abrasion" "Greater Essence of Alacrity" "Greater Essence of Battle" "Greater Essence of Command" "Greater Essence of Electricity" "Greater Essence of Enhancement" "Greater Essence of Flames" "Greater Essence of Grounding" "Greater Essence of Haste" "Greater Essence of Ice" "Greater Essence of Insulation" "Greater Essence of Ruin" "Greater Essence of Seeking" "Greater Essence of Sorcery" "Greater Essence of Thawing" "Greater Essence of the Body" "Greater Essence of the Infinite" "Greater Essence of the Mind" "Lesser Essence of Enhancement" "Lesser Essence of Flames" "Lesser Essence of Grounding" "Lesser Essence of Ice" "Lesser Essence of Insulation" "Lesser Essence of Opulence" "Lesser Essence of Thawing" "Lesser Essence of the Body" "Perfect Essence of Abrasion" "Perfect Essence of Alacrity" "Perfect Essence of Command" "Perfect Essence of Electricity" "Perfect Essence of Flames" "Perfect Essence of Ice" "Perfect Essence of Insulation" "Perfect Essence of Ruin" "Perfect Essence of Seeking" "Perfect Essence of Sorcery" "Perfect Essence of Thawing" "Perfect Essence of the Body" "Perfect Essence of the Infinite" "Perfect Essence of the Mind"
+    BaseType == "Essence of Alacrity" "Essence of Electricity" "Essence of Flames" "Essence of Ice" "Essence of Ruin" "Essence of the Body" "Essence of the Mind" "Greater Essence of Abrasion" "Greater Essence of Alacrity" "Greater Essence of Battle" "Greater Essence of Command" "Greater Essence of Electricity" "Greater Essence of Enhancement" "Greater Essence of Flames" "Greater Essence of Grounding" "Greater Essence of Haste" "Greater Essence of Ice" "Greater Essence of Insulation" "Greater Essence of Ruin" "Greater Essence of Seeking" "Greater Essence of Sorcery" "Greater Essence of Thawing" "Greater Essence of the Body" "Greater Essence of the Infinite" "Greater Essence of the Mind" "Lesser Essence of Command" "Lesser Essence of Enhancement" "Lesser Essence of Flames" "Lesser Essence of Grounding" "Lesser Essence of Haste" "Lesser Essence of Ice" "Lesser Essence of Insulation" "Lesser Essence of Opulence" "Lesser Essence of Sorcery" "Lesser Essence of the Body" "Lesser Essence of the Infinite" "Perfect Essence of Alacrity" "Perfect Essence of Command" "Perfect Essence of Electricity" "Perfect Essence of Flames" "Perfect Essence of Ice" "Perfect Essence of Insulation" "Perfect Essence of Ruin" "Perfect Essence of Seeking" "Perfect Essence of Sorcery" "Perfect Essence of Thawing" "Perfect Essence of the Body" "Perfect Essence of the Infinite" "Perfect Essence of the Mind"
     SetFontSize 30
     DisableDropSound
 
 Show # 0.5.5市场 - 灵核 - Forbidden Rites 10D以上★
     Class "Augment"
-    BaseType == "Raven-Touched Shard"
+    BaseType == "Jiquani's Thesis" "Raven-Touched Shard"
     SetTextColor 245 245 245
     SetBackgroundColor 255 0 58
     SetBorderColor 156 2 2
@@ -606,7 +839,7 @@ Show # 0.5.5市场 - 灵核 - Forbidden Rites 10D以上★
 
 Show # 0.5.5市场 - 灵核 - Forbidden Rites 1D以上★
     Class "Augment"
-    BaseType == "Jiquani's Soul Core of Rippling" "Jiquani's Soul Core of Squalls" "Raven-Touched Shard" "Soul Core of Azcapa"
+    BaseType == "Jiquani's Soul Core of Rippling" "Jiquani's Soul Core of Squalls" "Jiquani's Thesis" "Raven-Touched Shard" "Soul Core of Azcapa"
     SetTextColor 245 245 245
     SetBackgroundColor 255 0 58
     SetBorderColor 156 2 2
@@ -618,7 +851,7 @@ Show # 0.5.5市场 - 灵核 - Forbidden Rites 1D以上★
 
 Show # 0.5.5市场 - 灵核 - Forbidden Rites 100E-1D★
     Class "Augment"
-    BaseType == "Quipolatl's Soul Core of Flow" "Soul Core of Quipolatl" "Xopec's Soul Core of Power"
+    BaseType == "Atziri's Soul Core of Devotion" "Jiquani's Soul Core of Munitions" "Soul Core of Quipolatl" "Xopec's Soul Core of Power"
     SetTextColor 0 47 167
     SetBackgroundColor 255 255 255
     SetBorderColor 0 47 167
@@ -630,7 +863,7 @@ Show # 0.5.5市场 - 灵核 - Forbidden Rites 100E-1D★
 
 Show # 0.5.5市场 - 灵核 - Forbidden Rites 50E-99E★
     Class "Augment"
-    BaseType == "Atziri's Soul Core of Devotion" "Jiquani's Soul Core of Munitions" "Jiquani's Soul Core of Rallying" "Tzamoto's Soul Core of Ferocity"
+    BaseType == "Jiquani's Soul Core of Abundance" "Quipolatl's Soul Core of Flow" "Tzamoto's Soul Core of Ferocity"
     SetTextColor 138 43 226
     SetBackgroundColor 255 255 255
     SetBorderColor 138 43 226
@@ -642,7 +875,7 @@ Show # 0.5.5市场 - 灵核 - Forbidden Rites 50E-99E★
 
 Show # 0.5.5市场 - 灵核 - Forbidden Rites 10E-49E★
     Class "Augment"
-    BaseType == "Atmohua's Soul Core of Retreat" "Atziri's Soul Core of Alacrity" "Atziri's Soul Core of Inoculation" "Atziri's Soul Core of Vitality" "Estazunti's Soul Core of Convalescence" "Guatelitzi's Soul Core of Endurance" "Jiquani's Soul Core of Abundance" "Opiloti's Soul Core of Assault" "Soul Core of Cholotl" "Soul Core of Citaqualotl" "Soul Core of Jiquani" "Soul Core of Tacati" "Soul Core of Zalatl" "Xipocado's Soul Core of Dominion"
+    BaseType == "Atmohua's Soul Core of Retreat" "Atziri's Soul Core of Alacrity" "Atziri's Soul Core of Vitality" "Estazunti's Soul Core of Convalescence" "Guatelitzi's Soul Core of Endurance" "Opiloti's Soul Core of Assault" "Soul Core of Atmohua" "Soul Core of Cholotl" "Soul Core of Citaqualotl" "Soul Core of Jiquani" "Soul Core of Tacati" "Soul Core of Zalatl" "Soul Core of Zantipi" "Topotante's Soul Core of Dampening" "Xipocado's Soul Core of Dominion"
     SetTextColor 0 0 0
     SetBackgroundColor 245 139 87 255
     SetBorderColor 0 0 0
@@ -654,7 +887,7 @@ Show # 0.5.5市场 - 灵核 - Forbidden Rites 10E-49E★
 
 Show # 0.5.5市场 - 灵核 - 可能高价（低成交量，可能高价）
     Class "Augment"
-    BaseType == "Citaqualotl's Thesis" "Guatelitzi's Thesis" "Jiquani's Soul Core of Automation" "Jiquani's Soul Core of Quaking" "Jiquani's Soul Core of Severing" "Jiquani's Thesis" "Quipolatl's Thesis"
+    BaseType == "Atziri's Soul Core of Inoculation" "Citaqualotl's Thesis" "Guatelitzi's Thesis" "Jiquani's Soul Core of Automation" "Jiquani's Soul Core of Quaking" "Jiquani's Soul Core of Rallying" "Jiquani's Soul Core of Severing" "Quipolatl's Thesis" "Tacati's Soul Core of Affliction"
     SetTextColor 40 20 0
     SetBackgroundColor 255 214 102 235
     SetBorderColor 138 43 226
@@ -667,7 +900,7 @@ Show # 0.5.5市场 - 灵核 - 可能高价（低成交量，可能高价）
 Show # 0.5.5市场 - 灵核 - 堆叠总价10E（2个以上）
     StackSize >= 2
     Class "Augment"
-    BaseType == "Soul Core of Atmohua" "Soul Core of Opiloti" "Soul Core of Puhuarte" "Soul Core of Ticaba" "Soul Core of Topotante" "Soul Core of Tzamoto" "Soul Core of Xopec" "Soul Core of Zantipi"
+    BaseType == "Hayoxi's Soul Core of Heatproofing" "Soul Core of Opiloti" "Soul Core of Puhuarte" "Soul Core of Tzamoto" "Soul Core of Xopec"
     SetTextColor 0 0 0
     SetBackgroundColor 245 139 87 255
     SetBorderColor 0 0 0
@@ -679,7 +912,7 @@ Show # 0.5.5市场 - 灵核 - 堆叠总价10E（2个以上）
 
 Hide # 0.5.5市场 - 灵核 - 单次掉落不足10E或低置信度
     Class "Augment"
-    BaseType == "Cholotl's Soul Core of War" "Citaqualotl's Soul Core of Foulness" "Hayoxi's Soul Core of Heatproofing" "Jiquani's Soul Core of Malediction" "Jiquani's Soul Core of Radiance" "Jiquani's Soul Core of Snares" "Jiquani's Soul Core of Targeting" "Jiquani's Soul Core of Thundering" "Soul Core of Atmohua" "Soul Core of Opiloti" "Soul Core of Puhuarte" "Soul Core of Ticaba" "Soul Core of Topotante" "Soul Core of Tzamoto" "Soul Core of Xopec" "Soul Core of Zantipi" "Tacati's Soul Core of Affliction" "Topotante's Soul Core of Dampening" "Uromoti's Soul Core of Attenuation" "Zalatl's Soul Core of Insulation"
+    BaseType == "Cholotl's Soul Core of War" "Citaqualotl's Soul Core of Foulness" "Hayoxi's Soul Core of Heatproofing" "Jiquani's Soul Core of Malediction" "Jiquani's Soul Core of Radiance" "Jiquani's Soul Core of Snares" "Jiquani's Soul Core of Targeting" "Jiquani's Soul Core of Thundering" "Soul Core of Opiloti" "Soul Core of Puhuarte" "Soul Core of Ticaba" "Soul Core of Topotante" "Soul Core of Tzamoto" "Soul Core of Xopec" "Uromoti's Soul Core of Attenuation" "Zalatl's Soul Core of Insulation"
     SetFontSize 30
     DisableDropSound
 
@@ -697,7 +930,7 @@ Show # 0.5.5市场 - 雕像 - Forbidden Rites 10D以上★
 
 Show # 0.5.5市场 - 雕像 - Forbidden Rites 1D以上★
     Class "Augment"
-    BaseType == "Carved Majesty"
+    BaseType == "Carved Cunning" "Carved Majesty"
     SetTextColor 245 245 245
     SetBackgroundColor 255 0 58
     SetBorderColor 156 2 2
@@ -719,21 +952,9 @@ Show # 0.5.5市场 - 雕像 - Forbidden Rites 100E-1D★
     CustomAlertSound "音效\HYL.mp3" 300
     DisableDropSound
 
-Show # 0.5.5市场 - 雕像 - Forbidden Rites 50E-99E★
-    Class "Augment"
-    BaseType == "Carved Mischief" "Fox Idol"
-    SetTextColor 138 43 226
-    SetBackgroundColor 255 255 255
-    SetBorderColor 138 43 226
-    SetFontSize 45
-    MinimapIcon 1 Purple Triangle
-    PlayEffect Purple
-    CustomAlertSound "音效\GXFC.mp3" 300
-    DisableDropSound
-
 Show # 0.5.5市场 - 雕像 - Forbidden Rites 10E-49E★
     Class "Augment"
-    BaseType == "Hawk Idol" "Idol of Eeshta" "Idol of Eramir" "Idol of Grold" "Idol of Maxarius" "Idol of Oak" "Idol of Ralakesh" "Idol of Sirrius" "Idol of the Pharisee" "Idol of the Sycophant" "Rabbit Idol"
+    BaseType == "Fox Idol" "Hawk Idol" "Idol of Eeshta" "Idol of Eramir" "Idol of Grold" "Idol of Maxarius" "Idol of Oak" "Idol of Ralakesh" "Idol of Sirrius" "Idol of the Pharisee" "Idol of the Sycophant" "Idol of Yeena" "Rabbit Idol" "Stoat Idol"
     SetTextColor 0 0 0
     SetBackgroundColor 245 139 87 255
     SetBorderColor 0 0 0
@@ -745,7 +966,7 @@ Show # 0.5.5市场 - 雕像 - Forbidden Rites 10E-49E★
 
 Show # 0.5.5市场 - 雕像 - 可能高价（低成交量，可能高价）
     Class "Augment"
-    BaseType == "Carved Cunning"
+    BaseType == "Carved Mischief"
     SetTextColor 40 20 0
     SetBackgroundColor 255 214 102 235
     SetBorderColor 138 43 226
@@ -758,7 +979,7 @@ Show # 0.5.5市场 - 雕像 - 可能高价（低成交量，可能高价）
 Show # 0.5.5市场 - 雕像 - 堆叠总价10E（2个以上）
     StackSize >= 2
     Class "Augment"
-    BaseType == "Idol of the Martyr" "Idol of Thruldana" "Idol of Yeena"
+    BaseType == "Idol of Thruldana" "Panther Idol" "Snake Idol"
     SetTextColor 0 0 0
     SetBackgroundColor 245 139 87 255
     SetBorderColor 0 0 0
@@ -771,20 +992,7 @@ Show # 0.5.5市场 - 雕像 - 堆叠总价10E（2个以上）
 Show # 0.5.5市场 - 雕像 - 堆叠总价10E（3个以上）
     StackSize >= 3
     Class "Augment"
-    BaseType == "Ox Idol" "Primate Idol" "Snake Idol"
-    SetTextColor 0 0 0
-    SetBackgroundColor 245 139 87 255
-    SetBorderColor 0 0 0
-    SetFontSize 40
-    MinimapIcon 2 Orange Triangle
-    PlayEffect Orange
-    CustomAlertSound "音效\MBWDD.mp3" 300
-    DisableDropSound
-
-Show # 0.5.5市场 - 雕像 - 堆叠总价10E（4个以上）
-    StackSize >= 4
-    Class "Augment"
-    BaseType == "Bear Idol"
+    BaseType == "Ox Idol" "Primate Idol"
     SetTextColor 0 0 0
     SetBackgroundColor 245 139 87 255
     SetBorderColor 0 0 0
@@ -796,7 +1004,7 @@ Show # 0.5.5市场 - 雕像 - 堆叠总价10E（4个以上）
 
 Hide # 0.5.5市场 - 雕像 - 单次掉落不足10E或低置信度
     Class "Augment"
-    BaseType == "Bear Idol" "Boar Idol" "Cat Idol" "Idol of Alira" "Idol of Egrin" "Idol of Greust" "Idol of Kraityn" "Idol of Silk" "Idol of the Martyr" "Idol of Thruldana" "Idol of Yeena" "Owl Idol" "Ox Idol" "Panther Idol" "Primate Idol" "Snake Idol" "Stag Idol" "Stoat Idol" "Wolf Idol"
+    BaseType == "Bear Idol" "Boar Idol" "Cat Idol" "Idol of Alira" "Idol of Egrin" "Idol of Greust" "Idol of Kraityn" "Idol of Silk" "Idol of the Martyr" "Idol of Thruldana" "Owl Idol" "Ox Idol" "Panther Idol" "Primate Idol" "Snake Idol" "Stag Idol" "Wolf Idol"
     SetFontSize 30
     DisableDropSound
 
@@ -814,7 +1022,7 @@ Show # 0.5.5市场 - 符文 - Forbidden Rites 10D以上★
 
 Show # 0.5.5市场 - 符文 - Forbidden Rites 1D以上★
     Class "Augment"
-    BaseType == "Aldur's Legacy" "Astrid's Creativity" "Emergent Possibility" "Emergent Vigour" "Greater Rune of Leadership" "Kolr's Hunt" "Perfect Adept Rune" "Perfect Body Rune" "Perfect Desert Rune" "Perfect Glacial Rune" "Perfect Iron Rune" "Perfect Mind Rune" "Perfect Rebirth Rune" "Perfect Resolve Rune" "Perfect Robust Rune" "Perfect Storm Rune" "Perfect Vision Rune" "Perfect Ward Rune" "Serle's Triumph"
+    BaseType == "Aldur's Legacy" "Astrid's Creativity" "Emergent Possibility" "Emergent Vigour" "Greater Rune of Leadership" "Kolr's Hunt" "Perfect Body Rune" "Perfect Desert Rune" "Perfect Glacial Rune" "Perfect Iron Rune" "Perfect Mind Rune" "Perfect Rebirth Rune" "Perfect Resolve Rune" "Perfect Storm Rune" "Perfect Vision Rune" "Perfect Ward Rune" "Serle's Triumph"
     SetTextColor 245 245 245
     SetBackgroundColor 255 0 58
     SetBorderColor 156 2 2
@@ -826,7 +1034,7 @@ Show # 0.5.5市场 - 符文 - Forbidden Rites 1D以上★
 
 Show # 0.5.5市场 - 符文 - Forbidden Rites 100E-1D★
     Class "Augment"
-    BaseType == "Cadigan's Epiphany" "Greater Rune of Alacrity" "Greater Rune of Tithing" "Hedgewitch Assandra's Rune of Wisdom" "Masterwork Rune" "Uhtred's Sidereus"
+    BaseType == "Cadigan's Epiphany" "Greater Rune of Alacrity" "Greater Rune of Tithing" "Masterwork Rune" "Uhtred's Sidereus"
     SetTextColor 0 47 167
     SetBackgroundColor 255 255 255
     SetBorderColor 0 47 167
@@ -838,7 +1046,7 @@ Show # 0.5.5市场 - 符文 - Forbidden Rites 100E-1D★
 
 Show # 0.5.5市场 - 符文 - Forbidden Rites 50E-99E★
     Class "Augment"
-    BaseType == "Farrul's Rune of the Chase" "Katla's Gloom" "Rune of Foundations" "Rune of the Blossom" "Vorana's Carnage"
+    BaseType == "Farrul's Rune of the Chase" "Hedgewitch Assandra's Rune of Wisdom" "Katla's Gloom" "Medved's Tending" "Rune of Foundations" "Rune of the Blossom"
     SetTextColor 138 43 226
     SetBackgroundColor 255 255 255
     SetBorderColor 138 43 226
@@ -850,7 +1058,7 @@ Show # 0.5.5市场 - 符文 - Forbidden Rites 50E-99E★
 
 Show # 0.5.5市场 - 符文 - Forbidden Rites 10E-49E★
     Class "Augment"
-    BaseType == "Countess Seske's Rune of Archery" "Courtesan Mannan's Rune of Cruelty" "Craiceann's Rune of Recovery" "Craiceann's Rune of Warding" "Emergent Instinct" "Emergent Protection" "Glacial Rune" "Greater Charging Rune" "Greater Ward Rune" "Iron Rune" "Lesser Iron Rune" "Lesser Robust Rune" "Medved's Tending" "Passion of Aldur" "Robust Rune" "Rune of Accumulation" "Rune of Acrobatics" "Rune of Culmination" "Rune of Reach" "Rune of Renown" "Rune of the Hunt" "Rune of the Prism" "Saqawal's Rune of Memory" "Saqawal's Rune of the Sky" "Storm Rune" "Thane Grannell's Rune of Mastery" "The Greatwolf's Rune of Willpower" "Thrud's Might" "Warding Rune of Equinox" "Warding Rune of Heart" "Warding Rune of Reinforcement"
+    BaseType == "Body Rune" "Countess Seske's Rune of Archery" "Courtesan Mannan's Rune of Cruelty" "Craiceann's Rune of Warding" "Emergent Instinct" "Emergent Protection" "Greater Ward Rune" "Iron Rune" "Lesser Body Rune" "Lesser Iron Rune" "Passion of Aldur" "Rune of Acrobatics" "Rune of Culmination" "Rune of Reach" "Rune of Renown" "Rune of the Hunt" "Rune of the Prism" "Saqawal's Rune of Memory" "Saqawal's Rune of the Sky" "Storm Rune" "Thane Grannell's Rune of Mastery" "The Greatwolf's Rune of Willpower" "Thrud's Might" "Vorana's Carnage" "Warding Rune of Equinox" "Warding Rune of Heart" "Warding Rune of Reinforcement"
     SetTextColor 0 0 0
     SetBackgroundColor 245 139 87 255
     SetBorderColor 0 0 0
@@ -862,7 +1070,7 @@ Show # 0.5.5市场 - 符文 - Forbidden Rites 10E-49E★
 
 Show # 0.5.5市场 - 符文 - 可能高价（低成交量，可能高价）
     Class "Augment"
-    BaseType == "Ancient Rune of Control" "Body Rune" "Greater Rune of Nobility" "Lesser Adept Rune" "Lesser Inspiration Rune" "Lesser Resolve Rune" "Lesser Ward Rune" "Mind Rune" "Perfect Charging Rune" "Perfect Inspiration Rune" "Perfect Stone Rune" "Resolve Rune" "Rune of Vitality" "Ward Rune" "Warding Rune of Annihilation" "Warding Rune of Desperation" "Warding Rune of Disintegration" "Warding Rune of Stability"
+    BaseType == "Adept Rune" "Glacial Rune" "Greater Charging Rune" "Greater Rune of Nobility" "Inspiration Rune" "Lesser Adept Rune" "Lesser Resolve Rune" "Lesser Ward Rune" "Perfect Adept Rune" "Perfect Charging Rune" "Perfect Inspiration Rune" "Perfect Robust Rune" "Perfect Stone Rune" "Rebirth Rune" "Resolve Rune" "Rune of Accumulation" "Rune of Vitality" "Ward Rune" "Warding Rune of Annihilation" "Warding Rune of Disintegration" "Warding Rune of Stability"
     SetTextColor 40 20 0
     SetBackgroundColor 255 214 102 235
     SetBorderColor 138 43 226
@@ -875,7 +1083,7 @@ Show # 0.5.5市场 - 符文 - 可能高价（低成交量，可能高价）
 Show # 0.5.5市场 - 符文 - 堆叠总价10E（2个以上）
     StackSize >= 2
     Class "Augment"
-    BaseType == "Farrul's Rune of the Hunt" "Fenumus' Rune of Spinning" "Greater Body Rune" "Greater Iron Rune" "Greater Robust Rune" "Lesser Glacial Rune" "Lesser Storm Rune" "The Greatwolf's Rune of Claws"
+    BaseType == "Craiceann's Rune of Recovery" "Farrul's Rune of the Hunt" "Fenumus' Rune of Agony" "Fenumus' Rune of Spinning" "Greater Adept Rune" "Greater Body Rune" "Greater Iron Rune" "Greater Mind Rune" "Lesser Storm Rune" "The Greatwolf's Rune of Claws"
     SetTextColor 0 0 0
     SetBackgroundColor 245 139 87 255
     SetBorderColor 0 0 0
@@ -888,7 +1096,7 @@ Show # 0.5.5市场 - 符文 - 堆叠总价10E（2个以上）
 Show # 0.5.5市场 - 符文 - 堆叠总价10E（3个以上）
     StackSize >= 3
     Class "Augment"
-    BaseType == "Greater Adept Rune" "Greater Mind Rune" "Greater Rebirth Rune" "Greater Resolve Rune" "Greater Vision Rune"
+    BaseType == "Greater Rebirth Rune" "Greater Vision Rune"
     SetTextColor 0 0 0
     SetBackgroundColor 245 139 87 255
     SetBorderColor 0 0 0
@@ -898,10 +1106,10 @@ Show # 0.5.5市场 - 符文 - 堆叠总价10E（3个以上）
     CustomAlertSound "音效\MBWDD.mp3" 300
     DisableDropSound
 
-Show # 0.5.5市场 - 符文 - 堆叠总价10E（6个以上）
-    StackSize >= 6
+Show # 0.5.5市场 - 符文 - 堆叠总价10E（4个以上）
+    StackSize >= 4
     Class "Augment"
-    BaseType == "Greater Glacial Rune"
+    BaseType == "Greater Resolve Rune" "Greater Robust Rune"
     SetTextColor 0 0 0
     SetBackgroundColor 245 139 87 255
     SetBorderColor 0 0 0
@@ -914,20 +1122,7 @@ Show # 0.5.5市场 - 符文 - 堆叠总价10E（6个以上）
 Show # 0.5.5市场 - 符文 - 堆叠总价10E（7个以上）
     StackSize >= 7
     Class "Augment"
-    BaseType == "Greater Storm Rune"
-    SetTextColor 0 0 0
-    SetBackgroundColor 245 139 87 255
-    SetBorderColor 0 0 0
-    SetFontSize 40
-    MinimapIcon 2 Orange Triangle
-    PlayEffect Orange
-    CustomAlertSound "音效\MBWDD.mp3" 300
-    DisableDropSound
-
-Show # 0.5.5市场 - 符文 - 堆叠总价10E（8个以上）
-    StackSize >= 8
-    Class "Augment"
-    BaseType == "Greater Desert Rune"
+    BaseType == "Greater Glacial Rune" "Greater Storm Rune"
     SetTextColor 0 0 0
     SetBackgroundColor 245 139 87 255
     SetBorderColor 0 0 0
@@ -939,7 +1134,7 @@ Show # 0.5.5市场 - 符文 - 堆叠总价10E（8个以上）
 
 Hide # 0.5.5市场 - 符文 - 单次掉落不足10E或低置信度
     Class "Augment"
-    BaseType == "Adept Rune" "Ancient Rune of Animosity" "Ancient Rune of Decay" "Ancient Rune of Detonation" "Ancient Rune of Discovery" "Ancient Rune of Dueling" "Ancient Rune of Prowess" "Ancient Rune of Retaliation" "Ancient Rune of Shattering" "Ancient Rune of Splinters" "Ancient Rune of the Horde" "Ancient Rune of the Titan" "Ancient Rune of Witchcraft" "Betrayal of Aldur" "Breath of Aldur" "Desert Rune" "Farrul's Rune of Grace" "Farrul's Rune of the Hunt" "Fenumus' Rune of Agony" "Fenumus' Rune of Draining" "Fenumus' Rune of Spinning" "Greater Adept Rune" "Greater Body Rune" "Greater Desert Rune" "Greater Glacial Rune" "Greater Inspiration Rune" "Greater Iron Rune" "Greater Mind Rune" "Greater Rebirth Rune" "Greater Resolve Rune" "Greater Robust Rune" "Greater Stone Rune" "Greater Storm Rune" "Greater Vision Rune" "Inspiration Rune" "Ire of Aldur" "Lady Hestra's Rune of Winter" "Lesser Body Rune" "Lesser Desert Rune" "Lesser Glacial Rune" "Lesser Mind Rune" "Lesser Rebirth Rune" "Lesser Stone Rune" "Lesser Storm Rune" "Lesser Vision Rune" "Rebirth Rune" "Rune of Confrontation" "Rune of Consistency" "Rune of Vital Flame" "Saqawal's Rune of Erosion" "Thane Girt's Rune of Wildness" "Thane Leld's Rune of Spring" "Thane Myrk's Rune of Summer" "The Greatwolf's Rune of Claws" "Vision Rune" "Warding Rune of Armature" "Warding Rune of Bodyguards" "Warding Rune of Courage" "Warding Rune of Glancing" "Warding Rune of Hollowing" "Warding Rune of Nourishment" "Warding Rune of Obsession" "Warding Rune of Protection" "Warding Rune of Salvaging" "Warding Rune of Symbiosis"
+    BaseType == "Ancient Rune of Animosity" "Ancient Rune of Control" "Ancient Rune of Decay" "Ancient Rune of Detonation" "Ancient Rune of Discovery" "Ancient Rune of Dueling" "Ancient Rune of Prowess" "Ancient Rune of Retaliation" "Ancient Rune of Shattering" "Ancient Rune of Splinters" "Ancient Rune of the Horde" "Ancient Rune of the Titan" "Ancient Rune of Witchcraft" "Betrayal of Aldur" "Breath of Aldur" "Craiceann's Rune of Recovery" "Desert Rune" "Farrul's Rune of Grace" "Farrul's Rune of the Hunt" "Fenumus' Rune of Agony" "Fenumus' Rune of Draining" "Fenumus' Rune of Spinning" "Greater Adept Rune" "Greater Body Rune" "Greater Desert Rune" "Greater Glacial Rune" "Greater Inspiration Rune" "Greater Iron Rune" "Greater Mind Rune" "Greater Rebirth Rune" "Greater Resolve Rune" "Greater Robust Rune" "Greater Stone Rune" "Greater Storm Rune" "Greater Vision Rune" "Ire of Aldur" "Lady Hestra's Rune of Winter" "Lesser Desert Rune" "Lesser Glacial Rune" "Lesser Inspiration Rune" "Lesser Rebirth Rune" "Lesser Robust Rune" "Lesser Stone Rune" "Lesser Storm Rune" "Lesser Vision Rune" "Mind Rune" "Robust Rune" "Rune of Confrontation" "Rune of Consistency" "Rune of Vital Flame" "Saqawal's Rune of Erosion" "Stone Rune" "Thane Girt's Rune of Wildness" "Thane Leld's Rune of Spring" "Thane Myrk's Rune of Summer" "The Greatwolf's Rune of Claws" "Vision Rune" "Warding Rune of Armature" "Warding Rune of Bodyguards" "Warding Rune of Courage" "Warding Rune of Desperation" "Warding Rune of Glancing" "Warding Rune of Hollowing" "Warding Rune of Nourishment" "Warding Rune of Obsession" "Warding Rune of Protection" "Warding Rune of Salvaging" "Warding Rune of Symbiosis"
     SetFontSize 30
     DisableDropSound
 
@@ -955,7 +1150,7 @@ Show # 0.5.5市场 - 预兆与Sacred Bloom - Forbidden Rites 10D以上★
     DisableDropSound
 
 Show # 0.5.5市场 - 预兆与Sacred Bloom - Forbidden Rites 1D以上★
-    BaseType == "Head of the King" "Omen of Chance" "Omen of Dextral Annulment" "Omen of Dextral Erasure" "Omen of Light" "Omen of Sanctification" "Omen of Secret Compartments" "Omen of Sinistral Annulment" "Omen of Sinistral Erasure" "Omen of the Hunt" "Omen of Whittling"
+    BaseType == "Head of the King" "Omen of Chance" "Omen of Dextral Annulment" "Omen of Dextral Erasure" "Omen of Light" "Omen of Sanctification" "Omen of Sinistral Annulment" "Omen of Sinistral Erasure" "Omen of the Hunt" "Omen of Whittling"
     SetTextColor 245 245 245
     SetBackgroundColor 255 0 58
     SetBorderColor 156 2 2
@@ -966,7 +1161,7 @@ Show # 0.5.5市场 - 预兆与Sacred Bloom - Forbidden Rites 1D以上★
     DisableDropSound
 
 Show # 0.5.5市场 - 预兆与Sacred Bloom - Forbidden Rites 100E-1D★
-    BaseType == "Omen of Abyssal Echoes" "Omen of Chaotic Quantity" "Omen of Chaotic Rarity" "Omen of Dextral Crystallisation" "Omen of Sinistral Crystallisation" "Omen of the Blessed"
+    BaseType == "Omen of Abyssal Echoes" "Omen of Chaotic Quantity" "Omen of Chaotic Rarity" "Omen of Dextral Crystallisation" "Omen of Secret Compartments" "Omen of Sinistral Crystallisation" "Omen of the Blessed"
     SetTextColor 0 47 167
     SetBackgroundColor 255 255 255
     SetBorderColor 0 47 167
@@ -988,7 +1183,7 @@ Show # 0.5.5市场 - 预兆与Sacred Bloom - Forbidden Rites 50E-99E★
     DisableDropSound
 
 Show # 0.5.5市场 - 预兆与Sacred Bloom - Forbidden Rites 10E-49E★
-    BaseType == "An Audience with the King" "Omen of Amelioration" "Omen of Bartering" "Omen of Catalysing Exaltation" "Omen of Chaotic Effectiveness" "Omen of Chaotic Monsters" "Omen of Reinforcements" "Omen of Sinistral Exaltation" "Sacred Bloom"
+    BaseType == "An Audience with the King" "Omen of Amelioration" "Omen of Bartering" "Omen of Catalysing Exaltation" "Omen of Chaotic Effectiveness" "Omen of Chaotic Monsters" "Omen of Dextral Exaltation" "Omen of Reinforcements" "Omen of Sinistral Exaltation" "Sacred Bloom"
     SetTextColor 0 0 0
     SetBackgroundColor 245 139 87 255
     SetBorderColor 0 0 0
@@ -1000,7 +1195,7 @@ Show # 0.5.5市场 - 预兆与Sacred Bloom - Forbidden Rites 10E-49E★
 
 Show # 0.5.5市场 - 预兆与Sacred Bloom - 堆叠总价10E（2个以上）
     StackSize >= 2
-    BaseType == "Omen of Dextral Exaltation" "Omen of Greater Exaltation" "Omen of the Ancients"
+    BaseType == "Omen of the Ancients"
     SetTextColor 0 0 0
     SetBackgroundColor 245 139 87 255
     SetBorderColor 0 0 0
@@ -1012,7 +1207,7 @@ Show # 0.5.5市场 - 预兆与Sacred Bloom - 堆叠总价10E（2个以上）
 
 Show # 0.5.5市场 - 预兆与Sacred Bloom - 堆叠总价10E（3个以上）
     StackSize >= 3
-    BaseType == "Omen of Resurgence"
+    BaseType == "Omen of Greater Exaltation" "Omen of Resurgence"
     SetTextColor 0 0 0
     SetBackgroundColor 245 139 87 255
     SetBorderColor 0 0 0
@@ -1022,8 +1217,8 @@ Show # 0.5.5市场 - 预兆与Sacred Bloom - 堆叠总价10E（3个以上）
     CustomAlertSound "音效\MBWDD.mp3" 300
     DisableDropSound
 
-Show # 0.5.5市场 - 预兆与Sacred Bloom - 堆叠总价10E（4个以上）
-    StackSize >= 4
+Show # 0.5.5市场 - 预兆与Sacred Bloom - 堆叠总价10E（5个以上）
+    StackSize >= 5
     BaseType == "Omen of Putrefaction"
     SetTextColor 0 0 0
     SetBackgroundColor 245 139 87 255
@@ -1036,7 +1231,7 @@ Show # 0.5.5市场 - 预兆与Sacred Bloom - 堆叠总价10E（4个以上）
 
 Show # 0.5.5市场 - 预兆与Sacred Bloom - 堆叠总价10E（6个以上）
     StackSize >= 6
-    BaseType == "Omen of Sinistral Necromancy"
+    BaseType == "Omen of the Blackblooded"
     SetTextColor 0 0 0
     SetBackgroundColor 245 139 87 255
     SetBorderColor 0 0 0
@@ -1060,7 +1255,7 @@ Show # 0.5.5市场 - 预兆与Sacred Bloom - 堆叠总价10E（9个以上）
 
 Show # 0.5.5市场 - 预兆与Sacred Bloom - 堆叠总价10E（10个以上）
     StackSize >= 10
-    BaseType == "Omen of Gambling"
+    BaseType == "Omen of Sinistral Necromancy"
     SetTextColor 0 0 0
     SetBackgroundColor 245 139 87 255
     SetBorderColor 0 0 0
@@ -1071,7 +1266,7 @@ Show # 0.5.5市场 - 预兆与Sacred Bloom - 堆叠总价10E（10个以上）
     DisableDropSound
 
 Hide # 0.5.5市场 - 预兆与Sacred Bloom - 单次掉落不足10E或低置信度
-    BaseType == "Omen of Dextral Exaltation" "Omen of Dextral Necromancy" "Omen of Gambling" "Omen of Greater Exaltation" "Omen of Putrefaction" "Omen of Refreshment" "Omen of Resurgence" "Omen of Sinistral Necromancy" "Omen of the Ancients" "Omen of the Blackblooded" "Omen of the Liege" "Omen of the Sovereign"
+    BaseType == "Omen of Dextral Necromancy" "Omen of Gambling" "Omen of Greater Exaltation" "Omen of Putrefaction" "Omen of Refreshment" "Omen of Resurgence" "Omen of Sinistral Necromancy" "Omen of the Ancients" "Omen of the Blackblooded" "Omen of the Liege" "Omen of the Sovereign"
     SetFontSize 30
     DisableDropSound
 
@@ -1111,21 +1306,9 @@ Show # 0.5.5市场 - 先祖密藏 - Forbidden Rites 100E-1D★
     CustomAlertSound "音效\HYL.mp3" 300
     DisableDropSound
 
-Show # 0.5.5市场 - 先祖密藏 - Forbidden Rites 50E-99E★
-    Class "Stackable Currency"
-    BaseType == "Medved's Saga"
-    SetTextColor 138 43 226
-    SetBackgroundColor 255 255 255
-    SetBorderColor 138 43 226
-    SetFontSize 45
-    MinimapIcon 1 Purple Triangle
-    PlayEffect Purple
-    CustomAlertSound "音效\GXFC.mp3" 300
-    DisableDropSound
-
 Show # 0.5.5市场 - 先祖密藏 - Forbidden Rites 10E-49E★
     Class "Stackable Currency"
-    BaseType == "Blazing Flux" "Chilling Flux" "Crackling Flux" "Expedition Logbook" "Thaumaturgic Flux (Level 19)" "Thaumaturgic Flux (Level 20)" "Void Flux" "Vorana's Saga"
+    BaseType == "Blazing Flux" "Chilling Flux" "Crackling Flux" "Expedition Logbook" "Medved's Saga" "Thaumaturgic Flux (Level 20)" "Void Flux" "Vorana's Saga"
     SetTextColor 0 0 0
     SetBackgroundColor 245 139 87 255
     SetBorderColor 0 0 0
@@ -1147,9 +1330,22 @@ Show # 0.5.5市场 - 先祖密藏 - 可能高价（低成交量，可能高价�
     CustomAlertSound "音效\传奇装备.mp3" 260
     DisableDropSound
 
+Show # 0.5.5市场 - 先祖密藏 - 堆叠总价10E（2个以上）
+    StackSize >= 2
+    Class "Stackable Currency"
+    BaseType == "Thaumaturgic Flux (Level 19)"
+    SetTextColor 0 0 0
+    SetBackgroundColor 245 139 87 255
+    SetBorderColor 0 0 0
+    SetFontSize 40
+    MinimapIcon 2 Orange Triangle
+    PlayEffect Orange
+    CustomAlertSound "音效\MBWDD.mp3" 300
+    DisableDropSound
+
 Hide # 0.5.5市场 - 先祖密藏 - 单次掉落不足10E或低置信度
     Class "Stackable Currency"
-    BaseType == "Thaumaturgic Flux (Level 18)"
+    BaseType == "Thaumaturgic Flux (Level 18)" "Thaumaturgic Flux (Level 19)"
     SetFontSize 30
     DisableDropSound
 
@@ -1179,7 +1375,7 @@ Show # 0.5.5市场 - 液化情感 - Forbidden Rites 1D以上★
 
 Show # 0.5.5市场 - 液化情感 - Forbidden Rites 100E-1D★
     Class "Stackable Currency"
-    BaseType == "Ancient Potent Liquid Melancholy" "Concentrated Liquid Isolation"
+    BaseType == "Ancient Potent Liquid Melancholy" "Concentrated Liquid Isolation" "Concentrated Liquid Suffering"
     SetTextColor 0 47 167
     SetBackgroundColor 255 255 255
     SetBorderColor 0 47 167
@@ -1189,21 +1385,9 @@ Show # 0.5.5市场 - 液化情感 - Forbidden Rites 100E-1D★
     CustomAlertSound "音效\HYL.mp3" 300
     DisableDropSound
 
-Show # 0.5.5市场 - 液化情感 - Forbidden Rites 50E-99E★
-    Class "Stackable Currency"
-    BaseType == "Concentrated Liquid Suffering"
-    SetTextColor 138 43 226
-    SetBackgroundColor 255 255 255
-    SetBorderColor 138 43 226
-    SetFontSize 45
-    MinimapIcon 1 Purple Triangle
-    PlayEffect Purple
-    CustomAlertSound "音效\GXFC.mp3" 300
-    DisableDropSound
-
 Show # 0.5.5市场 - 液化情感 - Forbidden Rites 10E-49E★
     Class "Stackable Currency"
-    BaseType == "Ancient Concentrated Liquid Fear" "Ancient Concentrated Liquid Isolation" "Ancient Concentrated Liquid Suffering" "Concentrated Liquid Fear" "Liquid Despair"
+    BaseType == "Ancient Concentrated Liquid Isolation" "Ancient Concentrated Liquid Suffering" "Concentrated Liquid Fear" "Liquid Despair"
     SetTextColor 0 0 0
     SetBackgroundColor 245 139 87 255
     SetBorderColor 0 0 0
@@ -1213,20 +1397,21 @@ Show # 0.5.5市场 - 液化情感 - Forbidden Rites 10E-49E★
     CustomAlertSound "音效\MBWDD.mp3" 300
     DisableDropSound
 
-Show # 0.5.5市场 - 液化情感 - 可能高价（低成交量，可能高价）
-    Class "Stackable Currency"
-    BaseType == "Ancient Liquid Envy"
-    SetTextColor 40 20 0
-    SetBackgroundColor 255 214 102 235
-    SetBorderColor 138 43 226
-    SetFontSize 38
-    MinimapIcon 2 Yellow Diamond
-    PlayEffect Yellow
-    CustomAlertSound "音效\传奇装备.mp3" 260
-    DisableDropSound
-
 Show # 0.5.5市场 - 液化情感 - 堆叠总价10E（2个以上）
     StackSize >= 2
+    Class "Stackable Currency"
+    BaseType == "Ancient Concentrated Liquid Fear" "Ancient Liquid Paranoia"
+    SetTextColor 0 0 0
+    SetBackgroundColor 245 139 87 255
+    SetBorderColor 0 0 0
+    SetFontSize 40
+    MinimapIcon 2 Orange Triangle
+    PlayEffect Orange
+    CustomAlertSound "音效\MBWDD.mp3" 300
+    DisableDropSound
+
+Show # 0.5.5市场 - 液化情感 - 堆叠总价10E（3个以上）
+    StackSize >= 3
     Class "Stackable Currency"
     BaseType == "Ancient Liquid Despair" "Potent Liquid Melancholy"
     SetTextColor 0 0 0
@@ -1251,28 +1436,15 @@ Show # 0.5.5市场 - 液化情感 - 堆叠总价10E（4个以上）
     CustomAlertSound "音效\MBWDD.mp3" 300
     DisableDropSound
 
-Show # 0.5.5市场 - 液化情感 - 堆叠总价10E（9个以上）
-    StackSize >= 9
-    Class "Stackable Currency"
-    BaseType == "Liquid Envy"
-    SetTextColor 0 0 0
-    SetBackgroundColor 245 139 87 255
-    SetBorderColor 0 0 0
-    SetFontSize 40
-    MinimapIcon 2 Orange Triangle
-    PlayEffect Orange
-    CustomAlertSound "音效\MBWDD.mp3" 300
-    DisableDropSound
-
 Hide # 0.5.5市场 - 液化情感 - 单次掉落不足10E或低置信度
     Class "Stackable Currency"
-    BaseType == "Ancient Diluted Liquid Greed" "Ancient Diluted Liquid Guilt" "Ancient Diluted Liquid Ire" "Ancient Liquid Despair" "Ancient Liquid Disgust" "Ancient Liquid Paranoia" "Ancient Potent Liquid Ferocity" "Diluted Liquid Greed" "Diluted Liquid Guilt" "Diluted Liquid Ire" "Liquid Disgust" "Liquid Envy" "Liquid Paranoia" "Potent Liquid Melancholy"
+    BaseType == "Ancient Concentrated Liquid Fear" "Ancient Diluted Liquid Greed" "Ancient Diluted Liquid Guilt" "Ancient Diluted Liquid Ire" "Ancient Liquid Despair" "Ancient Liquid Disgust" "Ancient Liquid Envy" "Ancient Liquid Paranoia" "Ancient Potent Liquid Ferocity" "Diluted Liquid Greed" "Diluted Liquid Guilt" "Diluted Liquid Ire" "Liquid Disgust" "Liquid Envy" "Liquid Paranoia" "Potent Liquid Melancholy"
     SetFontSize 30
     DisableDropSound
 
 Show # 0.5.5市场 - 催化剂 - Forbidden Rites 1D以上★
     Class "Stackable Currency"
-    BaseType == "Breachstone" "Refined Necrotic Catalyst" "Refined Reaver Catalyst" "Refined Sibilant Catalyst"
+    BaseType == "Breachstone" "Refined Reaver Catalyst" "Refined Sibilant Catalyst"
     SetTextColor 245 245 245
     SetBackgroundColor 255 0 58
     SetBorderColor 156 2 2
@@ -1284,7 +1456,7 @@ Show # 0.5.5市场 - 催化剂 - Forbidden Rites 1D以上★
 
 Show # 0.5.5市场 - 催化剂 - Forbidden Rites 100E-1D★
     Class "Stackable Currency"
-    BaseType == "Reaver Catalyst" "Sibilant Catalyst" "Skittering Catalyst"
+    BaseType == "Reaver Catalyst" "Refined Necrotic Catalyst" "Sibilant Catalyst" "Skittering Catalyst"
     SetTextColor 0 47 167
     SetBackgroundColor 255 255 255
     SetBorderColor 0 47 167
@@ -1296,7 +1468,7 @@ Show # 0.5.5市场 - 催化剂 - Forbidden Rites 100E-1D★
 
 Show # 0.5.5市场 - 催化剂 - Forbidden Rites 50E-99E★
     Class "Stackable Currency"
-    BaseType == "Refined Carapace Catalyst" "Refined Chayula's Catalyst" "Refined Esh's Catalyst" "Refined Flesh Catalyst" "Refined Neural Catalyst" "Refined Skittering Catalyst" "Refined Tul's Catalyst" "Refined Uul-Netol's Catalyst" "Refined Xoph's Catalyst"
+    BaseType == "Refined Carapace Catalyst" "Refined Esh's Catalyst" "Refined Flesh Catalyst" "Refined Neural Catalyst" "Refined Skittering Catalyst" "Refined Tul's Catalyst" "Refined Uul-Netol's Catalyst" "Refined Xoph's Catalyst"
     SetTextColor 138 43 226
     SetBackgroundColor 255 255 255
     SetBorderColor 138 43 226
@@ -1308,7 +1480,7 @@ Show # 0.5.5市场 - 催化剂 - Forbidden Rites 50E-99E★
 
 Show # 0.5.5市场 - 催化剂 - Forbidden Rites 10E-49E★
     Class "Stackable Currency"
-    BaseType == "Chayula's Catalyst" "Esh's Catalyst" "Necrotic Catalyst" "Neural Catalyst" "Refined Adaptive Catalyst" "Tul's Catalyst" "Xoph's Catalyst"
+    BaseType == "Chayula's Catalyst" "Esh's Catalyst" "Necrotic Catalyst" "Neural Catalyst" "Refined Adaptive Catalyst" "Refined Chayula's Catalyst" "Tul's Catalyst" "Xoph's Catalyst"
     SetTextColor 0 0 0
     SetBackgroundColor 245 139 87 255
     SetBorderColor 0 0 0
@@ -1321,7 +1493,7 @@ Show # 0.5.5市场 - 催化剂 - Forbidden Rites 10E-49E★
 Show # 0.5.5市场 - 催化剂 - 堆叠总价10E（2个以上）
     StackSize >= 2
     Class "Stackable Currency"
-    BaseType == "Adaptive Catalyst" "Uul-Netol's Catalyst"
+    BaseType == "Adaptive Catalyst" "Carapace Catalyst" "Flesh Catalyst" "Uul-Netol's Catalyst"
     SetTextColor 0 0 0
     SetBackgroundColor 245 139 87 255
     SetBorderColor 0 0 0
@@ -1364,7 +1536,7 @@ Show # 0.5.5市场 - 维里西姆 - Forbidden Rites 100E-1D★
 
 Show # 0.5.5市场 - 维里西姆 - Forbidden Rites 10E-49E★
     Class "Stackable Currency"
-    BaseType == "Adaptive Alloy" "Expansive Alloy" "Liquid Verisium" "Mystic Alloy" "Olroth's Crest of the Sun" "Runic Alloy" "Swift Alloy" "Warding Starlit Ore"
+    BaseType == "Adaptive Alloy" "Cyclonic Alloy" "Expansive Alloy" "Liquid Verisium" "Mystic Alloy" "Olroth's Crest of the Sun" "Runic Alloy" "Swift Alloy" "Warding Starlit Ore"
     SetTextColor 0 0 0
     SetBackgroundColor 245 139 87 255
     SetBorderColor 0 0 0
@@ -1374,10 +1546,22 @@ Show # 0.5.5市场 - 维里西姆 - Forbidden Rites 10E-49E★
     CustomAlertSound "音效\MBWDD.mp3" 300
     DisableDropSound
 
+Show # 0.5.5市场 - 维里西姆 - 可能高价（低成交量，可能高价）
+    Class "Stackable Currency"
+    BaseType == "Revered Starlit Ore"
+    SetTextColor 40 20 0
+    SetBackgroundColor 255 214 102 235
+    SetBorderColor 138 43 226
+    SetFontSize 38
+    MinimapIcon 2 Yellow Diamond
+    PlayEffect Yellow
+    CustomAlertSound "音效\传奇装备.mp3" 260
+    DisableDropSound
+
 Show # 0.5.5市场 - 维里西姆 - 堆叠总价10E（2个以上）
     StackSize >= 2
     Class "Stackable Currency"
-    BaseType == "Protective Alloy"
+    BaseType == "Prismatic Alloy" "Protective Alloy"
     SetTextColor 0 0 0
     SetBackgroundColor 245 139 87 255
     SetBorderColor 0 0 0
@@ -1400,21 +1584,8 @@ Show # 0.5.5市场 - 维里西姆 - 堆叠总价10E（3个以上）
     CustomAlertSound "音效\MBWDD.mp3" 300
     DisableDropSound
 
-Show # 0.5.5市场 - 维里西姆 - 堆叠总价10E（5个以上）
-    StackSize >= 5
-    Class "Stackable Currency"
-    BaseType == "Prismatic Alloy"
-    SetTextColor 0 0 0
-    SetBackgroundColor 245 139 87 255
-    SetBorderColor 0 0 0
-    SetFontSize 40
-    MinimapIcon 2 Orange Triangle
-    PlayEffect Orange
-    CustomAlertSound "音效\MBWDD.mp3" 300
-    DisableDropSound
-
-Show # 0.5.5市场 - 维里西姆 - 堆叠总价10E（6个以上）
-    StackSize >= 6
+Show # 0.5.5市场 - 维里西姆 - 堆叠总价10E（9个以上）
+    StackSize >= 9
     Class "Stackable Currency"
     BaseType == "Exceptional Verisium"
     SetTextColor 0 0 0
@@ -1426,8 +1597,8 @@ Show # 0.5.5市场 - 维里西姆 - 堆叠总价10E（6个以上）
     CustomAlertSound "音效\MBWDD.mp3" 300
     DisableDropSound
 
-Show # 0.5.5市场 - 维里西姆 - 堆叠总价10E（591个以上）
-    StackSize >= 591
+Show # 0.5.5市场 - 维里西姆 - 堆叠总价10E（572个以上）
+    StackSize >= 572
     Class "Stackable Currency"
     BaseType == "Verisium"
     SetTextColor 0 0 0
@@ -1441,7 +1612,7 @@ Show # 0.5.5市场 - 维里西姆 - 堆叠总价10E（591个以上）
 
 Hide # 0.5.5市场 - 维里西姆 - 单次掉落不足10E或低置信度
     Class "Stackable Currency"
-    BaseType == "Cyclonic Alloy" "Exceptional Verisium" "Medved's Crest of the Circle" "Prismatic Alloy" "Protective Alloy" "Revered Starlit Ore" "The Runefather's Alloy" "Uhtred's Crest of the Chalice" "Venerable Starlit Ore" "Veridical Starlit Ore" "Verisium" "Vorana's Crest of the Scythe"
+    BaseType == "Exceptional Verisium" "Medved's Crest of the Circle" "Prismatic Alloy" "Protective Alloy" "The Runefather's Alloy" "Uhtred's Crest of the Chalice" "Venerable Starlit Ore" "Veridical Starlit Ore" "Verisium" "Vorana's Crest of the Scythe"
     SetFontSize 30
     DisableDropSound
 
@@ -4048,6 +4219,55 @@ Show # 命运卡 - 占位(请不要编辑此项)
     CustomAlertSound "音效\地图碎片.mp3" 300
     DisableDropSound 
 
+Show # 珠宝 - 0.5.5保留 - 天神之音（原版强提醒）
+    Corrupted True
+    Rarity Unique
+    Class "Jewels"
+    BaseType == "Sapphire"
+    SetTextColor 180 96 0
+    SetBackgroundColor 255 255 255
+    SetBorderColor 255 0 0
+    SetFontSize 42
+    MinimapIcon 2 Brown Cross
+    CustomAlertSound "音效\天神之音.mp3" 300
+    DisableDropSound
+
+Show # 0.5.5原版高价值强提醒 - 传奇红玉 - 10D以上
+    Rarity Unique
+    Class "Jewels"
+    BaseType == "Ruby"
+    SetTextColor 180 96 0
+    SetBackgroundColor 255 255 255
+    SetBorderColor 255 0 0
+    SetFontSize 42
+    MinimapIcon 2 Brown Cross
+    CustomAlertSound "音效\传奇珠宝.mp3" 300
+    DisableDropSound
+
+Show # 0.5.5原版高价值强提醒 - 传奇宝钻 - 10D以上
+    Rarity Unique
+    Class "Jewels"
+    BaseType == "Diamond"
+    SetTextColor 180 96 0
+    SetBackgroundColor 255 255 255
+    SetBorderColor 255 0 0
+    SetFontSize 42
+    MinimapIcon 2 Brown Cross
+    CustomAlertSound "音效\传奇珠宝.mp3" 300
+    DisableDropSound
+
+Show # 0.5.5原版高价值强提醒 - 传奇蓝宝石 - 10D以上
+    Rarity Unique
+    Class "Jewels"
+    BaseType == "Sapphire"
+    SetTextColor 180 96 0
+    SetBackgroundColor 255 255 255
+    SetBorderColor 255 0 0
+    SetFontSize 42
+    MinimapIcon 2 Brown Cross
+    CustomAlertSound "音效\传奇珠宝.mp3" 300
+    DisableDropSound
+
 Show # 0.5.5传奇市场 - 传奇珠宝 - Forbidden Rites 1D以上★
     Rarity Unique
     BaseType == "Emerald" "Ruby" "Time-Lost Diamond"
@@ -5055,6 +5275,66 @@ Show # 传奇装备 - 唯一确定传奇 - 卡兰德之触
 Show # 0.5.5传奇市场 - 可能猎首（重革腰带同底材）
     Rarity Unique
     BaseType == "Heavy Belt"
+    SetTextColor 245 16 16
+    SetBackgroundColor 255 255 255
+    SetBorderColor 255 0 0
+    SetFontSize 45
+    MinimapIcon 0 Red Star
+    PlayEffect Brown
+    CustomAlertSound "音效\wyyp.mp3" 300
+    DisableDropSound
+
+Show # 0.5.5原版高价值强提醒 - 符文叉 - 10D以上
+    Rarity Unique
+    BaseType == "Runic Fork"
+    SetTextColor 255 255 255
+    SetBackgroundColor 255 40 0 230
+    SetBorderColor 255 40 0 0
+    SetFontSize 45
+    MinimapIcon 0 Red Star
+    PlayEffect Red
+    CustomAlertSound "音效\顺风顺水.mp3" 300
+    DisableDropSound
+
+Show # 0.5.5原版高价值强提醒 - 符文大师符文叉 - 10D以上
+    Rarity Unique
+    BaseType == "Runemastered Runic Fork"
+    SetTextColor 255 255 255
+    SetBackgroundColor 255 40 0 230
+    SetBorderColor 255 40 0 0
+    SetFontSize 45
+    MinimapIcon 0 Red Star
+    PlayEffect Red
+    CustomAlertSound "音效\顺风顺水.mp3" 300
+    DisableDropSound
+
+Show # 0.5.5原版高价值强提醒 - 宏伟长矛 - 10D以上
+    Rarity Unique
+    BaseType == "Grand Spear"
+    SetTextColor 255 255 255
+    SetBackgroundColor 255 40 0 230
+    SetBorderColor 255 40 0 0
+    SetFontSize 45
+    MinimapIcon 0 Red Star
+    PlayEffect Red
+    CustomAlertSound "音效\CYGG.mp3" 300
+    DisableDropSound
+
+Show # 0.5.5原版高价值强提醒 - 华丽护手 - 10D以上
+    Rarity Unique
+    BaseType == "Ornate Gauntlets"
+    SetTextColor 245 69 16
+    SetBackgroundColor 255 255 255
+    SetBorderColor 255 0 0
+    SetFontSize 45
+    MinimapIcon 0 Red Star
+    PlayEffect Red
+    CustomAlertSound "音效\cpx.mp3" 300
+    DisableDropSound
+
+Show # 0.5.5原版高价值强提醒 - 大奖共享传奇底材 - 10D以上
+    Rarity Unique
+    BaseType == "Moulded Mitts" "Prismatic Ring" "Runeforged Garment" "Runemastered Silk Robe" "Shortsword" "Shrine Sceptre" "Silk Robe" "Two-Stone Ring" "Utility Belt" "Wide Belt"
     SetTextColor 245 16 16
     SetBackgroundColor 255 255 255
     SetBorderColor 255 0 0
@@ -7566,6 +7846,19 @@ Show # 杂项 - 地图碎片 - 终局boss
 #      PlayAlertSound 3 300 
     CustomAlertSound "音效\终局地图.mp3" 300
     DisableDropSound 
+
+Show # 0.5.5原版高价值强提醒 - 焚香遗物 - 10D以上
+    Rarity Unique
+    Class "Relics"
+    BaseType == "Incense Relic"
+    SetTextColor 255 255 255
+    SetBackgroundColor 255 40 0 230
+    SetBorderColor 255 40 0 0
+    SetFontSize 45
+    MinimapIcon 1 Brown Triangle
+    PlayEffect Brown
+    CustomAlertSound "音效\CYGG.mp3" 300
+    DisableDropSound
 
 Show # 0.5.5传奇市场 - 传奇遗物 - Forbidden Rites 1D以上★
     Rarity Unique
