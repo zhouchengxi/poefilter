@@ -32,6 +32,9 @@ PATCH_VERSION = "0.5.5"
 MIN_VALUE_E = 10.0
 HIDE_BELOW_E = 8.0
 SHOW_AT_OR_ABOVE_E = 12.0
+UNIQUE_MIN_VALUE_E = 50.0
+UNIQUE_HIDE_BELOW_E = 40.0
+UNIQUE_SHOW_AT_OR_ABOVE_E = 60.0
 MIN_EXCHANGE_VOLUME_E = 100.0
 MIN_UNIQUE_LISTINGS = 3
 TEN_DIVINE_MULTIPLIER = 10.0
@@ -39,7 +42,8 @@ DIVINE_ORB_NAME = "Divine Orb"
 POE_NINJA_ROOT = "https://poe.ninja/poe2/api/economy"
 POE2DB_ROOT = "https://poe2db.tw/us"
 CHANGE_REPORT_NAME = "forbidden_rites_0.5.5_10e_change_report.txt"
-CLASSIFICATION_SCHEMA_VERSION = 2
+CLASSIFICATION_SCHEMA_VERSION = 3
+SUPPORTED_CLASSIFICATION_SCHEMA_VERSIONS = {2, 3}
 PROJECT_CHANGE_REPORT = PROJECT_DIR / "work" / CHANGE_REPORT_NAME
 DELIVERY_CHANGE_REPORT = Path("/Users/christina/Documents/Codex/2026-08-17/dan/work") / CHANGE_REPORT_NAME
 
@@ -88,10 +92,19 @@ UNIQUE_STASH_TYPES = (
 
 # 0.10.4 Event Support added this event drop before the exchange had a price row.
 EVENT_SAFE_ITEMS = {"Sacred Bloom"}
+FORCE_HIDDEN_EXCHANGE_ITEMS = {"Regal Shard"}
+LOW_VOLUME_HIDE_CATEGORIES = {"Currency"}
 
 BAND_ORDER = ("1D以上", "100E-1D", "50E-99E", "10E-49E")
+UNIQUE_BAND_ORDER = ("1D以上", "100E-1D", "50E-99E")
 
 VISIBLE_STATES = {"single", "uncertain"}
+PROTECTED_SHARED_UNIQUE_BASES = {
+    "Heavy Belt",
+    "Utility Belt",
+    "Silk Robe",
+    "Runemastered Silk Robe",
+}
 
 
 def fetch_bytes(url: str) -> bytes:
@@ -293,7 +306,7 @@ def state_name(value: Any) -> str | None:
 
 
 def classification_history(snapshot: dict[str, Any]) -> dict[str, Any]:
-    if snapshot.get("classification_schema_version") != CLASSIFICATION_SCHEMA_VERSION:
+    if snapshot.get("classification_schema_version") not in SUPPORTED_CLASSIFICATION_SCHEMA_VERSIONS:
         return {}
     value = snapshot.get("classification_state")
     return value if isinstance(value, dict) else {}
@@ -306,14 +319,40 @@ def was_visible(value: Any) -> bool | None:
     return state.split(":", 1)[0] in VISIBLE_STATES
 
 
-def stable_single(price_e: float, previous_visible: bool | None) -> bool:
-    if price_e >= SHOW_AT_OR_ABOVE_E:
+def stable_value(
+    price_e: float,
+    previous_visible: bool | None,
+    threshold_e: float,
+    hide_below_e: float,
+    show_at_or_above_e: float,
+) -> bool:
+    if price_e >= show_at_or_above_e:
         return True
-    if price_e < HIDE_BELOW_E:
+    if price_e < hide_below_e:
         return False
     if previous_visible is not None:
         return previous_visible
-    return price_e >= MIN_VALUE_E
+    return price_e >= threshold_e
+
+
+def stable_single(price_e: float, previous_visible: bool | None) -> bool:
+    return stable_value(
+        price_e,
+        previous_visible,
+        MIN_VALUE_E,
+        HIDE_BELOW_E,
+        SHOW_AT_OR_ABOVE_E,
+    )
+
+
+def stable_unique(price_e: float, previous_visible: bool | None) -> bool:
+    return stable_value(
+        price_e,
+        previous_visible,
+        UNIQUE_MIN_VALUE_E,
+        UNIQUE_HIDE_BELOW_E,
+        UNIQUE_SHOW_AT_OR_ABOVE_E,
+    )
 
 
 def exchange_is_trusted(name: str, price_e: float, volume_e: float) -> bool:
@@ -356,11 +395,12 @@ def old_unique_visible(
         return visible
     if not rows:
         return None
-    # The original generator used the highest row per base and allowed >=50E through.
+    # Missing state is initialized from the exact 50E unique threshold and the
+    # same three-listing trust gate used for current unique classifications.
     best = max(rows, key=lambda row: float(row.get("price_e") or 0))
-    return float(best.get("price_e") or 0) >= MIN_VALUE_E and (
-        int(best.get("listing_count") or 0) >= MIN_UNIQUE_LISTINGS
-        or float(best.get("price_e") or 0) >= 50.0
+    return (
+        float(best.get("price_e") or 0) >= UNIQUE_MIN_VALUE_E
+        and int(best.get("listing_count") or 0) >= MIN_UNIQUE_LISTINGS
     )
 
 
@@ -370,11 +410,13 @@ def classification_record(
     trusted: bool,
     generated_at: str,
     previous_record: Any = None,
+    hysteresis_low_e: float = HIDE_BELOW_E,
+    hysteresis_high_e: float = SHOW_AT_OR_ABOVE_E,
     **extra: Any,
 ) -> dict[str, Any]:
     previous_name = state_name(previous_record)
     last_stable_state = state
-    if HIDE_BELOW_E <= price_e < SHOW_AT_OR_ABOVE_E and previous_name:
+    if hysteresis_low_e <= price_e < hysteresis_high_e and previous_name:
         last_stable_state = previous_name
     record: dict[str, Any] = {
         "state": state,
@@ -603,7 +645,9 @@ def build_exchange_section(
                 "volume_e": round(volume_e, 6),
                 "confidence_threshold_e": round(max(MIN_EXCHANGE_VOLUME_E, 5.0 * price_e), 6),
             }
-            if wants_single:
+            if name in FORCE_HIDDEN_EXCHANGE_ITEMS:
+                extra["uncertainty"] = "forced_hidden"
+            elif wants_single:
                 if trusted:
                     bands[price_band(price_e, divine_price_e)].append(name)
                     if (
@@ -612,6 +656,11 @@ def build_exchange_section(
                     ):
                         ten_divine.append(name)
                     state = "single"
+                elif category in LOW_VOLUME_HIDE_CATEGORIES:
+                    # Sparse basic-currency quotes are too easy to manipulate.
+                    # Keep them hidden while retaining cautious alerts for scarce
+                    # keys, essences, runes and other potentially valuable drops.
+                    extra["uncertainty"] = "low_exchange_volume"
                 else:
                     uncertain.append(name)
                     state = "uncertain"
@@ -651,6 +700,21 @@ def build_exchange_section(
                 previous_record,
                 **extra,
             )
+
+        if category == "Currency":
+            for name in sorted(FORCE_HIDDEN_EXCHANGE_ITEMS - set(markets[category])):
+                hidden.append(name)
+                final_hidden += 1
+                category_states[name] = classification_record(
+                    "hidden",
+                    0.0,
+                    False,
+                    generated_at,
+                    uncertainty="forced_hidden_missing_market_row",
+                )
+                warnings.append(
+                    f"[{category}] {name}: 行情缺行，仍按强制隐藏策略生成前置规则"
+                )
 
         if ten_divine:
             blocks.append(
@@ -715,7 +779,20 @@ def unique_rule(category_cn: str, band: str, base_types: list[str]) -> str:
 
 def unique_cautious_rule(category_cn: str, base_types: list[str]) -> str:
     lines = [
-        f"Show # 0.5.5传奇市场 - {category_cn} - 可能高价（同底材或低库存）",
+        f"Show # 0.5.5传奇市场 - {category_cn} - 可能高价（大奖同底材或价格分歧）",
+        "    Rarity Unique",
+        "    BaseType == " + " ".join(q(name) for name in sorted(base_types, key=str.casefold)),
+        *cautious_style(),
+        "    DisableDropSound",
+        "",
+        "",
+    ]
+    return "\r\n".join(lines)
+
+
+def unique_hysteresis_rule(category_cn: str, base_types: list[str]) -> str:
+    lines = [
+        f"Show # 0.5.5传奇市场 - {category_cn} - 40E-49E迟滞保留",
         "    Rarity Unique",
         "    BaseType == " + " ".join(q(name) for name in sorted(base_types, key=str.casefold)),
         *cautious_style(),
@@ -728,7 +805,7 @@ def unique_cautious_rule(category_cn: str, base_types: list[str]) -> str:
 
 def unique_hide_rule(category_cn: str, base_types: list[str]) -> str:
     lines = [
-        f"Hide # 0.5.5传奇市场 - {category_cn} - 低于10E或低置信度",
+        f"Hide # 0.5.5传奇市场 - {category_cn} - 低于50E或低置信度",
         "    Rarity Unique",
         "    BaseType == " + " ".join(q(name) for name in sorted(base_types, key=str.casefold)),
         "    SetFontSize 30",
@@ -761,7 +838,8 @@ def build_unique_section(
     for row in previous_rows:
         previous_grouped[row["base_type"]].append(row)
 
-    bands: dict[str, list[str]] = {band: [] for band in BAND_ORDER}
+    bands: dict[str, list[str]] = {band: [] for band in UNIQUE_BAND_ORDER}
+    hysteresis_visible: list[str] = []
     uncertain: list[str] = []
     hidden: list[str] = []
     states: dict[str, dict[str, Any]] = {}
@@ -769,10 +847,17 @@ def build_unique_section(
         prices = [float(row["price_e"]) for row in base_rows]
         highest_price = max(prices)
         lowest_price = min(prices)
-        trusted_rows = [
-            int(row["listing_count"]) >= MIN_UNIQUE_LISTINGS for row in base_rows
+        credible_rows = [
+            row for row in base_rows
+            if int(row.get("listing_count") or 0) >= MIN_UNIQUE_LISTINGS
         ]
-        all_trusted = all(trusted_rows)
+        all_trusted = len(credible_rows) == len(base_rows)
+        credible_top = max(
+            credible_rows,
+            key=lambda row: float(row.get("price_e") or 0),
+            default=None,
+        )
+        credible_max_price = float((credible_top or {}).get("price_e") or 0)
         names = {str(row.get("name") or base_type) for row in base_rows}
         previous_record = (
             classification_history(previous_snapshot)
@@ -786,35 +871,64 @@ def build_unique_section(
             base_type,
             previous_grouped.get(base_type, []),
         )
-        candidate = stable_single(highest_price, previous_visible)
-        every_variant_visible = all(
-            stable_single(price, previous_visible) for price in prices
+        candidate = bool(credible_rows) and stable_unique(
+            credible_max_price, previous_visible
         )
-        regular = candidate and all_trusted and len(names) == 1 and every_variant_visible
+        every_variant_visible = all(
+            stable_unique(price, previous_visible) for price in prices
+        )
+        protected = base_type in PROTECTED_SHARED_UNIQUE_BASES
+        regular = (
+            candidate
+            and all_trusted
+            and len(names) == 1
+            and every_variant_visible
+            and not protected
+        )
         state = "hidden"
         uncertainty: list[str] = []
         if candidate and regular:
-            bands[price_band(lowest_price, divine_price_e)].append(base_type)
-            state = "single"
-        elif candidate:
+            if lowest_price < UNIQUE_MIN_VALUE_E:
+                hysteresis_visible.append(base_type)
+                state = "single:hysteresis"
+                uncertainty.append("hysteresis_hold_visible")
+            else:
+                bands[price_band(lowest_price, divine_price_e)].append(base_type)
+                state = "single"
+        elif protected or candidate:
             uncertain.append(base_type)
             state = "uncertain"
+            if protected:
+                uncertainty.append("protected_shared_base")
+            if not credible_rows:
+                uncertainty.append("insufficient_listings")
+            elif candidate:
+                uncertainty.append("shared_base_jackpot")
             if not all_trusted:
-                uncertainty.append("low_listing_count")
+                uncertainty.append("untrusted_variants_present")
             if len(names) > 1:
                 uncertainty.append("shared_base_type")
             if not every_variant_visible:
                 uncertainty.append("variant_price_spread")
         else:
             hidden.append(base_type)
+            if not credible_rows:
+                uncertainty.append("insufficient_listings")
+            else:
+                uncertainty.append("below_unique_threshold")
         states[base_type] = classification_record(
             state,
-            highest_price,
-            all_trusted,
+            credible_max_price if credible_rows else highest_price,
+            bool(credible_rows),
             generated_at,
             previous_record,
+            hysteresis_low_e=UNIQUE_HIDE_BELOW_E,
+            hysteresis_high_e=UNIQUE_SHOW_AT_OR_ABOVE_E,
             min_price_e=round(lowest_price, 6),
             max_price_e=round(highest_price, 6),
+            credible_max_price_e=round(credible_max_price, 6),
+            credible_listing_count=int((credible_top or {}).get("listing_count") or 0),
+            all_rows_trusted=all_trusted,
             listing_count_min=min(int(row["listing_count"]) for row in base_rows),
             unique_names=sorted(names),
             uncertainty=uncertainty or None,
@@ -822,9 +936,11 @@ def build_unique_section(
 
     blocks = [
         unique_rule(category_cn, band, bands[band])
-        for band in BAND_ORDER
+        for band in UNIQUE_BAND_ORDER
         if bands[band]
     ]
+    if hysteresis_visible:
+        blocks.append(unique_hysteresis_rule(category_cn, hysteresis_visible))
     if uncertain:
         blocks.append(unique_cautious_rule(category_cn, uncertain))
     if hidden:
@@ -833,6 +949,7 @@ def build_unique_section(
         "rows": len(rows),
         "bases": len(grouped),
         "shown": sum(len(names) for names in bands.values()),
+        "hysteresis_visible": len(hysteresis_visible),
         "uncertain": len(uncertain),
         "hidden": len(hidden),
     }, states
@@ -843,7 +960,13 @@ def headhunter_rule() -> str:
         "Show # 0.5.5传奇市场 - 可能猎首（重革腰带同底材）",
         "    Rarity Unique",
         '    BaseType == "Heavy Belt"',
-        *cautious_style(),
+        "    SetTextColor 245 16 16",
+        "    SetBackgroundColor 255 255 255",
+        "    SetBorderColor 255 0 0",
+        "    SetFontSize 45",
+        "    MinimapIcon 0 Red Star",
+        "    PlayEffect Brown",
+        '    CustomAlertSound "音效\\wyyp.mp3" 300',
         "    DisableDropSound",
         "",
         "",
@@ -1098,7 +1221,8 @@ def build_change_report(
     lines = [
         "POE2 0.5.5 Forbidden Rites 10E 过滤器变更报告",
         f"生成时间（UTC）：{snapshot['generated_at_utc']}",
-        f"稳定门槛：<{HIDE_BELOW_E:g}E 隐藏；{HIDE_BELOW_E:g}-{SHOW_AT_OR_ABOVE_E:g}E 保持；>={SHOW_AT_OR_ABOVE_E:g}E 显示",
+        f"非传奇稳定门槛：<{HIDE_BELOW_E:g}E 隐藏；{HIDE_BELOW_E:g}-{SHOW_AT_OR_ABOVE_E:g}E 保持；>={SHOW_AT_OR_ABOVE_E:g}E 显示",
+        f"传奇稳定门槛：<{UNIQUE_HIDE_BELOW_E:g}E 隐藏；{UNIQUE_HIDE_BELOW_E:g}-{UNIQUE_SHOW_AT_OR_ABOVE_E:g}E 保持；>={UNIQUE_SHOW_AT_OR_ABOVE_E:g}E 显示；首次按{UNIQUE_MIN_VALUE_E:g}E初始化",
         "",
         "分类汇率（1 个主计价单位折合 E）：",
     ]
@@ -1114,9 +1238,12 @@ def build_change_report(
             old_name = state_name(old)
             new_name = state_name(current)
             if old_name != new_name:
+                reason = current.get("uncertainty")
+                if isinstance(reason, list):
+                    reason = ",".join(str(item) for item in reason)
                 changes.append(
                     f"- {key}: {old_name or '新增'} -> {new_name} "
-                    f"({float(current.get('price_e') or 0):.3f}E)"
+                    f"({float(current.get('price_e') or 0):.3f}E；原因：{reason or 'market_threshold'})"
                 )
     else:
         changes.append("- 首次写入分类状态；8-12E 区间由旧版精确 10E 规则初始化。")
@@ -1193,6 +1320,13 @@ def validate_filter(
 
     required = (
         "Show # 0.5.5传奇市场 - 可能猎首（重革腰带同底材）",
+        "Show # 传奇装备 - 赛季传奇 - 瓦尔传奇 - 双瓦传奇",
+        "Show # 传奇装备 - 赛季传奇 - 瓦尔传奇 - 含有瓦尔传奇词缀",
+        "Show # 传奇装备 - 赛季传奇 - 瓦尔传奇 - 瓦尔传奇装备",
+        "Show # 传奇装备 - 卓越传奇 - 高品质",
+        "Show # 传奇装备 - 卓越传奇 - 3孔",
+        "Show # 传奇装备 - 卓越传奇 - 2孔",
+        "Show # 传奇装备 - 唯一确定传奇 - 卡兰德之触",
         "Show # 装备 - 0.5.5唯一保留 - 3孔大件",
         "Show # 装备 - 0.5.5唯一保留 - 2孔小件",
         "Show # 珠宝 - 0.5.5保留 - 魔法蓝宝石",
@@ -1209,6 +1343,61 @@ def validate_filter(
             raise RuntimeError(f"Required rule missing: {marker}")
     if '"Sacred Bloom"' not in result:
         raise RuntimeError("0.5.5 event item Sacred Bloom is missing")
+
+    regal_shard_block = next(
+        block for block in re.split(r"(?m)(?=^(?:Show|Hide) # )", result)
+        if re.search(r'(?m)^    BaseType[^\r\n]*"Regal Shard"', block)
+    )
+    if not header(regal_shard_block).startswith("Hide # 0.5.5市场 -"):
+        raise RuntimeError("Regal Shard is shown before its forced market hide")
+
+    headhunter_block = next(
+        block for block in re.split(r"(?m)(?=^(?:Show|Hide) # )", result)
+        if header(block).startswith("Show # 0.5.5传奇市场 - 可能猎首")
+    )
+    headhunter_markers = (
+        "    SetFontSize 45",
+        "    MinimapIcon 0 Red Star",
+        "    PlayEffect Brown",
+        '    CustomAlertSound "音效\\wyyp.mp3" 300',
+    )
+    if any(marker not in headhunter_block for marker in headhunter_markers):
+        raise RuntimeError("Headhunter shared-base safeguard is missing its strong alert style")
+
+    active_unique_market_blocks = [
+        block for block in re.split(r"(?m)(?=^(?:Show|Hide) # )", result)
+        if header(block).startswith("Show # 0.5.5传奇市场 -")
+    ]
+    if any("10E-49E" in header(block) for block in active_unique_market_blocks):
+        raise RuntimeError("A 10E-49E unique market show rule survived the 50E threshold")
+    for protected_base in PROTECTED_SHARED_UNIQUE_BASES:
+        first_matching = next(
+            block for block in re.split(r"(?m)(?=^(?:Show|Hide) # )", result)
+            if re.search(
+                rf'(?m)^    BaseType[^\r\n]*"{re.escape(protected_base)}"',
+                block,
+            )
+            and re.search(r"(?m)^    Rarity Unique(?:\s|$)", block)
+        )
+        if not header(first_matching).startswith("Show #"):
+            raise RuntimeError(f"Protected shared unique base is hidden: {protected_base}")
+
+    unique_states = classification_state.get("unique", {})
+    for section, entries in unique_states.items():
+        for base_type, record in entries.items():
+            state = state_name(record) or ""
+            credible_listings = int(record.get("credible_listing_count") or 0)
+            if state.startswith("single") and credible_listings < MIN_UNIQUE_LISTINGS:
+                raise RuntimeError(
+                    f"Untrusted unique classified as confirmed: {section}/{base_type}"
+                )
+            if (
+                base_type in PROTECTED_SHARED_UNIQUE_BASES
+                and state not in {"uncertain"}
+            ):
+                raise RuntimeError(
+                    f"Protected unique state is not cautious: {section}/{base_type}={state}"
+                )
 
     divine_marker = "Show # 0.5.5专属音效 - 神圣石"
     if divine_marker not in result:
@@ -1407,6 +1596,16 @@ def main() -> None:
     unique_sections["gear"] = headhunter_rule() + gear_section
     heavy_rows = [row for row in gear_rows if row["base_type"] == "Heavy Belt"]
     heavy_prices = [float(row["price_e"]) for row in heavy_rows]
+    credible_heavy_rows = [
+        row for row in heavy_rows
+        if int(row.get("listing_count") or 0) >= MIN_UNIQUE_LISTINGS
+    ]
+    credible_heavy_top = max(
+        credible_heavy_rows,
+        key=lambda row: float(row.get("price_e") or 0),
+        default=None,
+    )
+    credible_heavy_max = float((credible_heavy_top or {}).get("price_e") or 0)
     previous_heavy_record = (
         classification_history(previous_snapshot)
         .get("unique", {})
@@ -1415,14 +1614,18 @@ def main() -> None:
     )
     gear_states["Heavy Belt"] = classification_record(
         "uncertain",
-        max(heavy_prices, default=0.0),
-        all(int(row["listing_count"]) >= MIN_UNIQUE_LISTINGS for row in heavy_rows),
+        credible_heavy_max if credible_heavy_rows else max(heavy_prices, default=0.0),
+        bool(credible_heavy_rows),
         generated_at,
         previous_heavy_record,
+        hysteresis_low_e=UNIQUE_HIDE_BELOW_E,
+        hysteresis_high_e=UNIQUE_SHOW_AT_OR_ABOVE_E,
         min_price_e=round(min(heavy_prices, default=0.0), 6),
         max_price_e=round(max(heavy_prices, default=0.0), 6),
+        credible_max_price_e=round(credible_heavy_max, 6),
+        credible_listing_count=int((credible_heavy_top or {}).get("listing_count") or 0),
         unique_names=sorted({str(row.get("name") or "Heavy Belt") for row in heavy_rows}),
-        uncertainty=["headhunter_shared_base_safeguard"],
+        uncertainty=["protected_shared_base", "headhunter_shared_base_safeguard"],
     )
     gear_stats["bases"] += 1
     gear_stats["uncertain"] += 1
@@ -1441,7 +1644,9 @@ def main() -> None:
         "#===============================================================================================================\r\n"
         "# [08] POE2 0.5.5 Forbidden Rites 10E过滤器\r\n"
         f"# 生成时间（UTC）：{generated_at}；行情：poe.ninja Forbidden Rites\r\n"
-        f"# 稳定10E：<{HIDE_BELOW_E:g}E隐藏，{HIDE_BELOW_E:g}-{SHOW_AT_OR_ABOVE_E:g}E保持上次分类，>={SHOW_AT_OR_ABOVE_E:g}E显示；低置信度单独提醒\r\n"
+        f"# 非传奇稳定10E：<{HIDE_BELOW_E:g}E隐藏，{HIDE_BELOW_E:g}-{SHOW_AT_OR_ABOVE_E:g}E保持，>={SHOW_AT_OR_ABOVE_E:g}E显示\r\n"
+        f"# 传奇稳定50E：<{UNIQUE_HIDE_BELOW_E:g}E隐藏，{UNIQUE_HIDE_BELOW_E:g}-{UNIQUE_SHOW_AT_OR_ABOVE_E:g}E保持，>={UNIQUE_SHOW_AT_OR_ABOVE_E:g}E显示；首次按{UNIQUE_MIN_VALUE_E:g}E初始化\r\n"
+        "# 低成交量基础通货直接隐藏；Regal Shard强制隐藏；Heavy Belt使用猎首强提醒\r\n"
         "# 音效：10D以上市场通货使用CYGG.mp3；神圣石固定使用HYL.mp3\r\n"
         "# 普通/魔法/稀有装备仅显示额外一孔；保留T15/T16、附魔地图、T14+七词缀及未知物品提醒\r\n"
         "#===============================================================================================================\r\n\r\n"
@@ -1563,6 +1768,12 @@ def main() -> None:
             "hide_below_exalted": HIDE_BELOW_E,
             "show_at_or_above_exalted": SHOW_AT_OR_ABOVE_E,
         },
+        "unique_threshold_exalted": UNIQUE_MIN_VALUE_E,
+        "unique_hysteresis": {
+            "hide_below_exalted": UNIQUE_HIDE_BELOW_E,
+            "show_at_or_above_exalted": UNIQUE_SHOW_AT_OR_ABOVE_E,
+            "first_seen_threshold_exalted": UNIQUE_MIN_VALUE_E,
+        },
         "confidence_policy": {
             "exchange_minimum_volume_exalted": MIN_EXCHANGE_VOLUME_E,
             "exchange_minimum_volume_multiplier": 5.0,
@@ -1605,6 +1816,8 @@ def main() -> None:
     print(f"patch={PATCH_VERSION}")
     print(f"threshold_e={MIN_VALUE_E}")
     print(f"hysteresis_e={HIDE_BELOW_E}-{SHOW_AT_OR_ABOVE_E}")
+    print(f"unique_threshold_e={UNIQUE_MIN_VALUE_E}")
+    print(f"unique_hysteresis_e={UNIQUE_HIDE_BELOW_E}-{UNIQUE_SHOW_AT_OR_ABOVE_E}")
     print(f"divine_price_e={divine_price_e}")
     print(f"converted_unique_rules={converted_unique}")
     print(f"converted_equipment_rules={converted_equipment}")
